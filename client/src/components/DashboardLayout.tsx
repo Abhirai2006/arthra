@@ -44,6 +44,7 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
     <SidebarInset>
       {isMobile && <header className="sticky top-0 z-40 flex h-16 items-center gap-3 border-b border-border/70 bg-background/90 px-4 backdrop-blur"><SidebarTrigger className="size-9 rounded-xl" /><BrandMark compact /><span className="ml-auto text-xs font-semibold text-muted-foreground">{activeMenuItem?.label ?? "Workspace"}</span></header>}
       <main className="min-h-screen p-4 md:p-6">{children}</main>
+      {isMobile && <nav className="mobile-workspace-dock" aria-label="Workspace navigation">{menuItems.slice(0, 4).map(item => <button type="button" className={location === item.path ? "is-active" : ""} key={item.path} onClick={() => setLocation(item.path)}><item.icon size={18} /><span>{item.label === "Expense Spaces" ? "Spaces" : item.label}</span></button>)}</nav>}
     </SidebarInset>
   </>;
 }

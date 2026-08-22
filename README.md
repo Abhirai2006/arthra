@@ -20,6 +20,8 @@ Arthra is a full-stack Indian personal-finance workspace designed around private
 
 The client is React 19 with TypeScript, Tailwind, Framer Motion, and Recharts. The backend is Express plus typed tRPC procedures, Drizzle, and MySQL/TiDB. Each finance procedure verifies a user’s membership before reading or mutating a space; receipt bytes are stored through the preconfigured object-storage helper rather than in the relational database.
 
+The app uses Express-driven SSR with a matching React hydration entry. Public routes receive semantic, content-bearing HTML and hydrated public query data; finance routes deliberately return a semantic `noindex` workspace shell, never another user’s data. This preserves search, accessibility, and HTML-fetcher readability without weakening financial-data boundaries.
+
 The application is stateless at runtime and relies on indexed records for its finance queries. That is the correct foundation for autoscaling, but production capacity should still be monitored against actual traffic, query latency, attachment usage, and email volume before claiming a particular sustained-user target.
 
 ## Local commands
@@ -29,11 +31,15 @@ pnpm dev
 pnpm check
 pnpm test
 pnpm drizzle-kit generate
+pnpm build
+BASE=http://127.0.0.1:4101 bash scripts/verify-ssr.sh
 ```
 
 ## Environment and digest setup
 
 The app’s OAuth, database, storage, and platform settings are managed by the deployment environment. The weekly digest requires a verified transactional email sender and a Resend API key, both configured through the project’s secure settings. The implementation uses a cron-only `/api/scheduled/weekly-digest` handler and must be registered only after the site is published. It intentionally does not use in-process timers.
+
+SSR deployments also require `CANONICAL_ORIGIN` (the production HTTPS domain) and `SITE_NAME` (`Arthra`) in the secure project settings. These values are used to generate canonical and social metadata safely at request time.
 
 ## Data safety notes
 
@@ -42,3 +48,11 @@ All persisted timestamps are UTC at the API and database boundary. The UI format
 ## Repository handoff
 
 The `/home/ubuntu/webdev-static-assets/` folder holds the source PWA icon; the application references the platform-managed asset URL. Review `verification_notes.md` for the latest visual checks and `todo.md` for the implementation checklist.
+
+## GitHub synchronization
+
+The repository is published at `https://github.com/Abhirai2006/arthra` as a private source mirror. The managed deployment remote remains `origin`; the GitHub mirror is the `github` remote. After a future feature checkpoint, commit the reviewed code and push `main` with `git push github main` so the GitHub repository remains aligned with the live project.
+
+## Product roadmap
+
+The next high-value additions are account aggregation through consent-based providers, recurring-bill detection, household settlement suggestions, a dedicated receipt inbox with OCR review, scenario planning for tax and large purchases, a financial “year in review,” and user-controlled notifications for budget or unusual-spend events. Each should preserve the existing privacy model: opt-in data access, scoped sharing, and never exposing finance records in public HTML.

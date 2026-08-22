@@ -21,13 +21,15 @@ export function ThemeProvider({
   defaultTheme = "light",
   switchable = false,
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (switchable) {
-      const stored = localStorage.getItem("theme");
-      return (stored as Theme) || defaultTheme;
-    }
-    return defaultTheme;
-  });
+  const [theme, setTheme] = useState<Theme>(defaultTheme);
+
+  useEffect(() => {
+    if (!switchable) return;
+    const requested = new URLSearchParams(window.location.search).get("theme");
+    if (requested === "light" || requested === "dark") { setTheme(requested); return; }
+    const stored = window.localStorage.getItem("theme") as Theme | null;
+    if (stored === "light" || stored === "dark") setTheme(stored);
+  }, [switchable]);
 
   useEffect(() => {
     const root = document.documentElement;

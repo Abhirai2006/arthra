@@ -35,3 +35,9 @@ The development-only budget visual harness displayed the production `BudgetRing`
 An isolated verification user created a live CA share token against the running application. The local route served correctly at the copied URL shape `/ca/<64-character-token>`. After immediate owner revocation, the same route continued to serve the application shell, allowing the public page’s unavailable state to be rendered rather than leaking report data. The verification user and cascading records were cleaned up after the check.
 
 The browser then rendered the public report before revocation with FY 2026–27, the `Visual report entry` ledger row, its Home Expense Space, CGST + SGST label, and the ₹456.00 expense amount. After owner revocation and a route reload, the same token rendered **“This report link is not available.”** and no ledger content. This verifies the public content and unavailable state end to end.
+
+## 2026-08-22 — SSR and mobile visual refresh
+
+The SSR verification script built a production bundle and confirmed raw HTML bodies for `/`, `/privacy`, `/terms`, and `/dashboard`. The public routes contain their page headings and body copy within `#root`; the protected dashboard presents a semantic noindex workspace shell without financial data before authentication.
+
+The refreshed mobile landing page was reviewed in dark mode and at `?theme=light`. The light surface now uses visible ink text, lavender, blush, mint, and cyan backdrop glows with an explicitly visible theme-control icon. On mobile, the public page includes a fixed quick-navigation bar, while the protected workspace adds a compact bottom dock with larger touch targets. Decorative blob, orbit, card, and chip motion are gated by reduced-motion preferences.

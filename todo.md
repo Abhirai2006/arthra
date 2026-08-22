@@ -39,3 +39,11 @@
 - [x] Verify CA CSV output and complete the create, copy, open, and revoke share-link flow.
 - [x] Exercise the public CA report URL through create, open, revoke, and unavailable states against the running application.
 - [x] Capture browser-rendered CA report content before revocation and its unavailable state after revocation.
+- [ ] Convert public and protected route shells to semantic server-rendered or pre-rendered HTML with hydration-safe client interactions.
+- [ ] Audit and correct page heading hierarchy, landmark elements, labels, and keyboard semantics across the application.
+- [ ] Repair and enrich the light theme with a high-contrast, expressive colour system that remains accessible.
+- [ ] Rework protected mobile navigation, spacing, touch targets, and finance cards for small screens.
+- [ ] Add refined Gen Z-inspired motion, responsive effects, and tactile micro-interactions without harming performance or reduced-motion support.
+- [ ] Validate raw HTML content, theme switching, semantic accessibility, mobile layouts, and core protected finance flows after the refresh.
+- [ ] Connect the project to GitHub, publish the full source code, and document ongoing repository synchronization.
+- [ ] Provide a prioritized roadmap of next product improvements.
