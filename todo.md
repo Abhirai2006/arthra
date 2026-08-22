@@ -1,0 +1,41 @@
+# Project TODO
+
+- [x] Define normalized finance, sharing, reporting, receipt, and weekly-digest schema with ownership indexes.
+- [x] Apply the database migration and implement protected tRPC data contracts for all product domains.
+- [x] Build a marketing-only `/` route with no finance queries or user financial data.
+- [x] Build a dark-first and light-toggle visual system with accessible motion preferences.
+- [x] Build parallax mouse tracking, floating 3D-style product preview cards, staggered typography, and scroll-triggered landing sections.
+- [x] Build polished Manus OAuth entry points and hard route guards that redirect unauthenticated finance-route visitors to `/`.
+- [x] Build working transaction create, edit, delete, filter, and detail interactions with INR formatting, category, GST, live date selection, and optional notes.
+- [x] Build secure receipt upload and receipt-thumbnail preview for images and PDFs using S3-backed storage.
+- [x] Build monthly per-category budgets, animated progress rings, and budget-health alerts.
+- [x] Build Expense Spaces with controlled sharing links, membership permissions, member views, and shared transaction scopes.
+- [x] Implement first-class receipt previews for PDFs and images inside a transaction detail view.
+- [x] Replace linear budget bars with animated per-category budget rings and explicit near/over-budget alerts.
+- [x] Add member visibility and make shared Expense Space categories and accounts usable by invited editors and viewers.
+- [x] Animate per-category budget rings from zero to the live spending percentage and verify warning states.
+- [x] Make categories used in shared Expense Spaces consistently visible and editable by all permitted members.
+- [x] Replace CSS gradient budget rings with SVG stroke-dashoffset progress animation and verify warning-state rendering.
+- [x] Make new shared Expense Space categories immediately visible to every permitted member.
+- [x] Build protected analytics with animated line, bar, and donut charts plus an explain-this-chart interaction.
+- [x] Build deterministic spending insights, unusual-transaction detection, and a configurable future-LLM extension seam.
+- [x] Build Indian Apr–Mar financial-year reports, GST tagging, tax-reference disclaimer, CA-formatted CSV export, and read-only revocable CA share links.
+- [x] Build daily streak indicators, designed empty states, skeleton loaders, and comprehensive micro-interactions.
+- [x] Build an installable PWA with manifest, responsive layouts, and usable mobile navigation.
+- [ ] Build a deployed-only, idempotent Monday weekly digest schedule with a configurable email delivery adapter.
+- [x] Add page metadata, structured data, sitemap, robots directives, privacy policy, terms, MIT license, secure setting documentation, and CI checks.
+- [x] Add Vitest coverage for financial calculations, authorization boundaries, exports, and user-facing business logic.
+- [x] Verify desktop and mobile flows, protected-route boundaries, live dates, transaction persistence, receipt attachment, export output, sharing, and reported UI behavior.
+- [x] Prepare the final README with live screenshots and repository handoff notes.
+- [x] Capture and record browser evidence for SVG budget warning states and protected mobile navigation.
+- [x] Audit and document app-wide micro-interactions, including button press, dialog, list, and empty-state behavior.
+- [x] Validate PWA installability prerequisites in a production-ready build.
+- [x] Add public structured data markup for the marketing page.
+- [x] Add protected router-level tests for membership and ownership boundaries.
+- [x] Exercise and record transaction persistence, receipt attachment, CA export, sharing, and date behavior.
+- [x] Embed current live preview screenshots in the README.
+- [x] Capture browser evidence for near-budget and over-budget SVG ring warning states.
+- [x] Document an interaction audit covering buttons, dialogs, lists, empty states, and reduced-motion handling.
+- [x] Verify CA CSV output and complete the create, copy, open, and revoke share-link flow.
+- [x] Exercise the public CA report URL through create, open, revoke, and unavailable states against the running application.
+- [x] Capture browser-rendered CA report content before revocation and its unavailable state after revocation.

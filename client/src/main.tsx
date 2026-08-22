@@ -8,6 +8,12 @@ import App from "./App";
 import { startLogin } from "./const";
 import "./index.css";
 
+if ("serviceWorker" in navigator && import.meta.env.PROD) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js").catch(error => console.warn("PWA registration failed", error));
+  });
+}
+
 const queryClient = new QueryClient();
 
 const redirectToLoginIfUnauthorized = (error: unknown) => {
@@ -73,9 +79,9 @@ const trpcClient = trpc.createClient({
 });
 
 createRoot(document.getElementById("root")!).render(
-  <trpc.Provider client={trpcClient} queryClient={queryClient}>
-    <QueryClientProvider client={queryClient}>
+  <QueryClientProvider client={queryClient}>
+    <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <App />
-    </QueryClientProvider>
-  </trpc.Provider>
+    </trpc.Provider>
+  </QueryClientProvider>
 );

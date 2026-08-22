@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /transactions
+Disallow: /budgets
+Disallow: /spaces
+Disallow: /analytics
+Disallow: /reports
+Disallow: /ca/
+Disallow: /join/
+Sitemap: https://arthra.manus.space/sitemap.xml

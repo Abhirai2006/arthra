@@ -1,5 +1,27 @@
 {
   "version": "7",
   "dialect": "mysql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1787374073759,
+      "tag": "0000_old_stark_industries",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1787374264342,
+      "tag": "0001_parallel_paladin",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1787376887625,
+      "tag": "0002_good_iron_man",
+      "breakpoints": true
+    }
+  ]
 }

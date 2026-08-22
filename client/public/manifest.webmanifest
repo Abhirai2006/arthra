@@ -1,0 +1,17 @@
+{
+  "name": "Arthra — Money with context",
+  "short_name": "Arthra",
+  "description": "A private Indian personal-finance workspace for thoughtful logging, shared spaces, and CA-ready clarity.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121018",
+  "theme_color": "#121018",
+  "icons": [
+    {
+      "src": "/manus-storage/arthra-pwa-icon_49cf2c79.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
