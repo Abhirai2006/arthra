@@ -80,5 +80,7 @@
 - [x] Repair typography spacing, heading wrapping, and responsive flow to remove visual overlaps across landing and demo surfaces.
 - [x] Rework the demo into a cohesive, interactive single-flow walkthrough with visible progress and safe read-only boundaries.
 - [x] Replace README image links with reliable repository-hosted screenshots and rewrite README as a concise verified portfolio document.
-- [ ] Resolve the avoidable GitHub checkpoint-history confusion and verify the final repository presentation.
-- [ ] Re-run full visual, functional, SSR, test, build, deployment, and GitHub verification for the repair release.
+- [x] Resolve the avoidable GitHub checkpoint-history confusion and verify the final repository presentation; the latest workflow is green and README screenshots are repository-hosted.
+- [x] Re-run full visual, functional, SSR, test, build, deployment, and GitHub verification for the repair release.
+- [ ] Save and publish the repair checkpoint, then verify the live production domain serves the latest fixed header and interactive demo.
+- [ ] Verify the repaired first-sign-in destination through a real authenticated browser session when the user authorizes a logout-and-sign-in check; otherwise retain the code and regression-test evidence only.
