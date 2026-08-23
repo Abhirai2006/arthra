@@ -2,6 +2,8 @@ import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { getFinancialYearRange } from "../../shared/finance";
 import { storagePut } from "../storage";
+import { suggestReceiptFields } from "../receiptAssist";
+import { createAiFinancialSummary } from "../aiInsights";
 import {
   acceptInvite,
   attachReceipt,
@@ -168,6 +170,19 @@ export const financeRouter = router({
       }),
   }),
 
+  receipts: router({
+    suggest: protectedProcedure
+      .input(spaceIdSchema.extend({ dataUrl: z.string().min(32).max(10_000_000) }))
+      .mutation(async ({ ctx, input }) => {
+        await requireSpaceAccess(ctx.user.id, input.spaceId, "write");
+        try {
+          return await suggestReceiptFields(input.dataUrl);
+        } catch (error) {
+          throw new TRPCError({ code: "BAD_REQUEST", message: error instanceof Error ? error.message : "Receipt suggestions are temporarily unavailable." });
+        }
+      }),
+  }),
+
   dashboard: router({
     get: protectedProcedure.input(spaceIdSchema.extend({ monthKey: z.string().regex(/^\d{4}-\d{2}$/) })).query(async ({ ctx, input }) => {
       await requireSpaceAccess(ctx.user.id, input.spaceId, "read");
@@ -192,6 +207,11 @@ export const financeRouter = router({
     get: protectedProcedure.input(spaceIdSchema).query(async ({ ctx, input }) => {
       await requireSpaceAccess(ctx.user.id, input.spaceId, "read");
       return getAnalyticsData(ctx.user.id, input.spaceId);
+    }),
+    aiSummary: protectedProcedure.input(spaceIdSchema).mutation(async ({ ctx, input }) => {
+      await requireSpaceAccess(ctx.user.id, input.spaceId, "read");
+      const analytics = await getAnalyticsData(ctx.user.id, input.spaceId);
+      return { summary: await createAiFinancialSummary(analytics) };
     }),
   }),
 

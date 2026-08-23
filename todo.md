@@ -60,3 +60,17 @@
 - [x] Individually inspect Dashboard, Budgets, Spaces, and Analytics page semantics and keyboard-facing controls.
 - [x] Verify user-facing transaction, budget, analytics, report, CSV export, and Expense Space UI actions after the refresh.
 - [x] Verify active-space switching, member visibility, and invite-link presentation in the refreshed Expense Spaces UI at both breakpoints.
+- [x] Fix the reported protected-route SSR hydration mismatch between the server shell and client loading state.
+- [x] Add a skippable, restartable new-user onboarding guide with clear next and previous steps.
+- [x] Expand README into a detailed professional developer, deployment, security, and operations handoff document.
+- [x] Add an in-product help entry point and concise user guide for everyday finance workflows.
+- [x] Run and record SSR hydration, console, accessible-state, mobile, automated functional, and production verification after corrections; authenticated browser clicks remain constrained by the preview-session boundary.
+- [x] Audit the complete portfolio-upgrade specification and map every safe requirement to Arthra’s existing architecture.
+- [x] Add a clearly labelled, isolated, non-persistent demo mode with an obvious exit path and no access to real user data.
+- [x] Extend data-grounded insights with recurring-spend and budget-risk detection while preserving the no-advice policy.
+- [x] Add receipt-assist suggestions that require user review and preserve the existing safe upload workflow when unavailable.
+- [x] Refine landing-page messaging, Indian-finance education, privacy storytelling, product showcase, and consistent loading, empty, and retryable error states.
+- [x] Expand the professional README and user guide with the completed portfolio upgrade and safe operation details.
+- [ ] Execute complete upgraded-flow, SSR, console, accessibility, mobile, test, build, deployment, and GitHub synchronization verification.
+- [x] Verify demo entry/exit markup, AI-provider availability with fictional aggregate input, and receipt-assist manual fallback through SSR, unit, and provider smoke checks; authenticated browser clicks remain constrained by the preview-session boundary.
+- [x] Add and document consistent upgraded empty, loading, and retryable error states for dashboard, transactions, budgets, spaces, reports, and analytics sub-states, then re-verify available public/mobile surfaces.

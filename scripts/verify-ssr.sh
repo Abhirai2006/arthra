@@ -12,7 +12,9 @@ check_body() {
 check_body / 'A more'
 check_body /privacy 'Privacy policy'
 check_body /terms 'Terms of use'
+check_body /demo 'DEMO DATA'
 check_body /dashboard 'Your money, with context'
 grep -q 'noindex, follow' <<<"$(curl -fsS "$BASE/dashboard")"
+grep -q 'noindex, follow' <<<"$(curl -fsS "$BASE/demo")"
 grep -q 'rel="canonical"' <<<"$(curl -fsS "$BASE/")"
-printf 'SSR route verification passed for public and protected shells.\n'
+printf 'SSR route verification passed for public, demo, and protected shells.\n'

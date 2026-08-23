@@ -9,14 +9,17 @@ export type SsrPrefetch = {
   publicCaReport: (token: string) => Promise<unknown>;
 };
 
-const SITE = "Arthra — Money with context";
-const DESCRIPTION = "A private Indian personal-finance workspace for contextual money records, shared Expense Spaces, and CA-ready reporting.";
+const SITE = "Arthra — Personal Finance, Built for India";
+const DESCRIPTION = "Track expenses, manage budgets, understand your spending, and generate secure financial reports with Arthra.";
 const protectedPaths = new Set(["/dashboard", "/transactions", "/budgets", "/spaces", "/analytics", "/reports"]);
 const seed = (client: QueryClient, key: unknown, data: unknown) => client.setQueryData(key as any, data as any);
 
 export async function prefetchForPath(url: string, client: QueryClient, prefetch: SsrPrefetch): Promise<HeadMeta> {
   const rawPath = url.split("?")[0] || "/";
   const path = rawPath.replace(/\/+$/, "") || "/";
+  if (path === "/demo") {
+    return { title: "Arthra demo · Personal finance, built for India", description: "Explore Arthra’s safe, labelled fictional demo workspace with transactions, budgets, analytics, shared spaces, and reports.", canonicalPath: path, noindex: true };
+  }
   if (path === "/" || path === "/privacy" || path === "/terms") {
     const auth = await prefetch.authMe();
     seed(client, getQueryKey(trpc.auth.me, undefined, "query"), auth);

@@ -3,12 +3,13 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import DashboardLayout from "@/components/DashboardLayout";
 import { Route, Switch } from "wouter";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import "./workspace.css";
 import "./analytics.css";
 import Home from "./pages/Home";
+import DemoPage from "./pages/DemoPage";
 import JoinSpacePage from "./pages/JoinSpacePage";
 import CaPublicPage from "./pages/CaPublicPage";
 import LegalPage from "./pages/LegalPage";
@@ -22,13 +23,24 @@ const ReportsPage = lazy(() => import("@/pages/ReportsPage"));
 const BudgetRingHarness = lazy(() => import("@/pages/BudgetRingHarness"));
 
 function RouteLoading() { return <div className="min-h-screen bg-background" aria-label="Loading page" />; }
-function ProtectedRoute({ title, description, children }: { title: string; description: string; children: React.ReactNode }) { if (typeof window === "undefined") return <main className="ssr-protected-shell"><nav aria-label="Private workspace"><a href="/">Arthra</a><span>Private workspace</span></nav><section><p>Authenticated finance workspace</p><h1>{title}</h1><p>{description}</p></section></main>; return <DashboardLayout>{children}</DashboardLayout>; }
+
+function ProtectedRouteShell({ title, description }: { title: string; description: string }) {
+  return <main className="ssr-protected-shell"><nav aria-label="Private workspace"><a href="/">Arthra</a><span>Private workspace</span></nav><section><p>Authenticated finance workspace</p><h1>{title}</h1><p>{description}</p></section></main>;
+}
+
+function ProtectedRoute({ title, description, children }: { title: string; description: string; children: React.ReactNode }) {
+  const [isHydrated, setIsHydrated] = useState(false);
+  useEffect(() => { setIsHydrated(true); }, []);
+  if (!isHydrated) return <ProtectedRouteShell title={title} description={description} />;
+  return <DashboardLayout>{children}</DashboardLayout>;
+}
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
     <Suspense fallback={<RouteLoading />}><Switch>
       <Route path={"/"} component={Home} />
+      <Route path={"/demo"} component={DemoPage} />
       <Route path={"/join/:token"} component={JoinSpacePage} />
       <Route path={"/ca/:token"} component={CaPublicPage} />
       <Route path={"/privacy"} component={LegalPage} />

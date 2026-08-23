@@ -1,5 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "./demo.css";
+@import "./receipt-assist.css";
+@import "./upgrade.css";
+@import "./analytics-upgrade.css";
+@import "./workspace-errors.css";
 
 @custom-variant dark (&:is(.dark *));
 

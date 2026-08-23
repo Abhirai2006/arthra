@@ -20,6 +20,7 @@ import {
   getMonthKey,
 } from "../shared/finance";
 import { canWriteExpenseSpace, hasExpenseSpaceAccess } from "../shared/permissions";
+import { calculateSpendingSignals } from "../shared/spendingSignals";
 import { getDb } from "./db";
 
 export type SpaceRole = "owner" | "editor" | "viewer";
@@ -495,6 +496,7 @@ export async function getAnalyticsData(userId: number, spaceId: number) {
   const now = new Date();
   const start = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 5, 1));
   const data = await listTransactions(userId, { spaceId, start, limit: 500 });
+  const currentBudgets = await getBudgetsWithSpend(userId, spaceId, getMonthKey(now));
   const months = new Map<string, { monthKey: string; incomePaise: number; expensePaise: number }>();
   const categoryMap = new Map<string, { name: string; color: string | null; amountPaise: number }>();
   for (const item of data) {
@@ -514,6 +516,11 @@ export async function getAnalyticsData(userId: number, spaceId: number) {
     monthlyTrend: Array.from(months.values()).sort((a, b) => a.monthKey.localeCompare(b.monthKey)),
     categoryBreakdown: Array.from(categoryMap.values()).sort((a, b) => b.amountPaise - a.amountPaise),
     transactions: data,
+    signals: calculateSpendingSignals({
+      transactions: data.map(transaction => ({ description: transaction.description, amountPaise: transaction.amountPaise, kind: transaction.kind, occurredAt: transaction.occurredAt, categoryName: transaction.categoryName })),
+      budgets: currentBudgets.map(budget => ({ categoryName: budget.categoryName, amountPaise: budget.amountPaise, spentPaise: budget.spentPaise })),
+      referenceDate: now,
+    }),
   };
 }
 
