@@ -115,7 +115,7 @@ flowchart LR
   ai -. review-only suggestions .-> core
 ```
 
-The original Mermaid architecture presentation has been restored and updated for the current stack. For the full architecture at any scale, use the **[interactive architecture map](https://arthrafin-7qakibfj.manus.space/architecture-map.html)**: it supports zoom, pan, keyboard controls, and component inspection without modifying the application.
+The original Mermaid architecture presentation has been restored and updated for the current stack. For the full architecture at any scale, use the **[interactive architecture map](https://arthrafin-7qakibfj.manus.space/architecture)**: it supports zoom, pan, keyboard controls, and component inspection without modifying the application.
 
 Arthra separates the client experience from server-side financial procedures, authorization, persistence, and protected file handling. Core financial calculations remain deterministic; optional AI-assisted summaries operate only through the server-side flow after an explicit request and never create or modify transactions automatically.
 
