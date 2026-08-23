@@ -57,7 +57,7 @@ async function startServer() {
         ];
     const file = candidates.find(candidate => fs.existsSync(candidate));
     if (!file) return res.status(404).type("text").send("Architecture documentation is unavailable.");
-    res.set("Cache-Control", "no-store").sendFile(file, error => {
+    res.set({ "Cache-Control": "no-store", "X-Architecture-Map-Revision": "2026-08-23-final" }).sendFile(file, error => {
       if (error && !res.headersSent) res.status(404).type("text").send("Architecture documentation is unavailable.");
     });
   });
