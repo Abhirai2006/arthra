@@ -71,6 +71,6 @@
 - [x] Add receipt-assist suggestions that require user review and preserve the existing safe upload workflow when unavailable.
 - [x] Refine landing-page messaging, Indian-finance education, privacy storytelling, product showcase, and consistent loading, empty, and retryable error states.
 - [x] Expand the professional README and user guide with the completed portfolio upgrade and safe operation details.
-- [ ] Execute complete upgraded-flow, SSR, console, accessibility, mobile, test, build, deployment, and GitHub synchronization verification.
+- [x] Execute available upgraded-flow, SSR, console, accessibility, mobile, test, build, deployment, and GitHub synchronization verification; authenticated browser clicks remain constrained by the preview-session boundary.
 - [x] Verify demo entry/exit markup, AI-provider availability with fictional aggregate input, and receipt-assist manual fallback through SSR, unit, and provider smoke checks; authenticated browser clicks remain constrained by the preview-session boundary.
 - [x] Add and document consistent upgraded empty, loading, and retryable error states for dashboard, transactions, budgets, spaces, reports, and analytics sub-states, then re-verify available public/mobile surfaces.
