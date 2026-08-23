@@ -39,11 +39,24 @@
 - [x] Verify CA CSV output and complete the create, copy, open, and revoke share-link flow.
 - [x] Exercise the public CA report URL through create, open, revoke, and unavailable states against the running application.
 - [x] Capture browser-rendered CA report content before revocation and its unavailable state after revocation.
-- [ ] Convert public and protected route shells to semantic server-rendered or pre-rendered HTML with hydration-safe client interactions.
-- [ ] Audit and correct page heading hierarchy, landmark elements, labels, and keyboard semantics across the application.
-- [ ] Repair and enrich the light theme with a high-contrast, expressive colour system that remains accessible.
-- [ ] Rework protected mobile navigation, spacing, touch targets, and finance cards for small screens.
-- [ ] Add refined Gen Z-inspired motion, responsive effects, and tactile micro-interactions without harming performance or reduced-motion support.
-- [ ] Validate raw HTML content, theme switching, semantic accessibility, mobile layouts, and core protected finance flows after the refresh.
-- [ ] Connect the project to GitHub, publish the full source code, and document ongoing repository synchronization.
-- [ ] Provide a prioritized roadmap of next product improvements.
+- [x] Convert public and protected route shells to semantic server-rendered or pre-rendered HTML with hydration-safe client interactions.
+- [x] Audit and correct page heading hierarchy, landmark elements, labels, and keyboard semantics across the application.
+- [x] Repair and enrich the light theme with a high-contrast, expressive colour system that remains accessible.
+- [x] Rework protected mobile navigation, spacing, touch targets, and finance cards for small screens.
+- [x] Add refined Gen Z-inspired motion, responsive effects, and tactile micro-interactions without harming performance or reduced-motion support.
+- [x] Validate raw HTML content, theme switching, semantic accessibility, mobile layouts, and core protected finance flows after the refresh.
+- [x] Connect the project to GitHub, publish the full source code, and document ongoing repository synchronization.
+- [x] Provide a prioritized roadmap of next product improvements.
+- [x] Audit remaining finance pages and dialogs for headings, landmarks, labels, and keyboard semantics.
+- [x] Re-verify refreshed protected desktop and mobile screens across dashboard, transactions, budgets, spaces, analytics, and reports.
+- [x] Exercise and record core protected finance interactions after the SSR and visual refresh.
+- [x] Audit every remaining protected page and interactive finance surface for semantic landmarks, labels, headings, and keyboard behavior.
+- [x] Capture refreshed desktop views for dashboard, transactions, budgets, spaces, analytics, and reports.
+- [x] Re-run and record protected browser interactions for transactions, budgets, sharing, analytics, reports, and CSV export after the refresh.
+- [x] Fix the Expense Spaces route hook-order error and re-verify the shared-space flow on desktop and mobile.
+- [x] Individually audit Dashboard, Budgets, Spaces, Analytics, and remaining protected interactive surfaces for semantic and keyboard behavior.
+- [x] Verify transaction, budget, sharing, analytics, reports, and CSV export workflows against the refreshed protected application.
+- [x] Verify active-space selection, member visibility, and invite-link lifecycle on the Expense Spaces screen at desktop and mobile breakpoints.
+- [x] Individually inspect Dashboard, Budgets, Spaces, and Analytics page semantics and keyboard-facing controls.
+- [x] Verify user-facing transaction, budget, analytics, report, CSV export, and Expense Space UI actions after the refresh.
+- [x] Verify active-space switching, member visibility, and invite-link presentation in the refreshed Expense Spaces UI at both breakpoints.

@@ -3,12 +3,12 @@ import { eq } from "drizzle-orm";
 import { users } from "../drizzle/schema";
 import { createCaLedgerCsv } from "../shared/caCsv";
 import { getDb } from "./db";
-import { attachReceipt, createCaShareLink, createTransaction, ensureFinanceWorkspace, getBudgetsWithSpend, getCaShareLink, getLedgerRows, getSpaceCategories, getAccessibleSpaces, getTransactionDetail, revokeCaShareLink, setBudget } from "./financeDb";
+import { acceptInvite, attachReceipt, createCaShareLink, createSpaceInvite, createTransaction, ensureFinanceWorkspace, getBudgetsWithSpend, getCaShareLink, getInvitePreview, getLedgerRows, getSpaceCategories, getAccessibleSpaces, getSpaceMembers, getTransactionDetail, revokeCaShareLink, setBudget } from "./financeDb";
 
 const integration = process.env.DATABASE_URL ? describe : describe.skip;
 
 integration("finance persistence integration", () => {
-  const openId = `finance-test-${Date.now()}`; let userId = 0; let spaceId = 0; let categoryId = 0; let transactionId = 0;
+  const openId = `finance-test-${Date.now()}`; let userId = 0; let invitedUserId = 0; let spaceId = 0; let categoryId = 0; let transactionId = 0;
 
   beforeAll(async () => {
     const db = await getDb(); if (!db) throw new Error("Database unavailable for integration test");
@@ -18,7 +18,7 @@ integration("finance persistence integration", () => {
     const [category] = await getSpaceCategories(userId, spaceId); if (!category) throw new Error("Expected default category"); categoryId = category.id;
   });
 
-  afterAll(async () => { const db = await getDb(); if (db && userId) await db.delete(users).where(eq(users.id, userId)); });
+  afterAll(async () => { const db = await getDb(); if (db && invitedUserId) await db.delete(users).where(eq(users.id, invitedUserId)); if (db && userId) await db.delete(users).where(eq(users.id, userId)); });
 
   it("persists a GST transaction, attached receipt metadata, monthly budget, and Apr–Mar CA ledger row", async () => {
     const created = await createTransaction(userId, { spaceId, categoryId, kind: "expense", amountPaise: 12_345, description: "Integration invoice", note: "Recorded for verification", occurredAt: new Date(Date.UTC(2026, 3, 1, 9)), isGstApplicable: true, gstKind: "cgst_sgst", gstRateBasisPoints: 1800 });
@@ -45,4 +45,18 @@ integration("finance persistence integration", () => {
     await revokeCaShareLink(userId, link.id);
     expect((await getCaShareLink(link.token))?.revokedAt).not.toBeNull();
   });
+
+  it("creates, accepts, and exposes a shared Expense Space only to the invited member", async () => {
+    const db = await getDb(); if (!db) throw new Error("Database unavailable");
+    const [invited] = await db.insert(users).values({ openId: `${openId}-invitee`, name: "Invited member", email: `${openId}-invitee@example.com` }).$returningId(); invitedUserId = invited.id;
+    await ensureFinanceWorkspace(invitedUserId);
+    const invite = await createSpaceInvite(userId, spaceId, { role: "editor", expiresAt: new Date(Date.now() + 86_400_000) });
+    expect((await getInvitePreview(invite.token))?.spaceName).toBe("Home");
+    await acceptInvite(invitedUserId, invite.token);
+    const members = await getSpaceMembers(userId, spaceId);
+    expect(members).toEqual(expect.arrayContaining([expect.objectContaining({ id: invitedUserId, role: "editor" })]));
+    const accessible = await getAccessibleSpaces(invitedUserId);
+    expect(accessible).toEqual(expect.arrayContaining([expect.objectContaining({ id: spaceId, role: "editor" })]));
+    expect((await getSpaceCategories(invitedUserId, spaceId)).length).toBeGreaterThan(0);
+  }, 15_000);
 });
