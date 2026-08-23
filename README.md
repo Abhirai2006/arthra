@@ -39,6 +39,8 @@ BASE=http://127.0.0.1:4101 bash scripts/verify-ssr.sh
 
 The app’s OAuth, database, storage, and platform settings are managed by the deployment environment. The weekly digest requires a verified transactional email sender and a Resend API key, both configured through the project’s secure settings. The implementation uses a cron-only `/api/scheduled/weekly-digest` handler and must be registered only after the site is published. It intentionally does not use in-process timers.
 
+The production schedule is registered as **`arthra-weekly-digest`** (task UID `YF9bqtYHWr44u6rWnkYsky`) for **Monday 08:00 IST** (`0 30 2 * * 1` in the platform’s six-field UTC cron). It invokes the published handler only, so it remains independent of sandbox sessions and retries safely through the handler’s idempotency safeguards.
+
 SSR deployments also require `CANONICAL_ORIGIN` (the production HTTPS domain) and `SITE_NAME` (`Arthra`) in the secure project settings. These values are used to generate canonical and social metadata safely at request time.
 
 ## Data safety notes

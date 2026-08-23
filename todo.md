@@ -22,7 +22,7 @@
 - [x] Build Indian Apr–Mar financial-year reports, GST tagging, tax-reference disclaimer, CA-formatted CSV export, and read-only revocable CA share links.
 - [x] Build daily streak indicators, designed empty states, skeleton loaders, and comprehensive micro-interactions.
 - [x] Build an installable PWA with manifest, responsive layouts, and usable mobile navigation.
-- [ ] Build a deployed-only, idempotent Monday weekly digest schedule with a configurable email delivery adapter.
+- [x] Build a deployed-only, idempotent Monday weekly digest schedule with a configurable email delivery adapter.
 - [x] Add page metadata, structured data, sitemap, robots directives, privacy policy, terms, MIT license, secure setting documentation, and CI checks.
 - [x] Add Vitest coverage for financial calculations, authorization boundaries, exports, and user-facing business logic.
 - [x] Verify desktop and mobile flows, protected-route boundaries, live dates, transaction persistence, receipt attachment, export output, sharing, and reported UI behavior.

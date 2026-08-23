@@ -53,3 +53,7 @@ The finance-screen audit confirmed one `h1` per major page and section-level `h2
 The expanded database-backed lifecycle verification now creates an isolated invited user, provisions their workspace, creates an editor invite from the owner’s Home space, accepts it, confirms the member list, confirms the invited member’s accessible-space list, and confirms shared category visibility. The full suite has 17 passing tests, including the existing transaction, receipt, budget, analytics, reporting, CA export, and revocation scenarios.
 
 The final individual audit reviewed the dashboard’s active-space selector, action buttons, summary and activity regions; budget controls and ring states; Expense Space action cards and dialogs; analytics disclosure state and chart region; transaction search and editor; and report selectors and share-link controls. The final release verification completed with `pnpm check`, 17 passing tests, and an SSR production build.
+
+## 2026-08-23 — weekly digest schedule
+
+After the published checkpoint, the platform Heartbeat job `arthra-weekly-digest` was registered with task UID `YF9bqtYHWr44u6rWnkYsky`. It posts only to `/api/scheduled/weekly-digest` at 02:30 UTC every Monday, which is 08:00 India Standard Time. No in-process timer or sandbox dependency is used.
