@@ -83,3 +83,11 @@ The first published repair checkpoint was opened on the live production domain a
 The final published demo route was opened at `https://arthrafin-7qakibfj.manus.space/demo`. It exposed the six-step **DEMO FLOW** rail, labelled fictional content, interactive walkthrough controls, and the visible **Exit demo** path on the live domain. This confirms the final published version serves both the repaired public header and the connected read-only product walkthrough.
 
 The architecture documentation uses a self-contained HTML map delivered at `/architecture`; the companion Mermaid diagram remains in the README for GitHub rendering. The map is documentation-only and contains no credentials, live finance data, or application mutation controls.
+
+## 2026-08-23 — architecture documentation production verification
+
+The previously unavailable documentation route was repaired and then checked on the published domain. Direct production requests returned **HTTP 200** for `/`, `/architecture`, and `/architecture-map.html`; the prior maintenance/503 response did not recur. The live browser rendered the complete self-contained map with all current component labels, including the deterministic finance core and the clearly separate optional-AI support node. The map contains no finance actions or data-bearing integration.
+
+An isolated Chromium session sent real pointer events to the published map canvas. Its viewport transform changed from `translate(0 0) scale(1)` to `translate(100 40) scale(1)`, confirming drag-to-pan. The same production session changed the displayed zoom from `100%` to `120%` with Zoom In, then back to `100%` with Zoom Out. The map also retains wheel, keyboard, reset, and focusable-component interactions; the keyboard arrow controls additionally pan the focused map canvas without changing any finance application route.
+
+The README’s Architecture section keeps the restored Mermaid flowchart immediately after the technology table and links to the published interactive map. Its four repository-hosted screenshots returned HTTP 200 from GitHub raw content. The GitHub Actions CI run for commit `47a2a96` completed successfully, and all route repair work remains limited to documentation delivery and the self-contained map.
