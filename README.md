@@ -97,19 +97,27 @@ Arthra is designed with financial-data privacy in mind, but it should not be pre
 
 ## Architecture
 
-```text
-Browser / PWA
-      ↓
-React + TypeScript
-      ↓
-Express + tRPC
-      ↓
-Drizzle ORM
-      ↓
-MySQL / TiDB
+```mermaid
+flowchart LR
+  browser[Browser / PWA] --> react[React 19 + TypeScript]
+  react --> ssr[Express SSR renderer]
+  react --> trpc[tRPC finance procedures]
+  ssr --> trpc
+  trpc --> auth[Manus OAuth + server authorization]
+  auth --> core[Deterministic finance services]
+  trpc --> core
+  core --> drizzle[Drizzle ORM]
+  drizzle --> db[(MySQL / TiDB)]
+  core --> storage[Protected receipt storage]
+  core --> reports[Reports + CA links]
+  core --> digest[Heartbeat + Resend digest]
+  core -. explicit optional request .-> ai[Optional AI-assisted summaries]
+  ai -. review-only suggestions .-> core
 ```
 
-Public routes are separated from protected workspace routes. Server-side procedures enforce authorization, while financial data loads only in authenticated and scoped contexts. Receipt bytes are stored separately from relational finance data. Optional AI-assisted processing occurs server-side after an explicit user action.
+The original Mermaid architecture presentation has been restored and updated for the current stack. For the full architecture at any scale, use the **[interactive architecture map](https://arthrafin-7qakibfj.manus.space/architecture-map.html)**: it supports zoom, pan, keyboard controls, and component inspection without modifying the application.
+
+Arthra separates the client experience from server-side financial procedures, authorization, persistence, and protected file handling. Core financial calculations remain deterministic; optional AI-assisted summaries operate only through the server-side flow after an explicit request and never create or modify transactions automatically.
 
 ## Try the Demo
 

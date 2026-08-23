@@ -83,4 +83,7 @@
 - [x] Resolve the avoidable GitHub checkpoint-history confusion and verify the final repository presentation; the latest workflow is green and README screenshots are repository-hosted.
 - [x] Re-run full visual, functional, SSR, test, build, deployment, and GitHub verification for the repair release.
 - [x] Save and publish the final contrast adjustment, then verify the live production domain serves the latest fixed header and interactive demo.
+- [x] Inspect Git history, prior README versions, documentation assets, and diagram sources to identify the original architecture implementation.
+- [x] Restore the historical Mermaid architecture presentation plus a zoomable and pannable companion visualization under the README Architecture section, updating only current component labels.
+- [ ] Verify zoom, pan, README rendering, current architecture accuracy, optional AI positioning, and GitHub source synchronization without changing application functionality.
 - [x] Verify the repaired authenticated destination through code, regression tests, and an active authenticated browser session; a logout-and-Google reauthentication was not forced on the user’s active session.
