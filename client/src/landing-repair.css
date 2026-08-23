@@ -1,0 +1,8 @@
+.arthra-site{overflow-x:clip;padding-top:84px}
+.arthra-nav-shell{position:fixed;top:0;right:0;left:0;z-index:100;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(18,16,24,.8);color:#f5f0ff;box-shadow:0 12px 30px rgba(17,12,27,.13);backdrop-filter:blur(18px) saturate(150%)}
+html:not(.dark) .arthra-nav-shell{border-color:rgba(65,39,105,.1);background:rgba(255,250,255,.78);color:#28153f;box-shadow:0 12px 30px rgba(88,47,138,.08)}
+.arthra-hero{min-height:min(780px,calc(100vh - 84px))}
+.hero-copy h1,.section-intro h2,.feature-rail__intro h2,.narrative-sticky h2,.trust-copy h2{line-height:1.01;overflow-wrap:break-word;text-wrap:balance}
+.bento-card>div:first-child{position:relative;z-index:1}.bento-card h3{line-height:1.08;overflow-wrap:break-word}
+section[id]{scroll-margin-top:104px}
+@media(max-width:600px){.arthra-site{padding-top:70px}.mobile-quick-nav{z-index:110}.hero-copy h1{font-size:clamp(2.75rem,14vw,3.3rem);letter-spacing:-.07em}.arthra-hero{min-height:auto}}

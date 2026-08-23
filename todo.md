@@ -74,3 +74,11 @@
 - [x] Execute available upgraded-flow, SSR, console, accessibility, mobile, test, build, deployment, and GitHub synchronization verification; authenticated browser clicks remain constrained by the preview-session boundary.
 - [x] Verify demo entry/exit markup, AI-provider availability with fictional aggregate input, and receipt-assist manual fallback through SSR, unit, and provider smoke checks; authenticated browser clicks remain constrained by the preview-session boundary.
 - [x] Add and document consistent upgraded empty, loading, and retryable error states for dashboard, transactions, budgets, spaces, reports, and analytics sub-states, then re-verify available public/mobile surfaces.
+- [x] Audit the reported GitHub README-image failure, excess checkpoint commit, navigation clipping, font overlap, and first-sign-in redirect behavior.
+- [x] Route newly authenticated users directly to their protected workspace overview instead of returning them to the public landing page.
+- [x] Make the public navigation persistent and accessible while scrolling, without obscuring responsive content.
+- [x] Repair typography spacing, heading wrapping, and responsive flow to remove visual overlaps across landing and demo surfaces.
+- [x] Rework the demo into a cohesive, interactive single-flow walkthrough with visible progress and safe read-only boundaries.
+- [x] Replace README image links with reliable repository-hosted screenshots and rewrite README as a concise verified portfolio document.
+- [ ] Resolve the avoidable GitHub checkpoint-history confusion and verify the final repository presentation.
+- [ ] Re-run full visual, functional, SSR, test, build, deployment, and GitHub verification for the repair release.

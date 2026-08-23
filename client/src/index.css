@@ -5,6 +5,8 @@
 @import "./upgrade.css";
 @import "./analytics-upgrade.css";
 @import "./workspace-errors.css";
+@import "./landing-repair.css";
+@import "./demo-flow.css";
 
 @custom-variant dark (&:is(.dark *));
 
