@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import { createServer } from "http";
 import net from "net";
+import fs from "fs";
 import path from "path";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { registerOAuthRoutes } from "./oauth";
@@ -47,11 +48,16 @@ async function startServer() {
       createContext,
     })
   );
-  app.get("/architecture", (_req, res) => {
-    const file = process.env.NODE_ENV === "development"
-      ? path.resolve(import.meta.dirname, "../../client/public/architecture-map.html")
-      : path.resolve(import.meta.dirname, "public/architecture-map.html");
-    res.sendFile(file, error => {
+  app.get(["/architecture", "/architecture-map.html"], (_req, res) => {
+    const candidates = process.env.NODE_ENV === "development"
+      ? [path.resolve(import.meta.dirname, "../../client/public/architecture-map.html")]
+      : [
+          path.resolve(process.cwd(), "dist/public/architecture-map.html"),
+          path.resolve(import.meta.dirname, "public/architecture-map.html"),
+        ];
+    const file = candidates.find(candidate => fs.existsSync(candidate));
+    if (!file) return res.status(404).type("text").send("Architecture documentation is unavailable.");
+    res.set("Cache-Control", "no-store").sendFile(file, error => {
       if (error && !res.headersSent) res.status(404).type("text").send("Architecture documentation is unavailable.");
     });
   });

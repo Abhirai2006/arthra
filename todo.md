@@ -86,4 +86,6 @@
 - [x] Inspect Git history, prior README versions, documentation assets, and diagram sources to identify the original architecture implementation.
 - [x] Restore the historical Mermaid architecture presentation plus a zoomable and pannable companion visualization under the README Architecture section, updating only current component labels.
 - [ ] Verify zoom, pan, README rendering, current architecture accuracy, optional AI positioning, and GitHub source synchronization without changing application functionality.
+- [ ] Diagnose and resolve the production-only 503 response for the published `/architecture` documentation route.
+- [ ] Re-publish the repaired documentation release and verify the live route, architecture assets, zoom in, zoom out, pan, and main-site health.
 - [x] Verify the repaired authenticated destination through code, regression tests, and an active authenticated browser session; a logout-and-Google reauthentication was not forced on the user’s active session.
