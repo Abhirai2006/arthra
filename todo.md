@@ -163,8 +163,8 @@
 - [ ] Diagnose and resolve the production gateway behavior that returns a maintenance 503 for unknown HTML routes instead of Arthra’s noindex custom 404.
 - [x] Build owner-only operational inbox, review, deletion, and notification workflows for contact and waitlist submissions without exposing public records.
 - [x] Add an incident-response, backup/restore, support, and dependency-risk operating playbook with verifiable owner handoff steps.
-- [ ] Expand the public privacy/support structure using owner-supplied controller, retention, and contact information without inventing legal facts.
+- [x] Expand the public privacy/support structure using owner-supplied controller, retention, and contact information without inventing legal facts.
 - [ ] Perform independent production OAuth onboarding and Google Search Console verification once an eligible owner account/session is available.
 - [x] Re-run full regression and live production checks, then update README and synchronize the completed launch-readiness work to GitHub.
 - [x] Add a daily authenticated health-check job that verifies the public home, sign-in entry, sitemap, and unknown-route behavior, then alerts the owner only on failure.
-- [ ] Publish the user-supplied individual operator, effective date, retention periods, and 18+ audience boundary across public privacy, support, and launch documents.
+- [x] Publish the user-supplied individual operator, effective date, retention periods, and 18+ audience boundary across public privacy, support, and launch documents.
