@@ -10,7 +10,7 @@ A full-stack personal-finance workspace designed around everyday Indian financia
 [![GitHub stars](https://img.shields.io/github/stars/Abhirai2006/arthra?style=flat-square)](https://github.com/Abhirai2006/arthra/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/Abhirai2006/arthra?style=flat-square)](https://github.com/Abhirai2006/arthra/network/members)
 [![GitHub last commit](https://img.shields.io/github/last-commit/Abhirai2006/arthra?style=flat-square)](https://github.com/Abhirai2006/arthra/commits)
-[![Tests](https://img.shields.io/badge/tests-52%20passing-brightgreen?style=flat-square)](#testing)
+[![Tests](https://img.shields.io/badge/tests-53%20passing-brightgreen?style=flat-square)](#testing)
 
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
@@ -186,13 +186,15 @@ The current dependency audit reports **0 critical**, **7 high**, **30 moderate**
 
 **Current status: controlled beta, not a broad public launch.** Arthra has a deployed SSR public site, protected finance procedures, a security-header baseline, opt-in analytics, consent-based public forms, sitemap/robots/canonical metadata, and automated validation. The public technical foundation is ready for a small invited group, but it is not honest to promise that any stranger can sign in without friction or that the site is already indexed by Google.
 
-Before a broad launch, complete and retain evidence for an independent first-time production sign-in and onboarding; Google Search Console property verification, sitemap submission, and live URL inspection; confirmed production custom-404 behavior; a reviewed privacy/terms package and account-deletion process; monitoring, alerting, and backup/restore drills; and ownership/remediation of remaining high-severity dependencies. Google states that a sitemap is a discovery hint, not an indexing guarantee.[1]
+Before a broad launch, complete and retain evidence for an independent first-time production sign-in and onboarding; Google Search Console property verification, sitemap submission, and live URL inspection; confirmed production custom-404 behavior; a legal review of the published privacy/terms package and account-deletion process; monitoring, alerting, and backup/restore drills; and ownership/remediation of remaining high-severity dependencies. Google states that a sitemap is a discovery hint, not an indexing guarantee.[1]
 
 The configured owner now has a private **Owner Operations** workspace route for Contact and Waitlist records: consented records can be reviewed, classified, and deleted, while new submissions attempt a content-free owner alert. A cron-authenticated daily public health monitor is active at **09:00 UTC** for the home-page sign-in entry, sitemap, and missing-route contract; it records a private status and alerts the owner only on a new or changed failure. The monitor does not include finance, session, Contact, or Waitlist data in alerts. Its first scheduled execution and alert-delivery evidence remain operational follow-ups. This improvement does not replace an owner-defined support channel, notification verification, retention schedule, legal review, or a tested backup/restore process. See [`docs/LAUNCH_OPERATIONS_RUNBOOK.md`](./docs/LAUNCH_OPERATIONS_RUNBOOK.md) for the required operating evidence.
 
 As of 24 August 2026, the Arthra URL-prefix property is verified in Google Search Console through the deployed HTML tag, `/sitemap.xml` is submitted successfully with four discovered pages, and the root’s live test reports that it is available to Google and can be indexed. Google Index still shows the root as “Discovered — currently not indexed,” and the owner account’s manual-indexing request quota was exceeded for the day, so this is **not** a claim of current search-result visibility. The remaining unknown-route hosting fallback blocker and the exact evidence are maintained in [`docs/LAUNCH_READINESS_ASSESSMENT.md`](./docs/LAUNCH_READINESS_ASSESSMENT.md).
 
 The production sign-in return check is also **not complete**: the owner session logged out safely, but the configured Manus OAuth destination presented a temporary maintenance page on 24 August 2026 instead of authentication. Treat this external identity-service availability issue as a beta-launch blocker until a successful independent sign-in, onboarding, logout, and return-login sequence is recorded.
+
+The public Privacy and Terms pages now identify **Abhishek Rai A, individual operator**, have an effective date of **25 August 2026**, state the user-confirmed Contact/Waitlist retention periods, and limit public use to people aged 18+. The public privacy/support contact method is the private [`/contact`](https://arthrafin-7qakibfj.manus.space/contact) route, which is recorded in Owner Operations. This is a factual operating baseline, not a substitute for jurisdiction-specific legal review or a verified staffed-support response practice.
 
 The full evidence, blocker list, and beta gate are in [`docs/LAUNCH_READINESS_ASSESSMENT.md`](./docs/LAUNCH_READINESS_ASSESSMENT.md). The transparent asset-sale versus traction-based commercial framework and the project entity card are in [`docs/ARTHRA_ENTITY_CARD.md`](./docs/ARTHRA_ENTITY_CARD.md). Any sale should be framed as a source/product asset until it has verified users, revenue, retention, and transferable operating evidence.
 
@@ -259,7 +261,7 @@ Arthra includes a **[read-only demo environment](https://arthrafin-7qakibfj.manu
 
 ## Testing
 
-The automated suite currently has **52 passing tests across 23 files** covering financial calculations, Indian financial-year boundaries, authorization, transactions, receipts, budgets, analytics, Expense Spaces, CA reports, share-link revocation, SSR privacy behavior, onboarding, demo isolation, transaction import, consent-gated feedback, dashboard resilience, public engagement, and the daily health-monitor route contract.
+The automated suite currently has **53 passing tests across 23 files** covering financial calculations, Indian financial-year boundaries, authorization, transactions, receipts, budgets, analytics, Expense Spaces, CA reports, share-link revocation, SSR privacy behavior, onboarding, demo isolation, transaction import, consent-gated feedback, dashboard resilience, public engagement, the published policy SSR contract, and the daily health-monitor route contract.
 
 ```bash
 pnpm check
@@ -280,7 +282,7 @@ pnpm dev
 
 For the complete first-run workflow, operational notes, scheduler details, and troubleshooting guidance, read the [User Guide](./USER_GUIDE.md) and [verification notes](./verification_notes.md).
 
-> **Latest repair verification:** `pnpm check`, **52 tests across 23 files**, and `pnpm build` passed locally. The health monitor is covered by focused route-contract tests; its platform scheduler is registered only after the corresponding production release is published.
+> **Latest repair verification:** `pnpm check`, **53 tests across 23 files**, and `pnpm build` passed locally. The health monitor is covered by focused route-contract tests; its platform scheduler is registered and enabled at 09:00 UTC each day.
 
 <p align="right"><a href="#arthra">↑ back to top</a></p>
 

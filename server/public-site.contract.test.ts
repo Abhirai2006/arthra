@@ -32,6 +32,18 @@ describe("public-site enhancement contracts", () => {
     expect(thanks.html).toContain("Received with care.");
   });
 
+  it("renders the confirmed operator, effective date, retention rules, and 18+ boundary in SSR legal content", async () => {
+    const privacy = await render("/privacy", publicPrefetch);
+    const terms = await render("/terms", publicPrefetch);
+
+    expect(privacy.html).toContain("Abhishek Rai A, individual operator");
+    expect(privacy.html).toContain("25 August 2026");
+    expect(privacy.html).toContain("90 days after resolution");
+    expect(privacy.html).toContain("12 months of inactivity");
+    expect(privacy.html).toContain("aged 18 and over");
+    expect(terms.html).toContain("at least 18 years old");
+  });
+
   it("requires explicit consent and rejects malformed public form data before persistence", () => {
     expect(waitlistInput.safeParse({ email: "person@example.com", consent: true, source: "waitlist" }).success).toBe(true);
     expect(waitlistInput.safeParse({ email: "person@example.com", consent: false, source: "waitlist" }).success).toBe(false);
