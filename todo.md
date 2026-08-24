@@ -154,4 +154,4 @@
 - [x] Add a privacy-respecting cookie-consent experience that controls non-essential analytics without blocking core use.
 - [x] Review and document endpoint authorization and row-level data boundaries; add missing server-side access checks without changing finance data.
 - [x] Add focused automated coverage and responsive/SSR verification for the new public and security-adjacent experiences.
-- [ ] Publish and synchronize the completed enhancement release to GitHub.
+- [x] Publish and synchronize the completed enhancement release to GitHub.

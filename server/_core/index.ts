@@ -77,6 +77,7 @@ async function startServer() {
       return renderStaticSsrPage(req, res);
     });
     app.get("/feedback", renderStaticSsrPage);
+    app.get(["/about", "/contact", "/waitlist", "/thank-you"], renderStaticSsrPage);
     app.get("/transactions", (req, res) => {
       res.set("X-Transaction-Import-Revision", "2026-08-23-import");
       return renderStaticSsrPage(req, res);
