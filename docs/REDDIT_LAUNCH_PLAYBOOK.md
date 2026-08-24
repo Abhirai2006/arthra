@@ -61,6 +61,12 @@ Wait at least seven days before considering any follow-up. A follow-up is approp
 
 The first post is successful if it produces thoughtful feedback, even if it drives no sign-ups. Record feedback themes, but do not create fake testimonials or use Reddit comments as public reviews without the commenter’s explicit consent and the existing manual-approval process.
 
+## Published-post verification
+
+On 24 August 2026, the user published the prepared post in [`r/sideprojects`](https://www.reddit.com/r/sideprojects/comments/1vx66ea/). The live post uses the approved title, the `Showcase: Prerelease` flair, the natural founder-voice copy, one public Arthra landing screenshot, and the single product link. It contains no GitHub, portfolio, waitlist, voting, referral, or direct-message request. At the first review, Reddit showed five views and no comments; this is an observation, not a performance conclusion.
+
+The correct next action is to answer genuine questions in the thread. Do not add a follow-up comment merely to promote the post, solicit votes, or place additional links. If a comment asks for source code, the author can share the public GitHub link transparently. If a comment asks for personal financial, tax, or investment advice, state that Arthra is a record-keeping product and avoid giving personalised advice.
+
 ## References
 
 [1]: https://www.reddit.com/r/sideprojects/ "r/sideprojects — community and rules"
