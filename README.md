@@ -10,7 +10,7 @@ A full-stack personal-finance workspace designed around everyday Indian financia
 [![GitHub stars](https://img.shields.io/github/stars/Abhirai2006/arthra?style=flat-square)](https://github.com/Abhirai2006/arthra/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/Abhirai2006/arthra?style=flat-square)](https://github.com/Abhirai2006/arthra/network/members)
 [![GitHub last commit](https://img.shields.io/github/last-commit/Abhirai2006/arthra?style=flat-square)](https://github.com/Abhirai2006/arthra/commits)
-[![Tests](https://img.shields.io/badge/tests-39%20passing-brightgreen?style=flat-square)](#testing)
+[![Tests](https://img.shields.io/badge/tests-42%20passing-brightgreen?style=flat-square)](#testing)
 
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
@@ -26,6 +26,12 @@ A full-stack personal-finance workspace designed around everyday Indian financia
   <a href="https://portfolio-abhirai2006.lovable.app"><img src="https://img.shields.io/badge/Creator_Portfolio-237451?style=for-the-badge" alt="Abhishek Rai portfolio: projects and case studies"></a>
   <a href="https://github.com/Abhirai2006/arthra"><img src="https://img.shields.io/badge/Arthra_Source_Code-181717?style=for-the-badge&logo=github&logoColor=white" alt="Arthra GitHub repository: open-source code"></a>
   <a href="./USER_GUIDE.md"><img src="https://img.shields.io/badge/User_Guide-6f42c1?style=for-the-badge" alt="User Guide"></a>
+</p>
+
+<p align="center">
+  <a href="https://arthrafin-7qakibfj.manus.space">
+    <img src="https://arthrafin-7qakibfj.manus.space/manus-storage/arthra-readme-brand-poster_4b082a69.png" alt="Arthra — Personal finance, built for India" width="100%">
+  </a>
 </p>
 
 </div>
@@ -46,6 +52,7 @@ A full-stack personal-finance workspace designed around everyday Indian financia
 - [Smart Financial Insights](#smart-financial-insights)
 - [Built for Indian Financial Workflows](#built-for-indian-financial-workflows)
 - [Security & Privacy](#security--privacy)
+- [Security Hardening Record](#security-hardening-record)
 - [Tech Stack](#tech-stack)
 - [Architecture](#architecture)
 - [Try the Demo](#try-the-demo)
@@ -147,17 +154,23 @@ The product uses INR and `en-IN` formatting, supports lakh/crore-friendly presen
 <summary><strong>Expand for details</strong></summary>
 <br>
 
-- Authentication protects private workspace access
-- Finance procedures enforce authorization server-side
-- Expense Space permissions are role-based
-- Protected routes do not serialize financial records into public SSR HTML
-- Receipt files use protected retrieval paths
-- CA report links can be time-limited and revoked
-- Financial values are stored as integer paise
+| Protection area | Implemented safeguard |
+| --- | --- |
+| Authentication | OAuth state/nonce validation and HTTP-only session cookies protect sign-in and private workspace access. |
+| Authorization | Protected tRPC procedures, server-side ownership checks, and Expense Space roles enforce data scopes. |
+| Browser boundary | A nonce-based Content Security Policy, anti-framing policy, referrer policy, browser-permission restrictions, and anti-sniffing headers are sent on every response. |
+| API resilience | API responses are marked `no-store`; bounded request parsing and a per-client request budget reduce oversized-payload and request-flood exposure. |
+| Files and sharing | Receipt MIME/size checks, public-storage key validation, HTTPS-only signed redirects, protected retrieval, and time-limited revocable CA links constrain file and reporting paths. |
+| Public feedback | Honeypot, validation, rate limits, explicit consent, and manual approval protect the public-review workflow. |
+| Supply chain | Axios and AWS storage SDK packages were updated; the latest audited production dependency scan has **0 critical** advisories. |
 
 </details>
 
-Arthra is designed with financial-data privacy in mind, but it should not be presented as a regulated banking or financial institution.
+## Security Hardening Record
+
+Arthra is designed with financial-data privacy in mind, but no public application can honestly promise that it is impossible to attack. The hardening record explains verified safeguards, dependency-audit results, testing evidence, and remaining operational responsibilities: [`docs/SECURITY_HARDENING.md`](./docs/SECURITY_HARDENING.md).
+
+The current dependency audit reports **0 critical**, **8 high**, **30 moderate**, and **7 low** production advisories after direct Axios and AWS SDK updates. The remaining high-risk items require an ongoing maintenance decision rather than a misleading claim of absolute safety; notably, the `xlsx` package used for user-selected spreadsheet imports has a published no-fix npm advisory. Treat externally supplied spreadsheets as untrusted and plan a supported parser migration before broadening that importer’s exposure.
 
 <p align="right"><a href="#arthra">↑ back to top</a></p>
 

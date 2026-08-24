@@ -142,4 +142,9 @@
 - [x] Verify refreshed README screenshot links and publish the documentation update.
 - [x] Correct the low-contrast light-mode public footer labels and links reported from the live site.
 - [x] Synchronize the current README screenshot references and documentation copy to the public Arthra GitHub repository.
-- [ ] Verify the light footer and updated README on both the live site and GitHub’s public renderer.
+- [x] Verify the light footer and updated README on both the live site and GitHub’s public renderer.
+- [x] Audit the current application security boundary, dependency posture, request handling, and existing security controls without modifying user finance data.
+- [x] Create an Arthra brand poster and add it to the GitHub README using managed project storage.
+- [x] Implement non-destructive, compatibility-safe security hardening with focused automated verification.
+- [x] Document the verified safeguards, residual risks, and operational security steps in the README.
+- [ ] Publish and verify the poster, security documentation, live application behavior, and GitHub README rendering.

@@ -163,3 +163,7 @@ Direct navigation to GitHub’s `README.md#screenshots` page also showed commit 
 ### Repair and regression evidence
 
 The light-mode footer now applies explicit ink (`--ink`) for links, back-to-top control, and destination titles; durable muted gray for supporting copy and metadata; and a deeper accessible green for group headings and destination icons. Local forced-light full-page captures at 1280×720 and 390×844 show the footer’s content groups and destination cards with readable hierarchy. `pnpm check`, the full 39-test/18-file regression suite, and `pnpm build` passed. The build retains only its pre-existing advisory chunk-size warning.
+
+### Production confirmation
+
+The live light-mode root now serves stylesheet `index-Dsr_GsRZ.css`, which contains the new light-footer contrast selectors. The browser-rendered production footer visibly presents readable brand copy, Explore Arthra and Product principles links, the creator portfolio card, the GitHub source-code card, copyright, and Back to top control. Separately, GitHub’s public API confirms the default-branch README contains all four refreshed screenshot URLs and no obsolete repository-local or previous managed-storage screenshot references; the synchronized public commits are `e632a6a` and `15f0a83`.

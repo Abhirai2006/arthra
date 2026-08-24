@@ -1,11 +1,26 @@
 import type { Express } from "express";
 import { ENV } from "./env";
 
+export function isValidPublicStorageKey(key: string) {
+  if (key.length === 0 || key.length > 512) return false;
+  if (key.startsWith("/") || key.includes("\\") || key.includes("//")) return false;
+  if (!/^[A-Za-z0-9._/-]+$/.test(key)) return false;
+  return !key.split("/").some(part => part.length === 0 || part === "." || part === "..");
+}
+
+export function isSafeSignedRedirect(url: string) {
+  try {
+    return new URL(url).protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 export function registerStorageProxy(app: Express) {
   app.get("/manus-storage/*", async (req, res) => {
     const key = (req.params as Record<string, string>)[0];
-    if (!key) {
-      res.status(400).send("Missing storage key");
+    if (!key || !isValidPublicStorageKey(key)) {
+      res.status(400).send("Invalid storage key");
       return;
     }
 
@@ -33,12 +48,12 @@ export function registerStorageProxy(app: Express) {
       }
 
       const { url } = (await forgeResp.json()) as { url: string };
-      if (!url) {
+      if (!url || !isSafeSignedRedirect(url)) {
         res.status(502).send("Empty signed URL from backend");
         return;
       }
 
-      res.set("Cache-Control", "no-store");
+      res.set({ "Cache-Control": "no-store", "Referrer-Policy": "no-referrer" });
       res.redirect(307, url);
     } catch (err) {
       console.error("[StorageProxy] failed:", err);

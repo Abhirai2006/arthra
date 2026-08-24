@@ -11,6 +11,7 @@ import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { weeklyDigestHandler } from "../digest";
 import { renderStaticSsrPage, serveStatic, setupVite } from "./vite";
+import { applySecurityHeaders, createApiRateLimiter } from "./security";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -34,9 +35,18 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
 async function startServer() {
   const app = express();
   const server = createServer(app);
-  // Configure body parser with larger size limit for file uploads
-  app.use(express.json({ limit: "50mb" }));
-  app.use(express.urlencoded({ limit: "50mb", extended: true }));
+  app.disable("x-powered-by");
+  app.set("trust proxy", 1);
+  app.use(applySecurityHeaders);
+  app.use("/api", createApiRateLimiter());
+  app.use("/api", (_req, res, next) => {
+    res.set("Cache-Control", "no-store");
+    next();
+  });
+  // Receipts are independently capped at 7 MB; 12 MB permits their encoded upload
+  // while rejecting oversized request payloads before application processing.
+  app.use(express.json({ limit: "12mb", strict: true }));
+  app.use(express.urlencoded({ limit: "12mb", extended: true }));
   registerStorageProxy(app);
   registerOAuthRoutes(app);
   app.post("/api/scheduled/weekly-digest", weeklyDigestHandler);
@@ -63,7 +73,7 @@ async function startServer() {
   });
   if (process.env.NODE_ENV !== "development") {
     app.get("/", (req, res) => {
-      res.set("X-Public-Release", "footer-dashboard-theme-release-2cf97350");
+      res.set("X-Public-Release", "light-footer-contrast-release-a74af21e");
       return renderStaticSsrPage(req, res);
     });
     app.get("/feedback", renderStaticSsrPage);
