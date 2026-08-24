@@ -1,21 +1,38 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
+import mysql, { type Pool } from "mysql2";
 import { InsertUser, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
+let _pool: Pool | null = null;
 
-// Lazily create the drizzle instance so local tooling can run without a DB.
+// Lazily create a bounded pool so the long-lived server and database-backed test suites
+// do not rely on a driver-created URL client with an unbounded handshake.
 export async function getDb() {
   if (!_db && process.env.DATABASE_URL) {
     try {
-      _db = drizzle(process.env.DATABASE_URL);
+      _pool = mysql.createPool({
+        uri: process.env.DATABASE_URL,
+        connectionLimit: 5,
+        enableKeepAlive: true,
+        connectTimeout: 10_000,
+      });
+      _db = drizzle({ client: _pool });
     } catch (error) {
       console.warn("[Database] Failed to connect:", error);
+      _pool = null;
       _db = null;
     }
   }
   return _db;
+}
+
+export async function closeDbForTests() {
+  const pool = _pool;
+  _db = null;
+  _pool = null;
+  if (pool) await new Promise<void>((resolve, reject) => pool.end(error => error ? reject(error) : resolve()));
 }
 
 export async function upsertUser(user: InsertUser): Promise<void> {

@@ -21,6 +21,16 @@ Open **Transactions**, then select **Add transaction**. Choose Income or Expense
 
 Attach a JPG, PNG, WEBP, or PDF receipt when it supports your record. The attachment is optional; Arthra does not require a receipt to save a transaction.
 
+### Import transaction history from CSV or Excel
+
+Open **Transactions**, then select **Import CSV / Excel** to bring in existing history. Arthra accepts CSV (`.csv`), Excel (`.xlsx`), and legacy Excel (`.xls`) files up to 5 MB, using the first worksheet in a spreadsheet.
+
+Map the date, description, signed amount or separate debit/credit columns, transaction type, and optional note. The importer shows every proposed row before it changes your ledger. You may choose an account and separate default categories for income and expense rows when they apply.
+
+> **Nothing imports automatically.** Run the duplicate check, review the selected rows, and select **Confirm import** only for the records you want to add.
+
+Likely duplicates are identified from the active Expense Space’s existing records using the date, type, amount, and normalised description. They are excluded from the confirmation count and checked again when confirmation runs. Imported rows remain editable like any manually entered transaction.
+
 ### Use smart receipt assistance carefully
 
 For an image receipt, select **Suggest fields** after choosing the file. Arthra shows a confidence-labelled draft and does **not** save anything. Select **Apply reviewed suggestions** only after checking the proposed description, amount, date, GST setting, and category. PDF receipts remain attachable even when image suggestions are unavailable.

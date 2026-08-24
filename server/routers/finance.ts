@@ -26,6 +26,8 @@ import {
   listCaShareLinks,
   getSpaceAccounts,
   getSpaceCategories,
+  getExistingTransactionImportFingerprints,
+  getTransactionImportFingerprint,
   getSpaceMembers,
   getTransactionDetail,
   getUserCategories,
@@ -52,6 +54,19 @@ const transactionSchema = z.object({
   gstRateBasisPoints: z.number().int().min(0).max(10_000).nullable().optional(),
   recurringRule: z.enum(["weekly", "monthly", "yearly"]).nullable().optional(),
 });
+
+const transactionImportRowSchema = z.object({
+  sourceIndex: z.number().int().min(0).max(2_000),
+  accountId: z.number().int().positive().nullable().optional(),
+  categoryId: z.number().int().positive().nullable().optional(),
+  kind: z.enum(["expense", "income"]),
+  amountPaise: z.number().int().positive().max(100_000_000_000),
+  description: z.string().trim().min(1).max(180),
+  note: z.string().trim().max(4_000).nullable().optional(),
+  occurredAt: z.date(),
+});
+
+const transactionImportRowsSchema = z.array(transactionImportRowSchema).min(1).max(300);
 
 async function requireSpaceAccess(userId: number, spaceId: number, access: "read" | "write" | "owner") {
   const membership = await canAccessSpace(userId, spaceId, access);
@@ -148,6 +163,36 @@ export const financeRouter = router({
     delete: protectedProcedure.input(z.object({ transactionId: z.number().int().positive() })).mutation(async ({ ctx, input }) => {
       await requireTransactionAccess(ctx.user.id, input.transactionId, "write");
       return deleteTransaction(input.transactionId);
+    }),
+    importPreview: protectedProcedure.input(spaceIdSchema.extend({ rows: transactionImportRowsSchema })).mutation(async ({ ctx, input }) => {
+      await requireSpaceAccess(ctx.user.id, input.spaceId, "write");
+      const existing = await getExistingTransactionImportFingerprints(input.spaceId, input.rows);
+      const seenInFile = new Set<string>();
+      return input.rows.map(row => {
+        const fingerprint = getTransactionImportFingerprint(row);
+        const duplicate = existing.has(fingerprint) || seenInFile.has(fingerprint);
+        seenInFile.add(fingerprint);
+        return { sourceIndex: row.sourceIndex, duplicate };
+      });
+    }),
+    importCommit: protectedProcedure.input(spaceIdSchema.extend({ confirm: z.literal(true), rows: transactionImportRowsSchema })).mutation(async ({ ctx, input }) => {
+      await requireSpaceAccess(ctx.user.id, input.spaceId, "write");
+      const existing = await getExistingTransactionImportFingerprints(input.spaceId, input.rows);
+      const seenInFile = new Set<string>();
+      let skippedDuplicates = 0;
+      const importedIds: number[] = [];
+      for (const row of input.rows) {
+        const fingerprint = getTransactionImportFingerprint(row);
+        if (existing.has(fingerprint) || seenInFile.has(fingerprint)) {
+          skippedDuplicates += 1;
+          seenInFile.add(fingerprint);
+          continue;
+        }
+        const created = await createTransaction(ctx.user.id, { spaceId: input.spaceId, accountId: row.accountId ?? null, categoryId: row.categoryId ?? null, kind: row.kind, amountPaise: row.amountPaise, description: row.description, note: row.note ?? null, occurredAt: row.occurredAt, isGstApplicable: false, gstKind: null, gstRateBasisPoints: null, recurringRule: null });
+        importedIds.push(created.id);
+        seenInFile.add(fingerprint);
+      }
+      return { importedCount: importedIds.length, skippedDuplicates, importedIds };
     }),
     attachReceipt: protectedProcedure
       .input(z.object({ transactionId: z.number().int().positive(), fileName: z.string().trim().min(1).max(180), dataUrl: z.string().min(32).max(10_000_000) }))

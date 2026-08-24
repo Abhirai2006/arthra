@@ -211,6 +211,25 @@ export const weeklyDigestPreferences = mysqlTable("weekly_digest_preferences", {
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
 
+export const websiteFeedback = mysqlTable(
+  "website_feedback",
+  {
+    id: int("id").autoincrement().primaryKey(),
+    displayName: varchar("displayName", { length: 80 }),
+    email: varchar("email", { length: 320 }),
+    rating: int("rating").notNull(),
+    message: text("message").notNull(),
+    permissionToContact: boolean("permissionToContact").default(false).notNull(),
+    permissionToPublish: boolean("permissionToPublish").default(false).notNull(),
+    status: mysqlEnum("status", ["pending", "approved", "archived"]).default("pending").notNull(),
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+  },
+  table => [
+    index("website_feedback_status_created_idx").on(table.status, table.createdAt),
+    index("website_feedback_email_created_idx").on(table.email, table.createdAt),
+  ]
+);
+
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 export type Space = typeof spaces.$inferSelect;

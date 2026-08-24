@@ -10,7 +10,7 @@ import { registerStorageProxy } from "./storageProxy";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { weeklyDigestHandler } from "../digest";
-import { serveStatic, setupVite } from "./vite";
+import { renderStaticSsrPage, serveStatic, setupVite } from "./vite";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -61,6 +61,17 @@ async function startServer() {
       if (error && !res.headersSent) res.status(404).type("text").send("Architecture documentation is unavailable.");
     });
   });
+  if (process.env.NODE_ENV !== "development") {
+    app.get("/", (req, res) => {
+      res.set("X-Public-Release", "footer-dashboard-theme-release-2cf97350");
+      return renderStaticSsrPage(req, res);
+    });
+    app.get("/feedback", renderStaticSsrPage);
+    app.get("/transactions", (req, res) => {
+      res.set("X-Transaction-Import-Revision", "2026-08-23-import");
+      return renderStaticSsrPage(req, res);
+    });
+  }
   // development mode uses Vite, production mode uses static files
   if (process.env.NODE_ENV === "development") {
     await setupVite(app, server);

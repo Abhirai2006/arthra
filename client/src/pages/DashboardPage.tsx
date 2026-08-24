@@ -8,11 +8,13 @@ import { useMemo, useState } from "react";
 import { useLocation } from "wouter";
 
 export default function DashboardPage() {
-  const { activeSpace, activeSpaceId, setActiveSpaceId, spaces, categories, isLoading } = useFinanceWorkspace();
+  const { activeSpace, activeSpaceId, setActiveSpaceId, spaces, categories, isLoading, isError: isWorkspaceError, refetch: refetchWorkspace } = useFinanceWorkspace();
   const [dialogOpen, setDialogOpen] = useState(false); const [, navigate] = useLocation();
   const monthKey = useMemo(() => getMonthKey(new Date()), []);
   const dashboard = trpc.finance.dashboard.get.useQuery({ spaceId: activeSpaceId ?? 0, monthKey }, { enabled: !!activeSpaceId });
-  if (isLoading || !activeSpace) return <WorkspaceSkeleton />;
+  if (isLoading) return <WorkspaceSkeleton />;
+  if (isWorkspaceError) return <div className="workspace-page"><WorkspaceErrorState title="We could not load your Expense Spaces." message="Your financial data has not changed. Check the connection and retry loading your private workspace." onRetry={() => refetchWorkspace()} /></div>;
+  if (!activeSpace) return <div className="workspace-page"><WorkspaceErrorState title="There is no active Expense Space." message="Choose a workspace again or retry the private workspace setup." onRetry={() => refetchWorkspace()} /></div>;
   if (dashboard.isError) return <div className="workspace-page"><WorkspaceErrorState title="We could not load this month’s overview." message="Your transactions have not changed. Check the connection and try loading the active Expense Space again." onRetry={() => dashboard.refetch()} /></div>;
   const data = dashboard.data; const topCategory = data?.categorySpend[0];
   return <div className="workspace-page"><header className="workspace-head"><div><p className="workspace-kicker">{new Intl.DateTimeFormat("en-IN", { month: "long", year: "numeric" }).format(new Date())}</p><h1>Good to see you.</h1><p className="workspace-subtitle">Your money, in the context of <strong>{activeSpace.name}</strong>.</p></div><div className="workspace-head__actions"><select aria-label="Active Expense Space" className="space-switcher" value={activeSpaceId ?? ""} onChange={event => setActiveSpaceId(Number(event.target.value))}>{spaces.map(space => <option value={space.id} key={space.id}>{space.name} · {space.role}</option>)}</select><button className="workspace-add" type="button" onClick={() => setDialogOpen(true)}><Plus size={17} /> Add entry</button></div></header>

@@ -10,7 +10,7 @@ A full-stack personal-finance workspace designed around everyday Indian financia
 [![GitHub stars](https://img.shields.io/github/stars/Abhirai2006/arthra?style=flat-square)](https://github.com/Abhirai2006/arthra/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/Abhirai2006/arthra?style=flat-square)](https://github.com/Abhirai2006/arthra/network/members)
 [![GitHub last commit](https://img.shields.io/github/last-commit/Abhirai2006/arthra?style=flat-square)](https://github.com/Abhirai2006/arthra/commits)
-[![Tests](https://img.shields.io/badge/tests-27%20passing-brightgreen?style=flat-square)](#testing)
+[![Tests](https://img.shields.io/badge/tests-39%20passing-brightgreen?style=flat-square)](#testing)
 
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
@@ -23,7 +23,8 @@ A full-stack personal-finance workspace designed around everyday Indian financia
 <p>
   <a href="https://arthrafin-7qakibfj.manus.space"><img src="https://img.shields.io/badge/Live_Demo-2ea44f?style=for-the-badge" alt="Live Demo"></a>
   <a href="https://arthrafin-7qakibfj.manus.space/demo"><img src="https://img.shields.io/badge/Try_Demo-0969da?style=for-the-badge" alt="Try Demo"></a>
-  <a href="https://github.com/Abhirai2006/arthra"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Repository"></a>
+  <a href="https://portfolio-abhirai2006.lovable.app"><img src="https://img.shields.io/badge/Creator_Portfolio-237451?style=for-the-badge" alt="Abhishek Rai portfolio: projects and case studies"></a>
+  <a href="https://github.com/Abhirai2006/arthra"><img src="https://img.shields.io/badge/Arthra_Source_Code-181717?style=for-the-badge&logo=github&logoColor=white" alt="Arthra GitHub repository: open-source code"></a>
   <a href="./USER_GUIDE.md"><img src="https://img.shields.io/badge/User_Guide-6f42c1?style=for-the-badge" alt="User Guide"></a>
 </p>
 
@@ -41,6 +42,7 @@ A full-stack personal-finance workspace designed around everyday Indian financia
   - [Expense Spaces](#expense-spaces)
   - [Reports](#reports)
   - [Product Experience](#product-experience)
+  - [Public Feedback & Website Reliability](#public-feedback--website-reliability)
 - [Smart Financial Insights](#smart-financial-insights)
 - [Built for Indian Financial Workflows](#built-for-indian-financial-workflows)
 - [Security & Privacy](#security--privacy)
@@ -56,24 +58,15 @@ A full-stack personal-finance workspace designed around everyday Indian financia
 
 ## Screenshots
 
-<table>
-  <tr>
-    <td align="center"><strong>Landing page</strong></td>
-    <td align="center"><strong>Interactive demo walkthrough</strong></td>
-  </tr>
-  <tr>
-    <td><img src="./docs/screenshots/landing-desktop.png" alt="Arthra landing page showing the India-native finance product introduction"></td>
-    <td><img src="./docs/screenshots/demo-desktop.png" alt="Read-only Arthra demo showing dashboard, transactions, budgets, analytics, spaces, and reports"></td>
-  </tr>
-  <tr>
-    <td align="center"><strong>Mobile landing</strong></td>
-    <td align="center"><strong>Mobile demo flow</strong></td>
-  </tr>
-  <tr>
-    <td><img src="./docs/screenshots/landing-mobile.png" alt="Responsive Arthra public landing page on a mobile viewport" width="280"></td>
-    <td><img src="./docs/screenshots/demo-mobile.png" alt="Responsive read-only Arthra product walkthrough on a mobile viewport" width="280"></td>
-  </tr>
-</table>
+The current captures show the latest public **light** interface: paper-white surfaces, ink typography, intentional green/blue signals, the current responsive navigation, and the consent-gated feedback flow. Dark mode remains available from the public theme control.
+
+| Desktop landing | Desktop feedback |
+| --- | --- |
+| ![Current Arthra light landing page with Indian finance context](https://arthrafin-7qakibfj.manus.space/manus-storage/arthra-landing-light-desktop-current_afe21835.png) | ![Current Arthra light feedback page with consent-gated publication controls](https://arthrafin-7qakibfj.manus.space/manus-storage/arthra-feedback-light-desktop-current_6c9ce2ad.png) |
+
+| Mobile landing | Mobile feedback |
+| --- | --- |
+| ![Current responsive Arthra light landing page](https://arthrafin-7qakibfj.manus.space/manus-storage/arthra-landing-light-mobile-current_9074338d.png) | ![Current responsive Arthra light feedback form with real-review consent controls](https://arthrafin-7qakibfj.manus.space/manus-storage/arthra-feedback-light-mobile-current_9470554a.png) |
 
 <p align="right"><a href="#arthra">↑ back to top</a></p>
 
@@ -93,6 +86,7 @@ Arthra focuses on practical personal and household financial record-keeping rath
 ### Personal Finance
 
 - Income and expense tracking with categories, accounts, notes, search, and filtering
+- Review-first transaction-history import for `.csv`, `.xlsx`, and `.xls` files, with column mapping, duplicate checks, and explicit confirmation
 - Receipt attachments with protected retrieval paths
 - INR formatting with integer-paise storage for monetary values
 
@@ -115,7 +109,17 @@ Arthra focuses on practical personal and household financial record-keeping rath
 
 ### Product Experience
 
-- Responsive mobile interface, dark and light themes, PWA assets, accessible controls, reduced-motion support, and a read-only demo mode
+- A persisted light/dark control in the shared dashboard shell: desktop sidebar and mobile header access it on Overview, Transactions, Budgets, Expense Spaces, Analytics, and Reports. Each authenticated route inherits the same semantic graphite/paper, green, and blue materials.
+- Responsive mobile interface, PWA assets, accessible controls, reduced-motion support, and a read-only demo mode
+- Deliberate public footer navigation, grouped into **Explore Arthra**, **Product principles**, and **Creator & code**, with a compact back-to-top utility and responsive touch-friendly layout
+
+### Public Feedback & Website Reliability
+
+Arthra accepts product feedback through a public form that gives a clear inline explanation when a required rating, feedback message, or optional email format needs attention. The form surfaces readable server failures instead of raw validation payloads, and its anti-spam guard rejects non-human submissions before any feedback row is stored.
+
+Public reviews are not created automatically. A real reviewer must explicitly permit public display, and the site owner must manually approve the submission before it appears on the public feedback page. Public review data intentionally excludes contact details and consent metadata. Public links distinguish [Abhishek Rai’s portfolio](https://portfolio-abhirai2006.lovable.app), which presents projects and case studies, from [the Arthra repository](https://github.com/Abhirai2006/arthra), which contains the open-source application code and version history.
+
+For protected finance pages, workspace bootstrap failures and missing active-space states resolve to retryable error screens rather than an indefinite dashboard skeleton. The selected Expense Space stays stable through normal data refreshes, and routine focus changes do not trigger unnecessary workspace bootstrap refetches.
 
 <p align="right"><a href="#arthra">↑ back to top</a></p>
 
@@ -216,7 +220,7 @@ Arthra includes a **[read-only demo environment](https://arthrafin-7qakibfj.manu
 
 ## Testing
 
-The automated suite currently has **27 passing tests** across financial calculations, Indian financial-year boundaries, authorization, transactions, receipts, budgets, analytics, Expense Spaces, CA reports, share-link revocation, SSR privacy behavior, onboarding, and demo isolation.
+The automated suite currently has **37 passing tests** across financial calculations, Indian financial-year boundaries, authorization, transactions, receipts, budgets, analytics, Expense Spaces, CA reports, share-link revocation, SSR privacy behavior, onboarding, demo isolation, transaction import, consent-gated feedback, and dashboard resilience.
 
 ```bash
 pnpm check
@@ -236,6 +240,8 @@ pnpm dev
 ```
 
 For the complete first-run workflow, operational notes, scheduler details, and troubleshooting guidance, read the [User Guide](./USER_GUIDE.md) and [verification notes](./verification_notes.md).
+
+> **Latest repair verification:** `pnpm check`, `pnpm test`, and `pnpm build` passed locally. The published landing page, grouped footer, feedback page, and unauthenticated dashboard boundary were then checked on the live domain. Authenticated dashboard content was separately verified in the active workspace session.
 
 <p align="right"><a href="#arthra">↑ back to top</a></p>
 

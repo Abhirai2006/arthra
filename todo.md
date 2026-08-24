@@ -91,3 +91,55 @@
 - [x] Verify the repaired authenticated destination through code, regression tests, and an active authenticated browser session; a logout-and-Google reauthentication was not forced on the user’s active session.
 - [x] Publish the final keyboard-pan documentation interaction and confirm the live map asset matches the synchronized source.
 - [x] Rewrite GitHub commit attribution so the Manus agent is no longer listed as an Arthra contributor, then verify repository integrity and contributor metadata.
+- [x] Produce a candid, prioritized product-improvement roadmap covering Arthra’s user experience, finance workflows, trust, technical readiness, and growth opportunities.
+- [x] Write and deliver the actual candid Arthra improvement roadmap with concrete priorities, sequencing, success metrics, and explicit anti-priorities.
+- [x] Define a genuine feedback data model with explicit public-display and moderation boundaries; do not seed ratings, reviews, or testimonials.
+- [x] Add an accessible public feedback form with rate limiting and clear submission states.
+- [x] Add a visible GitHub profile and portfolio pathway for interested visitors across public website navigation and footer areas.
+- [x] Add automated coverage and responsive public-route verification for feedback submission and portfolio links.
+- [x] Correct the mobile feedback rating selector so all five choices remain within the viewport.
+- [x] Deliver the candid roadmap directly to the user and surface the saved product roadmap document.
+- [x] Verify the public feedback submission success state and GitHub portfolio links in a browser without retaining test feedback data.
+- [x] Deliver the candid Arthra improvement roadmap in chat and explicitly surface `docs/PRODUCT_ROADMAP.md`.
+- [x] Publish and verify the explicit production SSR route registration for `/feedback` after diagnosing its gateway 503 response.
+- [x] Define CSV and Excel transaction import formats, supported columns, ownership rules, and confirmation safeguards.
+- [x] Add protected transaction import preview and commit APIs with validation, normalization, and duplicate detection.
+- [x] Build CSV and Excel file selection, column mapping, row review, and explicit confirmation inside the authenticated workspace.
+- [x] Add transaction import tests for validation, duplicate safeguards, and confirmed persistence.
+- [x] Verify desktop and mobile import UI, existing transaction workflows, build quality, and published production availability.
+- [x] Verify the CSV and Excel import dialog on a mobile viewport, including mapped review rows and safe cancellation.
+- [x] Re-check existing transaction search and manual-entry workflows after adding import controls.
+- [x] Publish the importer and verify the live production transaction workspace exposes the review-first CSV and Excel flow without regressions.
+- [x] Verify the importer on a true mobile viewport by loading a sample file, reviewing mapped rows, and cancelling safely without import.
+- [x] Re-test the existing transaction workflow end-to-end with a manual save, edit, search, and cleanup after the importer changes.
+- [x] Verify the canonical live `/transactions` route after propagation, including the import button and review dialog without a cache-busting query.
+- [x] Add a public approved-feedback view that displays only genuine submitted feedback after an explicit moderation approval step; never seed reviews or testimonials.
+- [x] Surface the provided portfolio at `https://portfolio-abhirai2006.lovable.app` in appropriate public website and feedback locations.
+- [x] Replace the current visual palette with a restrained natural dark theme using black, green, and blue, plus a white, blue, and green light theme.
+- [x] Refine public-page typography, surfaces, spacing, and motion to reduce the generic generated-product feel while retaining accessibility and responsive behavior.
+- [x] Add tests and visual verification for approval-gated reviews, portfolio links, dark/light themes, and unaffected finance workflows.
+- [x] Repair the crowded public footer navigation so desktop and mobile links have clear grouping, spacing, wrapping, and touch targets.
+- [x] Diagnose and repair feedback submission so valid feedback has a reliable success or actionable error state without publishing anything automatically.
+- [x] Diagnose and repair unintended or repeated dashboard loading behavior while preserving protected finance data boundaries.
+- [x] Perform detailed local visual, browser, API, test, and build regression verification after the repair.
+- [x] Verify the anti-spam rejection path is user-friendly and prevents persistence or public review creation.
+- [x] Verify the repaired footer, feedback, and unauthenticated dashboard boundary on the live production domain; the authenticated dashboard request remains constrained by the documented unattached personal-browser session.
+- [x] Rebuild and retry the production release so the current public stylesheet and root routing code are published.
+- [x] Verify the explicit production root SSR response and grouped footer alongside the live matte stylesheet token set; a later non-visual marker does not alter application behavior.
+- [x] Verify the newest matte-public refresh artifact is served by the live domain, including its final stylesheet revision token.
+- [x] Verify the repaired authenticated dashboard behavior on the live production domain when a real browser-session handoff becomes available.
+- [x] Redesign the public footer with a clearer, more balanced information hierarchy at desktop and mobile widths.
+- [x] Clearly separate the personal portfolio destination from the Arthra GitHub source-repository destination in public copy, labels, and links.
+- [x] Extend the persisted light/dark theme control to the dashboard shell and every authenticated finance route.
+- [x] Audit all dashboard pages in both themes for contrast, layout consistency, and unchanged finance functionality.
+- [x] Update the professional README with the grouped-footer, feedback usability, dashboard resilience, and verification changes from this repair release.
+- [x] Diagnose the enabled personal-browser handoff that remains unauthenticated and document the remaining authenticated-live verification boundary accurately.
+- [x] Replace stale README screenshots with current public desktop and mobile captures that match the refreshed website.
+- [x] Rework the public landing and feedback visual system into a restrained matte-black palette with intentional green and blue accents, reducing gradients and decorative effects.
+- [x] Validate the refreshed public pages at desktop and mobile sizes, then run regression checks to confirm finance functionality remains unaffected.
+- [x] Audit every README screenshot against the latest public and authenticated Arthra interface.
+- [x] Replace any stale README screenshot assets and captions with current, reachable captures.
+- [x] Verify refreshed README screenshot links and publish the documentation update.
+- [ ] Correct the low-contrast light-mode public footer labels and links reported from the live site.
+- [ ] Synchronize the current README screenshot references and documentation copy to the public Arthra GitHub repository.
+- [ ] Verify the light footer and updated README on both the live site and GitHub’s public renderer.

@@ -305,6 +305,34 @@ export async function listTransactions(
     .limit(input.limit ?? 100);
 }
 
+export type TransactionImportCandidate = {
+  occurredAt: Date;
+  kind: "expense" | "income";
+  amountPaise: number;
+  description: string;
+};
+
+export function getTransactionImportFingerprint(input: TransactionImportCandidate) {
+  const description = input.description.trim().toLocaleLowerCase().replace(/\s+/g, " ");
+  return [input.occurredAt.toISOString().slice(0, 10), input.kind, input.amountPaise, description].join("|");
+}
+
+export async function getExistingTransactionImportFingerprints(spaceId: number, candidates: TransactionImportCandidate[]) {
+  if (!candidates.length) return new Set<string>();
+  const db = await getDb();
+  if (!db) throw new Error("Database unavailable");
+  const occurredAtValues = candidates.map(item => item.occurredAt.getTime());
+  const start = new Date(Math.min(...occurredAtValues));
+  start.setUTCHours(0, 0, 0, 0);
+  const end = new Date(Math.max(...occurredAtValues));
+  end.setUTCHours(24, 0, 0, 0);
+  const existing = await db
+    .select({ occurredAt: transactions.occurredAt, kind: transactions.kind, amountPaise: transactions.amountPaise, description: transactions.description })
+    .from(transactions)
+    .where(and(eq(transactions.spaceId, spaceId), gte(transactions.occurredAt, start), lt(transactions.occurredAt, end)));
+  return new Set(existing.map(getTransactionImportFingerprint));
+}
+
 export async function createTransaction(
   userId: number,
   input: {

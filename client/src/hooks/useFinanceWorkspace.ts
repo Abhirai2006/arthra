@@ -2,15 +2,18 @@ import { trpc } from "@/lib/trpc";
 import { useEffect, useState } from "react";
 
 export function useFinanceWorkspace() {
-  const bootstrap = trpc.finance.bootstrap.useQuery();
+  const bootstrap = trpc.finance.bootstrap.useQuery(undefined, { staleTime: 60_000, refetchOnWindowFocus: false, retry: 1 });
   const [activeSpaceId, setActiveSpaceId] = useState<number | null>(null);
 
   useEffect(() => {
-    if (!bootstrap.data?.spaces.length) return;
-    const stored = Number(localStorage.getItem("arthra-active-space"));
-    const usable = bootstrap.data.spaces.some(space => space.id === stored) ? stored : bootstrap.data.spaces[0].id;
-    setActiveSpaceId(usable);
-  }, [bootstrap.data]);
+    const availableSpaces = bootstrap.data?.spaces;
+    if (!availableSpaces?.length) return;
+    setActiveSpaceId(current => {
+      if (current && availableSpaces.some(space => space.id === current)) return current;
+      const stored = Number(localStorage.getItem("arthra-active-space"));
+      return availableSpaces.some(space => space.id === stored) ? stored : availableSpaces[0].id;
+    });
+  }, [bootstrap.data?.spaces]);
 
   function selectSpace(spaceId: number) {
     localStorage.setItem("arthra-active-space", String(spaceId));

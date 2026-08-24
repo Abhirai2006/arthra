@@ -8,11 +8,16 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import "./workspace.css";
 import "./analytics.css";
+import "./workspace-theme.css";
+import "./workspace-reports-theme.css";
 import Home from "./pages/Home";
 import DemoPage from "./pages/DemoPage";
 import JoinSpacePage from "./pages/JoinSpacePage";
 import CaPublicPage from "./pages/CaPublicPage";
 import LegalPage from "./pages/LegalPage";
+import FeedbackPage from "./pages/FeedbackPage";
+import "./feedback.css";
+import "./matte-black.css";
 
 const DashboardPage = lazy(() => import("@/pages/DashboardPage"));
 const TransactionsPage = lazy(() => import("@/pages/TransactionsPage"));
@@ -45,6 +50,7 @@ function Router() {
       <Route path={"/ca/:token"} component={CaPublicPage} />
       <Route path={"/privacy"} component={LegalPage} />
       <Route path={"/terms"} component={LegalPage} />
+      <Route path={"/feedback"} component={FeedbackPage} />
       {import.meta.env.DEV && <Route path={"/__verify-budget"} component={BudgetRingHarness} />}
       <Route path={"/dashboard"}>{() => <ProtectedRoute title="Your money, with context" description="Track private records, shared spaces, and monthly patterns after secure sign-in."><DashboardPage /></ProtectedRoute>}</Route>
       <Route path={"/transactions"}>{() => <ProtectedRoute title="Transactions" description="Review, filter, and safely manage your private income and expense records."><TransactionsPage /></ProtectedRoute>}</Route>

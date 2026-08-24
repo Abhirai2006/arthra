@@ -20,6 +20,9 @@ export async function prefetchForPath(url: string, client: QueryClient, prefetch
   if (path === "/demo") {
     return { title: "Arthra demo · Personal finance, built for India", description: "Explore Arthra’s safe, labelled fictional demo workspace with transactions, budgets, analytics, shared spaces, and reports.", canonicalPath: path, noindex: true };
   }
+  if (path === "/feedback") {
+    return { title: "Share feedback · Arthra", description: "Share private product feedback about Arthra or explore the developer's GitHub portfolio.", canonicalPath: path, noindex: true };
+  }
   if (path === "/" || path === "/privacy" || path === "/terms") {
     const auth = await prefetch.authMe();
     seed(client, getQueryKey(trpc.auth.me, undefined, "query"), auth);

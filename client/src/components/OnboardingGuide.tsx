@@ -74,13 +74,13 @@ export function OnboardingGuide({ userId, restartRequest, onNavigate }: Onboardi
 
   return (
     <Dialog open={open} onOpenChange={(nextOpen) => { if (!nextOpen) markComplete(); else setOpen(true); }}>
-      <DialogContent className="overflow-hidden border-border/80 p-0 sm:max-w-xl">
-        <div className="relative overflow-hidden bg-[radial-gradient(circle_at_86%_12%,rgba(138,109,255,.32),transparent_36%),linear-gradient(135deg,#2d1c56,#19152d)] px-6 pb-7 pt-8 text-primary-foreground sm:px-8">
+      <DialogContent className="workspace-onboarding-content overflow-hidden border-border/80 p-0 sm:max-w-xl">
+        <div className="workspace-onboarding-header relative overflow-hidden px-6 pb-7 pt-8 text-primary-foreground sm:px-8">
           <div className="absolute -right-10 -top-14 h-44 w-44 rounded-full border border-white/20" aria-hidden="true" />
           <div className="absolute right-8 top-10 h-20 w-20 rounded-full border border-white/10" aria-hidden="true" />
-          <p className="relative m-0 text-[10px] font-bold uppercase tracking-[.16em] text-violet-200">Your Arthra quick start</p>
+          <p className="relative m-0 text-[10px] font-bold uppercase tracking-[.16em] text-[color:var(--workspace-hero-muted)]">Your Arthra quick start</p>
           <DialogTitle className="relative mt-3 max-w-md text-3xl font-extrabold tracking-[-.06em] text-white sm:text-4xl">Money with context, one step at a time.</DialogTitle>
-          <p className="relative mt-3 max-w-md text-sm leading-6 text-violet-100">Take a short tour now, or skip it and restart it any time from your account menu.</p>
+          <p className="relative mt-3 max-w-md text-sm leading-6 text-white/75">Take a short tour now, or skip it and restart it any time from your account menu.</p>
         </div>
         <div className="px-6 py-6 sm:px-8">
           <DialogHeader className="text-left">

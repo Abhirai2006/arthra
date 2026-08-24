@@ -95,3 +95,61 @@ The README’s Architecture section keeps the restored Mermaid flowchart immedia
 ### Final synchronized asset check
 
 The final production build explicitly copies the self-contained documentation asset into `dist/public` before deployment. The live `/architecture` and `/architecture-map.html` responses now identify revision `2026-08-23-final`, return **HTTP 200**, and contain the final arrow-key navigation guidance plus the `ArrowLeft` panning handler. A fresh isolated Chromium run on this final live revision again changed the map transform from `translate(0 0) scale(1)` to `translate(100 40) scale(1)` on pointer drag, then confirmed Zoom In `100% → 120%` and Zoom Out `120% → 100%`. The main route remained HTTP 200 in the same final audit.
+
+## 2026-08-23 — consent-gated public feedback and natural themes
+
+The feedback data model now carries an explicit `permissionToPublish` flag, confirmed present as a non-null database column with a `false` default. New submissions remain pending and private. The public read procedure selects only approved rows whose authors expressly permitted publication, and returns only display name, rating, message, and creation date; it never returns contact email or contact/publication permissions. Owner-only moderation rejects non-owner callers and prevents approval when publication consent is absent. No reviews, ratings, or testimonials were seeded or fabricated during implementation or verification.
+
+The supplied public portfolio destination `https://portfolio-abhirai2006.lovable.app` was opened successfully and is linked from the landing footer and feedback page. Public-page captures at 1280×720 and 390×844 verified the black/green/blue dark experience and white/blue/green light experience. The responsive feedback form, consent control, honest empty state, and owner moderation view remained readable without horizontal overflow at the mobile width.
+
+Release checks passed: `pnpm check`, a `pnpm test` run with **36 passing tests across 17 files**, and `pnpm build`. The feedback tests validate explicit publication consent, non-owner moderation rejection, the combined approved-plus-consented public query guard, and private pending storage without retaining any test feedback. The build emitted only the existing advisory about large optional application chunks; it completed successfully. The SSR feedback test confirms the portfolio path and consent/approval explanatory text are present in server-rendered output.
+
+During validation, the database helper was also updated to use an explicit bounded MySQL pool with a 10-second connection timeout instead of passing a URL directly to the Drizzle driver. After stale standalone server processes were stopped, all database-backed finance, import, and feedback tests completed together. This is a reliability repair only; it does not alter database schema, finance calculations, or public review rules.
+
+## 2026-08-23 — footer, feedback, and dashboard repair
+
+The supplied wide footer screenshot identified a real layout defect: public links were constrained to one right-aligned sequence even though the center of the footer was unused. The corrected footer has semantic grouped navigation for **Explore** and **About**, a separate back-to-top action, and responsive stacked layouts. Desktop and mobile captures confirmed the groups remain distinct without the former collision.
+
+The feedback form now keeps its action available and presents an explicit inline explanation when the required rating or message is missing. It continues to show server-side errors and preserves its private-by-default, consent-and-approval publishing boundary. An invalid browser submission produced the expected message without creating a feedback record; the database-backed feedback persistence test passed with its own cleanup flow.
+
+The dashboard now converts workspace-bootstrap errors and missing active-space outcomes into retryable error states rather than showing a perpetual loading skeleton. Its workspace bootstrap has a one-minute freshness window, avoids refetch on window focus, and preserves a valid selected Expense Space. An authenticated browser verification rendered the dashboard and recorded exactly one successful `auth.me`, `finance.bootstrap`, and `finance.dashboard.get` sequence; no 4xx/5xx request or runtime error appeared in the final log audit. `pnpm check`, **37 tests across 17 files**, and `pnpm build` passed.
+
+### Production propagation follow-up
+
+The first two checkpoints started healthy production processes but the root domain continued to return an older fallback document. A cache-busted production response confirmed this by lacking the new footer markup. The deployment repair explicitly registers `/` with the static SSR renderer. The final cache-busted live root response includes `footer-nav` and two `footer-nav__group` elements, and browser measurement confirms a grid footer with separate Explore and About groups (264 px each) plus an independent back-to-top action. The live `/feedback` response returned HTTP 200 with the repaired form, publication-consent copy, portfolio link, and honest empty-review state. An unauthenticated live `/dashboard` visit correctly resolved back to the public entry rather than remaining on a loading shell; the authenticated dashboard fetch sequence was already verified locally.
+
+## 2026-08-23 — matte public visual and README-image refresh
+
+The public landing, feedback, and footer surfaces now use a restrained material system: near-black foundation, graphite elevation, off-white reading contrast, green for confirmation and consent, and blue only for emphasis or data. The prior radial colour washes, pastel dark-mode cards, broad gradients, and decorative glow shadows were removed from the public dark experience. The white light alternative was separately checked and its feedback-panel contrast was corrected so forms and portfolio content remain readable.
+
+Focused, current screenshots now replace the obsolete tall pastel README images: desktop landing, desktop feedback, mobile landing, and mobile feedback. Each screenshot link was opened successfully from managed project storage. Visual captures verified desktop and 390 px mobile layouts in dark mode as well as desktop light mode. `pnpm check`, `pnpm test` (**37 passing tests in 17 files**), and `pnpm build` all passed after the refresh. The final development log audit showed no new browser, server, or failed-network error associated with the public style layer.
+
+The My Browser connector configuration is enabled, but its live tab session remains unattached and unauthenticated; browser actions therefore correctly redirect a protected live dashboard request to the public page. This is documented as a session-handoff boundary rather than an Arthra application defect.
+
+The current live public response references stylesheet `index-CMyKOMr8.css`, which contains the matte design token set, including `--matte-black`, and the HTML retains the grouped `footer-nav__group` structure. This confirms the published domain is serving the substantive matte public system and repaired footer. The later `matte-public-refresh-v2` marker is a deployment-identification-only change; its absence does not affect the published visual or application behavior.
+
+## 2026-08-23 — balanced footer and dashboard-wide theme controls (staging)
+
+The public footer was restructured into a compact brand statement and three purpose-led groups: **Explore Arthra**, **Product principles**, and **Creator & code**. Its creator card now explicitly labels `portfolio-abhirai2006.lovable.app` as **“Abhishek Rai’s portfolio — Projects & case studies”**; the separate repository card labels `github.com/Abhirai2006/arthra` as **“Arthra on GitHub — Open-source code.”** The back-to-top action moved to the footer utility row. Updated SSR assertions verify these labels in public HTML.
+
+The persistent global theme provider now has a visible, labelled switch in the desktop dashboard sidebar and an icon control in the mobile dashboard header. The shared shell covers Overview, Transactions, Budgets, Expense Spaces, Analytics, and Reports. A scoped workspace semantic layer brings cards, dashboard summaries, budgets, space surfaces, analytics charts, and the first-run guide into the same paper/graphite, green, and blue system. Desktop and 390 px captures confirmed both dark and light presentations; the first-run guide is responsive and uses the matching palette in both modes.
+
+Validation completed with `pnpm check`, `pnpm test` (**39 tests across 18 files**, including finance persistence and the new dashboard-theme contract), and `pnpm build`. The production build reports only the pre-existing advisory large-chunk warning. The latest live authenticated dashboard remains unverified because the available personal-browser session is not authenticated; this staging verification used an already authenticated local preview state and did not create or modify any finance records.
+
+### Live authenticated follow-up
+
+After publication, an authenticated live browser session became available. The Overview route loaded with the accessible sidebar switch; switching from dark to light changed the presentation and updated the control to **“Dark,”** then persisted while navigating without data mutations. Live Transactions, Budgets, Expense Spaces, Analytics, and Reports each rendered under the selected light theme with the same shared dashboard control. The report-share palette alignment was published immediately afterward and is being checked separately as a non-functional visual refinement.
+
+The first cache-busted live report check after the palette checkpoint still loaded stylesheet `index-b06raVlt.css`; browser-computed styles confirmed the older purple report-share surface. This is an asset-propagation observation only—the authenticated route, theme control, data views, and finance behavior continued to load correctly. The source and production build contain the forest override, so a subsequent fresh-artifact check is required before treating the visual refinement as live.
+
+The next live asset check confirmed the new stylesheet `index-CWF1UaD3.css` contains the report-share override selector. A fresh cache-busted Reports navigation initially rendered the secure SSR shell and then a temporary blank application root while hydration settled. No finance mutation was attempted; runtime inspection is required before treating that transient visual state as a product regression.
+
+The live browser console was empty. A subsequent view showed the normal shared dashboard shell plus the intended report loading skeleton, rather than an exception or data leak. The route is therefore still resolving its protected report query after the fresh asset change; this does not affect the earlier successful authenticated Reports verification.
+
+## 2026-08-23 — README screenshot refresh
+
+All four README captures were audited against the current public interface. The prior managed-storage images accurately represented the former dark matte hero and feedback pages, but predated the latest public light interface and did not provide current documentation coverage. The README now points to four newly captured managed-storage images at 1280×720 and 390×844 for the landing and feedback routes. Each refreshed URL returned HTTP 200, and no obsolete `landing-matte` or `feedback-matte` image reference remains in the README.
+
+## 2026-08-23 — Reported light-footer contrast defect
+
+The supplied 1918×319 live footer capture was inspected in ordered horizontal crops. The brand title, supporting copy, copyright line, and the Explore Arthra link group render at insufficient contrast against the light paper surface; the group-link text is effectively unreadable. This is a visual token defect only. The correction will raise the light-mode footer foreground and link colors to deliberate ink/green values while retaining the approved dark-mode palette and the distinct portfolio/source destination cards.

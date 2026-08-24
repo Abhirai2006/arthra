@@ -36,20 +36,23 @@ export async function setupVite(app: Express, server: Server) {
   });
 }
 
+export async function renderStaticSsrPage(req: express.Request, res: express.Response) {
+  const distPath = process.env.NODE_ENV === "development" ? path.resolve(import.meta.dirname, "../..", "dist", "public") : path.resolve(import.meta.dirname, "public");
+  const templatePath = path.resolve(distPath, "index.html");
+  try {
+    const template = await fs.promises.readFile(templatePath, "utf-8"); const entry = path.resolve(import.meta.dirname, "server-ssr", "entry-server.js");
+    const { render } = await import(entry); const { html, dehydratedState, head } = await render(req.originalUrl, await buildSsrPrefetch(req, res));
+    res.status(head.notFound ? 404 : 200).set("Cache-Control", "no-cache").type("html").end(composeHtml(template, html, head, dehydratedState));
+  } catch (error) {
+    console.error("[SSR] render failed, serving client shell", error);
+    const template = await fs.promises.readFile(templatePath, "utf-8"); const head = { title: "Arthra — Money with context", description: "A private Indian personal-finance workspace." };
+    res.status(200).set("Cache-Control", "no-cache").type("html").end(composeHtml(template, "", head, {}));
+  }
+}
+
 export function serveStatic(app: Express) {
   const distPath = process.env.NODE_ENV === "development" ? path.resolve(import.meta.dirname, "../..", "dist", "public") : path.resolve(import.meta.dirname, "public");
   app.use((req, res, next) => { if (req.path === "/index.html") return res.redirect(301, "/"); if (req.path !== "/" && /\/+$/ .test(req.path)) return res.redirect(301, req.path.replace(/\/+$/, "") + req.originalUrl.slice(req.path.length)); next(); });
   app.use(express.static(distPath, { index: false, redirect: false }));
-  app.use("*", async (req, res) => {
-    const templatePath = path.resolve(distPath, "index.html");
-    try {
-      const template = await fs.promises.readFile(templatePath, "utf-8"); const entry = path.resolve(import.meta.dirname, "server-ssr", "entry-server.js");
-      const { render } = await import(entry); const { html, dehydratedState, head } = await render(req.originalUrl, await buildSsrPrefetch(req, res));
-      res.status(head.notFound ? 404 : 200).set("Cache-Control", "no-cache").type("html").end(composeHtml(template, html, head, dehydratedState));
-    } catch (error) {
-      console.error("[SSR] render failed, serving client shell", error);
-      const template = await fs.promises.readFile(templatePath, "utf-8"); const head = { title: "Arthra — Money with context", description: "A private Indian personal-finance workspace." };
-      res.status(200).set("Cache-Control", "no-cache").type("html").end(composeHtml(template, "", head, {}));
-    }
-  });
+  app.use("*", renderStaticSsrPage);
 }
