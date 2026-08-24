@@ -203,7 +203,7 @@ The full evidence, blocker list, and beta gate are in [`docs/LAUNCH_READINESS_AS
 
 ## Reddit Launch Playbook
 
-Arthra’s Reddit approach is deliberately **feedback-first rather than promotional**: it uses one natural founder-voice post in a project-friendly community, one genuine public product screenshot, and one primary product link. It prohibits cross-posting, vote requests, private-message outreach, generated mock imagery, and financial-advice claims, and treats any community feedback as product input rather than a testimonial. The prepared post, community-rule research, reply protocol, and confirmation gate are documented in [`docs/REDDIT_LAUNCH_PLAYBOOK.md`](./docs/REDDIT_LAUNCH_PLAYBOOK.md).
+Arthra’s Reddit approach is deliberately **feedback-first rather than promotional**: it uses one natural founder-voice post in a project-friendly community, one genuine public product screenshot, and one primary product link. It prohibits cross-posting, vote requests, private-message outreach, generated mock imagery, and financial-advice claims, and treats any community feedback as product input rather than a testimonial. The prepared post, community-rule research, reply protocol, confirmation gate, and user-facing paste-ready package are documented in [`docs/REDDIT_LAUNCH_PLAYBOOK.md`](./docs/REDDIT_LAUNCH_PLAYBOOK.md) and [`docs/REDDIT_POST_PACKAGE.md`](./docs/REDDIT_POST_PACKAGE.md).
 
 ## Tech Stack
 

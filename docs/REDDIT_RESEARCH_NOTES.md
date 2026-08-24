@@ -23,4 +23,4 @@ Reddit’s current spam policy prohibits repeated or unsolicited mass engagement
 
 The account visible in the connected browser is `u/Abhirai2006`. Any later post must plainly disclose that Arthra is the creator’s project and must not offer financial, tax, accounting, legal, credit, or investment advice.
 
-The `r/sideprojects` text-post composer is available to the connected account and visibly offers title, body, flair/tags, **Save Draft**, and **Post** controls. The body now uses the shorter, plain founder-voice version from the launch playbook. The required title and showcase flair are not yet set, the draft has not been saved, and no public post has been submitted.
+The `r/sideprojects` text-post composer is available to the connected account and visibly offers title, body, flair/tags, **Save Draft**, and **Post** controls. The approved title, `I built a personal finance tracker around the way I manage money in India. Would this be useful to you?`, has been entered. The body, showcase flair, genuine public screenshot, draft save, and public submission still require completion. No public post has been submitted.
