@@ -236,11 +236,13 @@ export const waitlistEntries = mysqlTable(
     id: int("id").autoincrement().primaryKey(),
     email: varchar("email", { length: 320 }).notNull(),
     source: varchar("source", { length: 80 }).default("website").notNull(),
+    status: mysqlEnum("status", ["new", "reviewed", "archived"]).default("new").notNull(),
     consentedAt: timestamp("consentedAt").defaultNow().notNull(),
+    lastActionAt: timestamp("lastActionAt"),
     createdAt: timestamp("createdAt").defaultNow().notNull(),
     updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
   },
-  table => [uniqueIndex("waitlist_entries_email_unique").on(table.email)]
+  table => [uniqueIndex("waitlist_entries_email_unique").on(table.email), index("waitlist_entries_status_created_idx").on(table.status, table.createdAt)]
 );
 
 export const contactMessages = mysqlTable(
@@ -252,9 +254,11 @@ export const contactMessages = mysqlTable(
     subject: varchar("subject", { length: 160 }).notNull(),
     message: text("message").notNull(),
     consentedToReply: boolean("consentedToReply").default(true).notNull(),
+    status: mysqlEnum("status", ["new", "in_progress", "resolved", "archived"]).default("new").notNull(),
+    lastActionAt: timestamp("lastActionAt"),
     createdAt: timestamp("createdAt").defaultNow().notNull(),
   },
-  table => [index("contact_messages_email_created_idx").on(table.email, table.createdAt)]
+  table => [index("contact_messages_email_created_idx").on(table.email, table.createdAt), index("contact_messages_status_created_idx").on(table.status, table.createdAt)]
 );
 
 export type User = typeof users.$inferSelect;

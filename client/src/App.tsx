@@ -29,6 +29,7 @@ const BudgetsPage = lazy(() => import("@/pages/BudgetsPage"));
 const SpacesPage = lazy(() => import("@/pages/SpacesPage"));
 const AnalyticsPage = lazy(() => import("@/pages/AnalyticsPage"));
 const ReportsPage = lazy(() => import("@/pages/ReportsPage"));
+const OperationsPage = lazy(() => import("@/pages/OperationsPage"));
 const BudgetRingHarness = lazy(() => import("@/pages/BudgetRingHarness"));
 
 function RouteLoading() { return <div className="min-h-screen bg-background" aria-label="Loading page" />; }
@@ -52,6 +53,7 @@ const clientMeta: Record<string, { title: string; description: string }> = {
   "/thank-you": { title: "Thank you · Arthra", description: "Your Arthra submission has been received." },
   "/feedback": { title: "Share feedback · Arthra", description: "Share private product feedback about Arthra." },
   "/demo": { title: "Arthra demo · Personal finance, built for India", description: "Explore Arthra’s safe, labelled fictional demo workspace." },
+  "/operations": { title: "Owner operations · Arthra", description: "Private owner operations for consented support records." },
 };
 
 function RouteMeta() {
@@ -88,6 +90,7 @@ function Router() {
       <Route path={"/spaces"}>{() => <ProtectedRoute title="Expense Spaces" description="Share only the financial context you choose with the people who belong in it."><SpacesPage /></ProtectedRoute>}</Route>
       <Route path={"/analytics"}>{() => <ProtectedRoute title="Spending rhythm" description="Explore your spending patterns and practical observations after secure sign-in."><AnalyticsPage /></ProtectedRoute>}</Route>
       <Route path={"/reports"}>{() => <ProtectedRoute title="CA-ready reports" description="Prepare structured financial-year records and revocable read-only handoff links."><ReportsPage /></ProtectedRoute>}</Route>
+      <Route path={"/operations"}>{() => <ProtectedRoute title="Owner operations" description="Review private support records and documented retention actions."><OperationsPage /></ProtectedRoute>}</Route>
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

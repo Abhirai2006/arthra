@@ -160,3 +160,9 @@
 - [x] Produce and document a candid pre-launch blocker list, go/no-go recommendation, and commercial-readiness framework.
 - [x] Update the README with an accurate launch-readiness status and operational prerequisites.
 - [x] Update the direct NanoID dependency to the audited patched release and recheck production advisories.
+- [ ] Diagnose and resolve the production gateway behavior that returns a maintenance 503 for unknown HTML routes instead of Arthra’s noindex custom 404.
+- [x] Build owner-only operational inbox, review, deletion, and notification workflows for contact and waitlist submissions without exposing public records.
+- [x] Add an incident-response, backup/restore, support, and dependency-risk operating playbook with verifiable owner handoff steps.
+- [ ] Expand the public privacy/support structure using owner-supplied controller, retention, and contact information without inventing legal facts.
+- [ ] Perform independent production OAuth onboarding and Google Search Console verification once an eligible owner account/session is available.
+- [ ] Re-run full regression and live production checks, then update README and synchronize the completed launch-readiness work to GitHub.

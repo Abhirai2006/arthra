@@ -1,7 +1,10 @@
 import { TRPCError } from "@trpc/server";
+import { desc, eq } from "drizzle-orm";
 import { z } from "zod";
 import { contactMessages, waitlistEntries } from "../drizzle/schema";
-import { publicProcedure, router } from "./_core/trpc";
+import { ENV } from "./_core/env";
+import { notifyOwner } from "./_core/notification";
+import { protectedProcedure, publicProcedure, router } from "./_core/trpc";
 import { getDb } from "./db";
 
 const WINDOW_MS = 15 * 60 * 1000;
@@ -44,6 +47,24 @@ export const contactInput = z.object({
   website: z.string().max(0).optional(),
 });
 
+const recordIdInput = z.object({ id: z.number().int().positive() });
+const contactStatusInput = recordIdInput.extend({ status: z.enum(["new", "in_progress", "resolved", "archived"]) });
+const waitlistStatusInput = recordIdInput.extend({ status: z.enum(["new", "reviewed", "archived"]) });
+
+function assertEngagementOwner(user: { openId: string } | null) {
+  if (!user || !ENV.ownerOpenId || user.openId !== ENV.ownerOpenId) {
+    throw new TRPCError({ code: "FORBIDDEN", message: "Only the site owner can access private engagement records." });
+  }
+}
+
+async function alertOwner(title: string) {
+  try {
+    await notifyOwner({ title, content: "A new private website submission is ready in Arthra Owner Operations. No submission content is included in this alert." });
+  } catch (error) {
+    console.warn("[Public engagement] Owner alert could not be sent.", error);
+  }
+}
+
 export const publicEngagementRouter = router({
   joinWaitlist: publicProcedure.input(waitlistInput).mutation(async ({ ctx, input }) => {
     if (input.website) return { accepted: true } as const;
@@ -54,7 +75,10 @@ export const publicEngagementRouter = router({
       email: input.email.toLowerCase(),
       source: input.source,
       consentedAt: new Date(),
-    }).onDuplicateKeyUpdate({ set: { source: input.source, consentedAt: new Date() } });
+      status: "new",
+      lastActionAt: null,
+    }).onDuplicateKeyUpdate({ set: { source: input.source, consentedAt: new Date(), status: "new", lastActionAt: null } });
+    await alertOwner("New Arthra waitlist submission");
     return { accepted: true } as const;
   }),
   submitContact: publicProcedure.input(contactInput).mutation(async ({ ctx, input }) => {
@@ -68,7 +92,52 @@ export const publicEngagementRouter = router({
       subject: input.subject,
       message: input.message,
       consentedToReply: input.consentToReply,
+      status: "new",
     });
+    await alertOwner("New Arthra contact message");
     return { accepted: true } as const;
+  }),
+  operationsAccess: publicProcedure.query(({ ctx }) => ({ canManage: Boolean(ctx.user && ENV.ownerOpenId && ctx.user.openId === ENV.ownerOpenId) })),
+  operationsInbox: protectedProcedure.query(async ({ ctx }) => {
+    assertEngagementOwner(ctx.user);
+    const db = await getDb();
+    if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Owner operations are unavailable right now." });
+    const [messages, waitlist] = await Promise.all([
+      db.select({ id: contactMessages.id, name: contactMessages.name, email: contactMessages.email, subject: contactMessages.subject, message: contactMessages.message, consentedToReply: contactMessages.consentedToReply, status: contactMessages.status, lastActionAt: contactMessages.lastActionAt, createdAt: contactMessages.createdAt }).from(contactMessages).orderBy(desc(contactMessages.createdAt)).limit(100),
+      db.select({ id: waitlistEntries.id, email: waitlistEntries.email, source: waitlistEntries.source, status: waitlistEntries.status, consentedAt: waitlistEntries.consentedAt, lastActionAt: waitlistEntries.lastActionAt, createdAt: waitlistEntries.createdAt }).from(waitlistEntries).orderBy(desc(waitlistEntries.createdAt)).limit(100),
+    ]);
+    return { messages, waitlist };
+  }),
+  setContactStatus: protectedProcedure.input(contactStatusInput).mutation(async ({ ctx, input }) => {
+    assertEngagementOwner(ctx.user);
+    const db = await getDb();
+    if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Owner operations are unavailable right now." });
+    const result = await db.update(contactMessages).set({ status: input.status, lastActionAt: new Date() }).where(eq(contactMessages.id, input.id));
+    if (!result[0].affectedRows) throw new TRPCError({ code: "NOT_FOUND", message: "That contact message no longer exists." });
+    return { updated: true, status: input.status } as const;
+  }),
+  setWaitlistStatus: protectedProcedure.input(waitlistStatusInput).mutation(async ({ ctx, input }) => {
+    assertEngagementOwner(ctx.user);
+    const db = await getDb();
+    if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Owner operations are unavailable right now." });
+    const result = await db.update(waitlistEntries).set({ status: input.status, lastActionAt: new Date() }).where(eq(waitlistEntries.id, input.id));
+    if (!result[0].affectedRows) throw new TRPCError({ code: "NOT_FOUND", message: "That waitlist entry no longer exists." });
+    return { updated: true, status: input.status } as const;
+  }),
+  deleteContactRecord: protectedProcedure.input(recordIdInput).mutation(async ({ ctx, input }) => {
+    assertEngagementOwner(ctx.user);
+    const db = await getDb();
+    if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Owner operations are unavailable right now." });
+    const result = await db.delete(contactMessages).where(eq(contactMessages.id, input.id));
+    if (!result[0].affectedRows) throw new TRPCError({ code: "NOT_FOUND", message: "That contact message no longer exists." });
+    return { deleted: true } as const;
+  }),
+  deleteWaitlistRecord: protectedProcedure.input(recordIdInput).mutation(async ({ ctx, input }) => {
+    assertEngagementOwner(ctx.user);
+    const db = await getDb();
+    if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Owner operations are unavailable right now." });
+    const result = await db.delete(waitlistEntries).where(eq(waitlistEntries.id, input.id));
+    if (!result[0].affectedRows) throw new TRPCError({ code: "NOT_FOUND", message: "That waitlist entry no longer exists." });
+    return { deleted: true } as const;
   }),
 });

@@ -43,6 +43,13 @@
       "when": 1787544627012,
       "tag": "0005_naive_power_man",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1787575337419,
+      "tag": "0006_jazzy_ultimatum",
+      "breakpoints": true
     }
   ]
 }

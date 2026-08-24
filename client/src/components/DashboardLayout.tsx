@@ -5,7 +5,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarInset, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useIsMobile } from "@/hooks/useMobile";
-import { BarChart3, CircleHelp, LayoutDashboard, LogOut, Moon, ReceiptText, ScrollText, Sun, UsersRound, WalletCards } from "lucide-react";
+import { BarChart3, CircleHelp, LayoutDashboard, LogOut, Moon, ReceiptText, ScrollText, ShieldCheck, Sun, UsersRound, WalletCards } from "lucide-react";
+import { trpc } from "@/lib/trpc";
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { DashboardLayoutSkeleton } from "./DashboardLayoutSkeleton";
@@ -41,6 +42,7 @@ function AuthRedirect() {
 
 function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
   const { user, logout } = useAuth();
+  const operationsAccess = trpc.publicEngagement.operationsAccess.useQuery();
   const [location, setLocation] = useLocation();
   const isMobile = useIsMobile();
   const [tourRequest, setTourRequest] = useState(0);
@@ -49,7 +51,7 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
     <Sidebar collapsible="icon" className="border-r border-sidebar-border/70">
       <SidebarHeader className="h-[74px] flex-row items-center justify-between px-3"><BrandMark /><WorkspaceThemeToggle /></SidebarHeader>
       <SidebarContent className="px-2"><p className="px-3 pt-4 pb-2 text-[10px] font-semibold uppercase tracking-[.16em] text-muted-foreground group-data-[collapsible=icon]:hidden">Your workspace</p><SidebarMenu>{menuItems.map(item => <SidebarMenuItem key={item.path}><SidebarMenuButton isActive={location === item.path} onClick={() => setLocation(item.path)} tooltip={item.label} className="h-10 rounded-xl"><item.icon className="size-4" /><span>{item.label}</span></SidebarMenuButton></SidebarMenuItem>)}</SidebarMenu></SidebarContent>
-      <SidebarFooter className="border-t border-sidebar-border/70 p-3"><DropdownMenu><DropdownMenuTrigger asChild><button className="flex w-full items-center gap-3 rounded-xl p-1 text-left transition-colors hover:bg-sidebar-accent group-data-[collapsible=icon]:justify-center"><Avatar className="size-8 border border-sidebar-border"><AvatarFallback className="bg-primary/15 text-xs text-primary">{user?.name?.charAt(0).toUpperCase() ?? "A"}</AvatarFallback></Avatar><div className="min-w-0 flex-1 group-data-[collapsible=icon]:hidden"><p className="truncate text-xs font-semibold">{user?.name || "Your account"}</p><p className="mt-0.5 truncate text-[10px] text-muted-foreground">Private workspace</p></div></button></DropdownMenuTrigger><DropdownMenuContent align="end" className="w-56"><DropdownMenuItem onClick={() => setTourRequest(request => request + 1)} className="cursor-pointer"><CircleHelp className="mr-2 size-4" />Show quick-start guide</DropdownMenuItem><DropdownMenuItem onClick={() => { logout(); window.location.replace("/"); }} className="cursor-pointer text-destructive focus:text-destructive"><LogOut className="mr-2 size-4" />Sign out</DropdownMenuItem></DropdownMenuContent></DropdownMenu></SidebarFooter>
+      <SidebarFooter className="border-t border-sidebar-border/70 p-3"><DropdownMenu><DropdownMenuTrigger asChild><button className="flex w-full items-center gap-3 rounded-xl p-1 text-left transition-colors hover:bg-sidebar-accent group-data-[collapsible=icon]:justify-center"><Avatar className="size-8 border border-sidebar-border"><AvatarFallback className="bg-primary/15 text-xs text-primary">{user?.name?.charAt(0).toUpperCase() ?? "A"}</AvatarFallback></Avatar><div className="min-w-0 flex-1 group-data-[collapsible=icon]:hidden"><p className="truncate text-xs font-semibold">{user?.name || "Your account"}</p><p className="mt-0.5 truncate text-[10px] text-muted-foreground">Private workspace</p></div></button></DropdownMenuTrigger><DropdownMenuContent align="end" className="w-56">{operationsAccess.data?.canManage && <DropdownMenuItem onClick={() => setLocation("/operations")} className="cursor-pointer"><ShieldCheck className="mr-2 size-4" />Owner operations</DropdownMenuItem>}<DropdownMenuItem onClick={() => setTourRequest(request => request + 1)} className="cursor-pointer"><CircleHelp className="mr-2 size-4" />Show quick-start guide</DropdownMenuItem><DropdownMenuItem onClick={() => { logout(); window.location.replace("/"); }} className="cursor-pointer text-destructive focus:text-destructive"><LogOut className="mr-2 size-4" />Sign out</DropdownMenuItem></DropdownMenuContent></DropdownMenu></SidebarFooter>
     </Sidebar>
     <SidebarInset>
       {isMobile && <header className="sticky top-0 z-40 flex h-16 items-center gap-3 border-b border-border/70 bg-background/90 px-4 backdrop-blur"><SidebarTrigger className="size-9 rounded-xl" /><BrandMark compact /><span className="ml-auto text-xs font-semibold text-muted-foreground">{activeMenuItem?.label ?? "Workspace"}</span><WorkspaceThemeToggle compact /></header>}

@@ -17,7 +17,7 @@ Arthra is a strong, working product prototype with a deployed SSR public site, p
 | Dependency risk | Production audit reports **0 critical, 7 high, 30 moderate, and 7 low** advisories after NanoID 5.1.16 remediation. The spreadsheet importer’s `xlsx` dependency remains a known no-fix concern. | **Not clear for broad handling of sensitive financial data** | Maintain a remediation plan and restrict import exposure until parser replacement is assessed. |
 | Google readiness | Robots, sitemap, canonical URLs, SSR titles/descriptions, Open Graph metadata, favicon, and structured data are present. | **Foundation ready; indexing unverified** | Search Console ownership, sitemap submission, and URL Inspection are still required. A sitemap is a hint, not an indexing guarantee.[1] [2] |
 | Legal/privacy | Current pages state high-level processing and data sharing boundaries. They do not yet identify the controller/operator, effective date, retention schedule, data deletion workflow, processors, or a complete incident/contact process. | **Material pre-launch gap** | Obtain jurisdiction-specific legal review before broad public collection of financial data. |
-| Support & operations | Contact and waitlist records persist privately, but there is no owner inbox, ticket workflow, uptime monitor, incident runbook, or verified backup/restore drill. | **Material pre-launch gap** | Add response ownership and monitoring before customer acquisition. |
+| Support & operations | Contact and Waitlist submissions now attempt a content-free owner alert and are available only in owner-gated `/operations`, where their status can be recorded and records can be deleted. An operating runbook exists. Uptime monitoring and a verified backup/restore drill are still absent. | **Improved; not complete for broad launch** | Complete monitoring, backup/restore evidence, and a defined support response practice before customer acquisition. |
 
 ## Google discovery status
 
@@ -31,7 +31,7 @@ The implementation includes CSRF-resistant OAuth state handling, HTTPS cookie se
 
 ## User-support and data-governance gaps
 
-The Contact and Waitlist forms correctly require consent, validate bounded input, resist basic automated submissions, and do not expose a public read endpoint. However, submitted contact messages and waitlist entries currently have no owner-facing inbox, notification, assignment workflow, service-level expectation, or deletion request process. A user can submit a message, but the product does not yet give the operator a reliable in-product way to see or answer it. This is a **launch blocker for any promise of support**.
+The Contact and Waitlist forms require consent, validate bounded input, resist basic automated submissions, and do not expose a public read endpoint. The configured owner can now review their private records in `/operations`, record handling status, and permanently delete a record; each new submission attempts a content-free owner notification. The owner must still define the support channel, response target, privacy-request verification process, and retention rule. The product does not yet prove that an external notification was delivered or that the operating practice is staffed.
 
 The existing privacy page describes categories of financial data and sharing controls, but it should be expanded before broad launch to state the controller/operator name and contact method, effective date, processing purposes, retention/deletion rules, service providers/subprocessors, cross-border handling where applicable, user-access/deletion process, cookie/analytics choice, incident contact, and a grievance/escalation route. This is not legal advice; an India-qualified privacy lawyer should review the final public text and operating practices.
 
@@ -45,9 +45,13 @@ Move from controlled beta to broad launch only when all items below have evidenc
 2. Search Console domain ownership is verified, sitemap submitted, and root/About are live-inspected as indexable.
 3. The production host is configured to forward unknown HTML routes or serve Arthra’s custom 404; `/does-not-exist` must return an Arthra 404/noindex response, not a gateway 503/maintenance page.
 4. A reviewed privacy notice, terms, data-deletion process, and support contact owner are published.
-5. The owner can receive, review, respond to, and delete Contact/Waitlist records through an operational workflow.
+5. The owner demonstrates that notifications are received or performs a documented inbox review cadence, then responds to and deletes Contact/Waitlist records through the operational workflow.
 6. High-severity dependency findings have owners, dates, and a spreadsheet-import parser replacement/containment decision.
 7. Monitoring, alerting, backup/restore, and incident-response exercises are completed.
+
+## Operations materials
+
+The code-backed support workflow and the owner handoff checklist are documented in [`LAUNCH_OPERATIONS_RUNBOOK.md`](./LAUNCH_OPERATIONS_RUNBOOK.md). The official India privacy-law source consulted for the documentation boundary is recorded in [`LAUNCH_RESEARCH_NOTES.md`](./LAUNCH_RESEARCH_NOTES.md). These documents do not constitute legal advice or claim legal compliance.
 
 ## Commercial-readiness conclusion
 

@@ -11,7 +11,7 @@ export type SsrPrefetch = {
 
 const SITE = "Arthra — Personal Finance, Built for India";
 const DESCRIPTION = "Track expenses, manage budgets, understand your spending, and generate secure financial reports with Arthra.";
-const protectedPaths = new Set(["/dashboard", "/transactions", "/budgets", "/spaces", "/analytics", "/reports"]);
+const protectedPaths = new Set(["/dashboard", "/transactions", "/budgets", "/spaces", "/analytics", "/reports", "/operations"]);
 const seed = (client: QueryClient, key: unknown, data: unknown) => client.setQueryData(key as any, data as any);
 
 export async function prefetchForPath(url: string, client: QueryClient, prefetch: SsrPrefetch): Promise<HeadMeta> {
