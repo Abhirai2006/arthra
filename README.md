@@ -55,6 +55,7 @@ A full-stack personal-finance workspace designed around everyday Indian financia
 - [Security & Privacy](#security--privacy)
 - [Security Hardening Record](#security-hardening-record)
 - [Launch Readiness](#launch-readiness)
+- [Reddit Launch Playbook](#reddit-launch-playbook)
 - [Tech Stack](#tech-stack)
 - [Architecture](#architecture)
 - [Try the Demo](#try-the-demo)
@@ -199,6 +200,10 @@ The public Privacy and Terms pages now identify **Abhishek Rai A, individual ope
 The full evidence, blocker list, and beta gate are in [`docs/LAUNCH_READINESS_ASSESSMENT.md`](./docs/LAUNCH_READINESS_ASSESSMENT.md). The transparent asset-sale versus traction-based commercial framework and the project entity card are in [`docs/ARTHRA_ENTITY_CARD.md`](./docs/ARTHRA_ENTITY_CARD.md). Any sale should be framed as a source/product asset until it has verified users, revenue, retention, and transferable operating evidence.
 
 <p align="right"><a href="#arthra">↑ back to top</a></p>
+
+## Reddit Launch Playbook
+
+Arthra’s Reddit approach is deliberately **feedback-first rather than promotional**: it uses a single, disclosed creator post in a project-friendly community, prohibits cross-posting, vote requests, private-message outreach, and financial-advice claims, and treats any community feedback as product input rather than a testimonial. The prepared post, community-rule research, reply protocol, and confirmation gate are documented in [`docs/REDDIT_LAUNCH_PLAYBOOK.md`](./docs/REDDIT_LAUNCH_PLAYBOOK.md).
 
 ## Tech Stack
 
