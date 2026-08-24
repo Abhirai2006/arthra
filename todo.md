@@ -140,6 +140,6 @@
 - [x] Audit every README screenshot against the latest public and authenticated Arthra interface.
 - [x] Replace any stale README screenshot assets and captions with current, reachable captures.
 - [x] Verify refreshed README screenshot links and publish the documentation update.
-- [ ] Correct the low-contrast light-mode public footer labels and links reported from the live site.
-- [ ] Synchronize the current README screenshot references and documentation copy to the public Arthra GitHub repository.
+- [x] Correct the low-contrast light-mode public footer labels and links reported from the live site.
+- [x] Synchronize the current README screenshot references and documentation copy to the public Arthra GitHub repository.
 - [ ] Verify the light footer and updated README on both the live site and GitHub’s public renderer.

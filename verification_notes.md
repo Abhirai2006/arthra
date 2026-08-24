@@ -153,3 +153,13 @@ All four README captures were audited against the current public interface. The 
 ## 2026-08-23 — Reported light-footer contrast defect
 
 The supplied 1918×319 live footer capture was inspected in ordered horizontal crops. The brand title, supporting copy, copyright line, and the Explore Arthra link group render at insufficient contrast against the light paper surface; the group-link text is effectively unreadable. This is a visual token defect only. The correction will raise the light-mode footer foreground and link colors to deliberate ink/green values while retaining the approved dark-mode palette and the distinct portfolio/source destination cards.
+
+## 2026-08-24 — GitHub README synchronization repair
+
+The public GitHub repository was confirmed to be behind the active project: it rendered an older README that used repository-local `docs/screenshots` images. The current local source, documentation, and new managed-storage screenshot URLs were staged into a clean GitHub clone and pushed to `main` as `e632a6a` using the owner’s GitHub identity. GitHub’s public repository page now identifies `README.md` and the source directories as updated by that commit. A browser text search for an image alt label did not return a match because GitHub’s repository view does not expose the rendered image alt text in its current accessible page extraction; the pushed README source and commit are the authoritative verification.
+
+Direct navigation to GitHub’s `README.md#screenshots` page also showed commit `e632a6a` beside the file and the rendered README container. A subsequent browser rendering request returned a blank browser page after the provider’s screenshot-upload failure, so no visual claim is made from that second view. The public GitHub commit and API-delivered README content remain the reliable verification sources.
+
+### Repair and regression evidence
+
+The light-mode footer now applies explicit ink (`--ink`) for links, back-to-top control, and destination titles; durable muted gray for supporting copy and metadata; and a deeper accessible green for group headings and destination icons. Local forced-light full-page captures at 1280×720 and 390×844 show the footer’s content groups and destination cards with readable hierarchy. `pnpm check`, the full 39-test/18-file regression suite, and `pnpm build` passed. The build retains only its pre-existing advisory chunk-size warning.
