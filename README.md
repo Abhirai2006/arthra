@@ -190,6 +190,8 @@ Before a broad launch, complete and retain evidence for an independent first-tim
 
 The configured owner now has a private **Owner Operations** workspace route for Contact and Waitlist records: consented records can be reviewed, classified, and deleted, while new submissions attempt a content-free owner alert. This operational improvement does not replace an owner-defined support channel, notification verification, retention schedule, legal review, or a tested backup/restore process. See [`docs/LAUNCH_OPERATIONS_RUNBOOK.md`](./docs/LAUNCH_OPERATIONS_RUNBOOK.md) for the required operating evidence.
 
+As of 24 August 2026, the Arthra URL-prefix property has been created in Google Search Console and the issued verification tag is included in the source. Verification remains pending because the public host is still serving an older production artifact that does not expose the new tag or new owner route. The exact evidence and resulting hosting-fallback blocker are maintained in [`docs/LAUNCH_READINESS_ASSESSMENT.md`](./docs/LAUNCH_READINESS_ASSESSMENT.md).
+
 The full evidence, blocker list, and beta gate are in [`docs/LAUNCH_READINESS_ASSESSMENT.md`](./docs/LAUNCH_READINESS_ASSESSMENT.md). The transparent asset-sale versus traction-based commercial framework and the project entity card are in [`docs/ARTHRA_ENTITY_CARD.md`](./docs/ARTHRA_ENTITY_CARD.md). Any sale should be framed as a source/product asset until it has verified users, revenue, retention, and transferable operating evidence.
 
 <p align="right"><a href="#arthra">↑ back to top</a></p>
