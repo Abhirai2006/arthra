@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Arthra">
+  <rect width="64" height="64" rx="16" fill="#05211c"/>
+  <path d="M17 15h31M17 25h31M32 15v16c0 9-5 15-15 18M20 49h25" stroke="#c8f1df" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle cx="45" cy="43" r="5" fill="#35bde0"/>
+</svg>

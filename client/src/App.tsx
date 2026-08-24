@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import DashboardLayout from "@/components/DashboardLayout";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
 import { lazy, Suspense, useEffect, useState } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -16,8 +16,12 @@ import JoinSpacePage from "./pages/JoinSpacePage";
 import CaPublicPage from "./pages/CaPublicPage";
 import LegalPage from "./pages/LegalPage";
 import FeedbackPage from "./pages/FeedbackPage";
+import { AboutPage, ContactPage, ThankYouPage, WaitlistPage } from "./pages/PublicPages";
 import "./feedback.css";
 import "./matte-black.css";
+import "./public-pages.css";
+import "./faq.css";
+import { CookieConsent } from "./components/CookieConsent";
 
 const DashboardPage = lazy(() => import("@/pages/DashboardPage"));
 const TransactionsPage = lazy(() => import("@/pages/TransactionsPage"));
@@ -40,10 +44,32 @@ function ProtectedRoute({ title, description, children }: { title: string; descr
   return <DashboardLayout>{children}</DashboardLayout>;
 }
 
+const clientMeta: Record<string, { title: string; description: string }> = {
+  "/": { title: "Arthra — Personal Finance, Built for India", description: "Track expenses, manage budgets, understand your spending, and generate secure financial reports with Arthra." },
+  "/about": { title: "About Arthra · Personal finance, built for India", description: "Learn why Arthra is built around Indian personal-finance context, private records, and deliberate sharing." },
+  "/contact": { title: "Contact Arthra · Private product conversation", description: "Send a private product, accessibility, research, or partnership message to Arthra." },
+  "/waitlist": { title: "Arthra waitlist · Product updates by choice", description: "Join the optional Arthra waitlist for considered product updates and research invitations." },
+  "/thank-you": { title: "Thank you · Arthra", description: "Your Arthra submission has been received." },
+  "/feedback": { title: "Share feedback · Arthra", description: "Share private product feedback about Arthra." },
+  "/demo": { title: "Arthra demo · Personal finance, built for India", description: "Explore Arthra’s safe, labelled fictional demo workspace." },
+};
+
+function RouteMeta() {
+  const [location] = useLocation();
+  useEffect(() => {
+    const meta = clientMeta[location] ?? { title: "Page not found · Arthra", description: "The requested Arthra page is unavailable." };
+    document.title = meta.title;
+    let description = document.querySelector('meta[name="description"]');
+    if (!description) { description = document.createElement("meta"); description.setAttribute("name", "description"); document.head.appendChild(description); }
+    description.setAttribute("content", meta.description);
+  }, [location]);
+  return null;
+}
+
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
-    <Suspense fallback={<RouteLoading />}><Switch>
+    <><RouteMeta /><Suspense fallback={<RouteLoading />}><Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/demo"} component={DemoPage} />
       <Route path={"/join/:token"} component={JoinSpacePage} />
@@ -51,6 +77,10 @@ function Router() {
       <Route path={"/privacy"} component={LegalPage} />
       <Route path={"/terms"} component={LegalPage} />
       <Route path={"/feedback"} component={FeedbackPage} />
+      <Route path={"/about"} component={AboutPage} />
+      <Route path={"/contact"} component={ContactPage} />
+      <Route path={"/waitlist"} component={WaitlistPage} />
+      <Route path={"/thank-you"} component={ThankYouPage} />
       {import.meta.env.DEV && <Route path={"/__verify-budget"} component={BudgetRingHarness} />}
       <Route path={"/dashboard"}>{() => <ProtectedRoute title="Your money, with context" description="Track private records, shared spaces, and monthly patterns after secure sign-in."><DashboardPage /></ProtectedRoute>}</Route>
       <Route path={"/transactions"}>{() => <ProtectedRoute title="Transactions" description="Review, filter, and safely manage your private income and expense records."><TransactionsPage /></ProtectedRoute>}</Route>
@@ -61,7 +91,7 @@ function Router() {
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
-    </Switch></Suspense>
+    </Switch></Suspense></>
   );
 }
 
@@ -76,6 +106,7 @@ function App() {
       <ThemeProvider defaultTheme="dark" switchable>
         <TooltipProvider>
           <Toaster />
+          <CookieConsent />
           <Router />
         </TooltipProvider>
       </ThemeProvider>

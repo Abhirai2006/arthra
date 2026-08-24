@@ -1,0 +1,35 @@
+.public-shell { min-height: 100vh; background: hsl(var(--background)); color: hsl(var(--foreground)); }
+.public-shell__header { border-bottom: 1px solid hsl(var(--border)); background: hsl(var(--background) / .92); backdrop-filter: blur(16px); }
+.public-shell__nav { min-height: 4.7rem; display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; }
+.public-shell__links { display: flex; gap: 1.2rem; align-items: center; font-size: .875rem; color: hsl(var(--muted-foreground)); }
+.public-shell__links a:hover, .public-shell__links a[aria-current="page"] { color: hsl(var(--foreground)); }
+.public-shell__workspace, .public-inline-cta { display: inline-flex; align-items: center; gap: .5rem; color: hsl(var(--primary-foreground)); background: hsl(var(--primary)); border-radius: .7rem; padding: .66rem .9rem; font-size: .875rem; font-weight: 700; }
+.public-shell__main { max-width: 72rem; padding-top: 3.2rem; padding-bottom: 5rem; }
+.public-breadcrumbs { display: flex; gap: .55rem; align-items: center; color: hsl(var(--muted-foreground)); font-size: .8rem; margin-bottom: 2.1rem; }
+.public-breadcrumbs a { color: hsl(var(--primary)); }
+.public-shell__hero { max-width: 48rem; margin-bottom: 2.5rem; }
+.public-shell__hero h1 { margin: .65rem 0 .8rem; font-size: clamp(2.25rem, 5vw, 4.4rem); line-height: .98; letter-spacing: -.055em; }
+.public-shell__hero > p:last-child { color: hsl(var(--muted-foreground)); font-size: 1.06rem; line-height: 1.7; }
+.public-content-grid, .public-contact-layout { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(15rem, .8fr); gap: 1.5rem; }
+.public-content-grid article, .public-aside, .public-form-card, .public-thanks { border: 1px solid hsl(var(--border)); border-radius: 1.15rem; padding: clamp(1.3rem, 3vw, 2.2rem); background: hsl(var(--card)); }
+.public-content-grid h2, .public-aside h2, .public-form-card h2, .public-thanks h2 { font-size: 1.35rem; margin: .7rem 0; }
+.public-content-grid p, .public-aside p, .public-form-card p, .public-thanks p { color: hsl(var(--muted-foreground)); line-height: 1.7; }
+.public-aside { background: hsl(var(--accent)); }
+.public-aside svg, .public-form-card__cta svg, .public-thanks > svg { color: hsl(var(--primary)); }
+.public-form-card { max-width: 42rem; }
+.public-form-card__cta { display: flex; gap: .8rem; padding-bottom: 1.2rem; margin-bottom: 1.2rem; border-bottom: 1px solid hsl(var(--border)); }
+.public-form-card__cta h2 { margin: 0 0 .25rem; }
+.public-form-card form { display: grid; gap: .75rem; }
+.public-form-card form > button { justify-self: start; display: inline-flex; gap: .5rem; align-items: center; }
+.public-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.public-form-grid > div { display: grid; gap: .35rem; }
+.public-form-card label:not(.public-consent) { font-weight: 700; font-size: .86rem; }
+.public-consent { display: flex; gap: .6rem; align-items: flex-start; color: hsl(var(--muted-foreground)); font-size: .84rem; line-height: 1.45; }
+.public-consent input { margin-top: .2rem; accent-color: hsl(var(--primary)); }
+.public-form-error { color: hsl(var(--destructive)); font-size: .9rem; }
+.public-honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.public-thanks { max-width: 42rem; text-align: center; margin: 0 auto; }
+.public-thanks > svg { margin: 0 auto .4rem; }
+.public-thanks div { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 1rem; margin-top: 1.35rem; }
+.public-thanks div > a:last-child { color: hsl(var(--primary)); font-weight: 700; }
+@media (max-width: 720px) { .public-shell__nav { min-height: 4.2rem; flex-wrap: wrap; padding-top: .75rem; padding-bottom: .55rem; } .public-shell__links { order: 3; display: flex; width: 100%; overflow-x: auto; padding-bottom: .25rem; gap: 1rem; white-space: nowrap; scrollbar-width: none; } .public-shell__links::-webkit-scrollbar { display: none; } .public-content-grid, .public-contact-layout { grid-template-columns: 1fr; } .public-form-grid { grid-template-columns: 1fr; } .public-shell__main { padding-top: 2rem; } }

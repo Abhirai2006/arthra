@@ -230,6 +230,33 @@ export const websiteFeedback = mysqlTable(
   ]
 );
 
+export const waitlistEntries = mysqlTable(
+  "waitlist_entries",
+  {
+    id: int("id").autoincrement().primaryKey(),
+    email: varchar("email", { length: 320 }).notNull(),
+    source: varchar("source", { length: 80 }).default("website").notNull(),
+    consentedAt: timestamp("consentedAt").defaultNow().notNull(),
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  },
+  table => [uniqueIndex("waitlist_entries_email_unique").on(table.email)]
+);
+
+export const contactMessages = mysqlTable(
+  "contact_messages",
+  {
+    id: int("id").autoincrement().primaryKey(),
+    name: varchar("name", { length: 100 }).notNull(),
+    email: varchar("email", { length: 320 }).notNull(),
+    subject: varchar("subject", { length: 160 }).notNull(),
+    message: text("message").notNull(),
+    consentedToReply: boolean("consentedToReply").default(true).notNull(),
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+  },
+  table => [index("contact_messages_email_created_idx").on(table.email, table.createdAt)]
+);
+
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 export type Space = typeof spaces.$inferSelect;

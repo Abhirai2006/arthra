@@ -10,7 +10,7 @@ A full-stack personal-finance workspace designed around everyday Indian financia
 [![GitHub stars](https://img.shields.io/github/stars/Abhirai2006/arthra?style=flat-square)](https://github.com/Abhirai2006/arthra/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/Abhirai2006/arthra?style=flat-square)](https://github.com/Abhirai2006/arthra/network/members)
 [![GitHub last commit](https://img.shields.io/github/last-commit/Abhirai2006/arthra?style=flat-square)](https://github.com/Abhirai2006/arthra/commits)
-[![Tests](https://img.shields.io/badge/tests-42%20passing-brightgreen?style=flat-square)](#testing)
+[![Tests](https://img.shields.io/badge/tests-47%20passing-brightgreen?style=flat-square)](#testing)
 
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
@@ -48,7 +48,8 @@ A full-stack personal-finance workspace designed around everyday Indian financia
   - [Expense Spaces](#expense-spaces)
   - [Reports](#reports)
   - [Product Experience](#product-experience)
-  - [Public Feedback & Website Reliability](#public-feedback--website-reliability)
+- [Public Feedback & Website Reliability](#public-feedback--website-reliability)
+- [Public Site, Discovery & Consent](#public-site-discovery--consent)
 - [Smart Financial Insights](#smart-financial-insights)
 - [Built for Indian Financial Workflows](#built-for-indian-financial-workflows)
 - [Security & Privacy](#security--privacy)
@@ -127,6 +128,14 @@ Arthra accepts product feedback through a public form that gives a clear inline 
 Public reviews are not created automatically. A real reviewer must explicitly permit public display, and the site owner must manually approve the submission before it appears on the public feedback page. Public review data intentionally excludes contact details and consent metadata. Public links distinguish [Abhishek Rai’s portfolio](https://portfolio-abhirai2006.lovable.app), which presents projects and case studies, from [the Arthra repository](https://github.com/Abhirai2006/arthra), which contains the open-source application code and version history.
 
 For protected finance pages, workspace bootstrap failures and missing active-space states resolve to retryable error screens rather than an indefinite dashboard skeleton. The selected Expense Space stays stable through normal data refreshes, and routine focus changes do not trigger unnecessary workspace bootstrap refetches.
+
+### Public Site, Discovery & Consent
+
+The public site includes internal navigation, a custom 404 response, semantic breadcrumbs on support routes, About, Contact, Waitlist, and Thank You pages, a five-question FAQ section, a favicon, and purposeful CTA content above public form fields. Contact and waitlist submissions are private, consent-based, rate-limited, honeypot-protected, and have no public listing endpoint.
+
+Public analytics are **optional**. The analytics script is not present in the static HTML; visitors can choose “Essential only” or “Allow analytics” from the cookie-preference panel, while private finance data is never sent to website analytics. SSR supplies unique titles, descriptions, canonical URLs, Open Graph image/alt metadata, and appropriate `noindex` directives for conversion and tokenized routes. The sitemap and crawler policy list only intended public discovery routes.
+
+Finance data access is row/scoped at the authenticated application-procedure layer rather than claimed as unsupported database-native RLS. The exact boundary model, endpoint review requirements, and operational distinction are documented in [`docs/DATA_ACCESS_BOUNDARIES.md`](./docs/DATA_ACCESS_BOUNDARIES.md).
 
 <p align="right"><a href="#arthra">↑ back to top</a></p>
 

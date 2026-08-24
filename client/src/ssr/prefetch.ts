@@ -23,6 +23,13 @@ export async function prefetchForPath(url: string, client: QueryClient, prefetch
   if (path === "/feedback") {
     return { title: "Share feedback · Arthra", description: "Share private product feedback about Arthra or explore the developer's GitHub portfolio.", canonicalPath: path, noindex: true };
   }
+  const publicPages: Record<string, HeadMeta> = {
+    "/about": { title: "About Arthra · Personal finance, built for India", description: "Learn why Arthra is built around Indian personal-finance context, private records, and deliberate sharing.", canonicalPath: "/about" },
+    "/contact": { title: "Contact Arthra · Private product conversation", description: "Send a private product, accessibility, research, or partnership message to Arthra.", canonicalPath: "/contact", noindex: true },
+    "/waitlist": { title: "Arthra waitlist · Product updates by choice", description: "Join the optional Arthra waitlist for considered product updates and research invitations.", canonicalPath: "/waitlist", noindex: true },
+    "/thank-you": { title: "Thank you · Arthra", description: "Your Arthra submission has been received.", canonicalPath: "/thank-you", noindex: true },
+  };
+  if (publicPages[path]) return publicPages[path];
   if (path === "/" || path === "/privacy" || path === "/terms") {
     const auth = await prefetch.authMe();
     seed(client, getQueryKey(trpc.auth.me, undefined, "query"), auth);

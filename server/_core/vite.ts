@@ -11,10 +11,11 @@ import { getCspNonce } from "./security";
 
 type HeadMeta = { title: string; description: string; canonicalPath?: string; noindex?: boolean; notFound?: boolean };
 const canonicalOrigin = (process.env.CANONICAL_ORIGIN ?? "https://arthrafin-7qakibfj.manus.space").replace(/\/$/, "");
+const socialImage = "https://arthrafin-7qakibfj.manus.space/manus-storage/arthra-readme-brand-poster_4b082a69.png";
 const escapeHtml = (value: string) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
-const buildHead = (head: HeadMeta) => {
+export const buildHead = (head: HeadMeta) => {
   const title = escapeHtml(head.title); const description = escapeHtml(head.description); const canonical = head.canonicalPath ? `${canonicalOrigin}${head.canonicalPath}` : "";
-  return [`<title>${title}</title>`, `<meta name="description" content="${description}" />`, `<meta property="og:type" content="website" />`, `<meta property="og:title" content="${title}" />`, `<meta property="og:description" content="${description}" />`, `<meta property="og:site_name" content="Arthra" />`, `<meta name="twitter:card" content="summary" />`, `<meta name="twitter:title" content="${title}" />`, `<meta name="twitter:description" content="${description}" />`, canonical ? `<link rel="canonical" href="${escapeHtml(canonical)}" /><meta property="og:url" content="${escapeHtml(canonical)}" />` : "", head.noindex || head.notFound ? `<meta name="robots" content="noindex, follow" />` : ""].filter(Boolean).join("\n");
+  return [`<title>${title}</title>`, `<meta name="description" content="${description}" />`, `<meta property="og:type" content="website" />`, `<meta property="og:title" content="${title}" />`, `<meta property="og:description" content="${description}" />`, `<meta property="og:image" content="${socialImage}" />`, `<meta property="og:image:alt" content="Arthra — Personal finance, built for India" />`, `<meta property="og:site_name" content="Arthra" />`, `<meta name="twitter:card" content="summary_large_image" />`, `<meta name="twitter:title" content="${title}" />`, `<meta name="twitter:description" content="${description}" />`, `<meta name="twitter:image" content="${socialImage}" />`, canonical ? `<link rel="canonical" href="${escapeHtml(canonical)}" /><meta property="og:url" content="${escapeHtml(canonical)}" />` : "", head.noindex || head.notFound ? `<meta name="robots" content="noindex, follow" />` : ""].filter(Boolean).join("\n");
 };
 const injectCspNonce = (template: string, nonce: string) => template.replaceAll("%CSP_NONCE%", nonce);
 const composeHtml = (template: string, appHtml: string, head: HeadMeta, state: unknown, nonce: string) => {

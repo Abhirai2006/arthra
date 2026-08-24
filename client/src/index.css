@@ -8,6 +8,9 @@
 @import "./landing-repair.css";
 @import "./demo-flow.css";
 @import "./footer-repair.css";
+@import "./public-pages.css";
+@import "./faq.css";
+@import "./cookie-consent.css";
 
 @custom-variant dark (&:is(.dark *));
 

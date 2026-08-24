@@ -17,6 +17,7 @@ describe("demo route SSR", () => {
     expect(result.html).toContain("Arthra on GitHub");
     expect(result.html).toContain("Open-source code");
     expect(result.html).toContain("Back to top");
+    expect(result.html).toContain("Five things people often ask before they begin.");
   });
 
   it("renders labelled fictional demo content without invoking an authenticated prefetch", async () => {

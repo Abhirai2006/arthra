@@ -8,4 +8,7 @@ Disallow: /analytics
 Disallow: /reports
 Disallow: /ca/
 Disallow: /join/
-Sitemap: https://arthra.manus.space/sitemap.xml
+Disallow: /contact
+Disallow: /waitlist
+Disallow: /thank-you
+Sitemap: https://arthrafin-7qakibfj.manus.space/sitemap.xml
