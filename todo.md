@@ -175,3 +175,4 @@
 - [x] Rewrite the Reddit post in a concise natural founder voice and select one truthful product visual only if it improves the r/sideprojects showcase.
 - [x] Deliver a paste-ready Reddit title, post body, submission settings, and one genuine public Arthra screenshot for the user to post personally.
 - [x] Review the user-published r/sideprojects post for title, disclosure, image, link, community-fit, and safe reply guidance without changing public content.
+- [x] Review the first Reddit comment and prepare a concise, honest, non-promotional reply for the user to post personally.

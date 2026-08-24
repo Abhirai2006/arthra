@@ -207,6 +207,8 @@ Arthra’s Reddit approach is deliberately **feedback-first rather than promotio
 
 The first community post is live in [`r/sideprojects`](https://www.reddit.com/r/sideprojects/comments/1vx66ea/). It uses the verified `Showcase: Prerelease` flair, one genuine public landing screenshot, and a single product link; the operating guidance remains to answer questions rather than solicit votes or repeat promotion.
 
+The first substantive community response highlighted privacy visibility and receipt-attachment discoverability as credible follow-up themes. These are recorded as product-input signals only, not as testimonials or evidence of product validation; any public response must accurately explain that Arthra is hosted and must not claim that records remain only on a user’s device.
+
 ## Tech Stack
 
 | Layer | Technology |

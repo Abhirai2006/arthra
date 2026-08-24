@@ -67,6 +67,10 @@ On 24 August 2026, the user published the prepared post in [`r/sideprojects`](ht
 
 The correct next action is to answer genuine questions in the thread. Do not add a follow-up comment merely to promote the post, solicit votes, or place additional links. If a comment asks for source code, the author can share the public GitHub link transparently. If a comment asks for personal financial, tax, or investment advice, state that Arthra is a record-keeping product and avoid giving personalised advice.
 
+### First feedback theme
+
+The first substantive public comment welcomed the April-to-March reporting and Expense Spaces concept, while identifying two valid trust and discoverability themes: make the existing privacy information more visible, and make optional receipt attachments easier to discover. The public reply must not claim that records remain only on a device: Arthra uses hosted application infrastructure for account and finance-record storage. A privacy page already exists in public navigation, and optional image/PDF receipt attachments already exist in the transaction workflow. The reply should acknowledge that these facts need to be easier to find, without presenting the comment as an endorsement or a public testimonial.
+
 ## References
 
 [1]: https://www.reddit.com/r/sideprojects/ "r/sideprojects — community and rules"
