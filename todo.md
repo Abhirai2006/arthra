@@ -155,3 +155,8 @@
 - [x] Review and document endpoint authorization and row-level data boundaries; add missing server-side access checks without changing finance data.
 - [x] Add focused automated coverage and responsive/SSR verification for the new public and security-adjacent experiences.
 - [x] Publish and synchronize the completed enhancement release to GitHub.
+- [x] Audit live launch readiness across production availability, authentication, SEO/indexing, security, analytics, accessibility, and operational support.
+- [x] Assess new-user login and onboarding reliability without creating or changing real finance records.
+- [x] Produce and document a candid pre-launch blocker list, go/no-go recommendation, and commercial-readiness framework.
+- [x] Update the README with an accurate launch-readiness status and operational prerequisites.
+- [x] Update the direct NanoID dependency to the audited patched release and recheck production advisories.

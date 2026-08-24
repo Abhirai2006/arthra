@@ -54,6 +54,7 @@ A full-stack personal-finance workspace designed around everyday Indian financia
 - [Built for Indian Financial Workflows](#built-for-indian-financial-workflows)
 - [Security & Privacy](#security--privacy)
 - [Security Hardening Record](#security-hardening-record)
+- [Launch Readiness](#launch-readiness)
 - [Tech Stack](#tech-stack)
 - [Architecture](#architecture)
 - [Try the Demo](#try-the-demo)
@@ -179,7 +180,15 @@ The product uses INR and `en-IN` formatting, supports lakh/crore-friendly presen
 
 Arthra is designed with financial-data privacy in mind, but no public application can honestly promise that it is impossible to attack. The hardening record explains verified safeguards, dependency-audit results, testing evidence, and remaining operational responsibilities: [`docs/SECURITY_HARDENING.md`](./docs/SECURITY_HARDENING.md).
 
-The current dependency audit reports **0 critical**, **8 high**, **30 moderate**, and **7 low** production advisories after direct Axios and AWS SDK updates. The remaining high-risk items require an ongoing maintenance decision rather than a misleading claim of absolute safety; notably, the `xlsx` package used for user-selected spreadsheet imports has a published no-fix npm advisory. Treat externally supplied spreadsheets as untrusted and plan a supported parser migration before broadening that importer’s exposure.
+The current dependency audit reports **0 critical**, **7 high**, **30 moderate**, and **7 low** production advisories after direct Axios, AWS SDK, and NanoID updates. The remaining high-risk items require an ongoing maintenance decision rather than a misleading claim of absolute safety; notably, the `xlsx` package used for user-selected spreadsheet imports has a published no-fix npm advisory. Treat externally supplied spreadsheets as untrusted and plan a supported parser migration before broadening that importer’s exposure.
+
+## Launch Readiness
+
+**Current status: controlled beta, not a broad public launch.** Arthra has a deployed SSR public site, protected finance procedures, a security-header baseline, opt-in analytics, consent-based public forms, sitemap/robots/canonical metadata, and automated validation. The public technical foundation is ready for a small invited group, but it is not honest to promise that any stranger can sign in without friction or that the site is already indexed by Google.
+
+Before a broad launch, complete and retain evidence for an independent first-time production sign-in and onboarding; Google Search Console property verification, sitemap submission, and live URL inspection; confirmed production custom-404 behavior; a reviewed privacy/terms package and account-deletion process; an owner support inbox and response workflow; monitoring, alerting, and backup/restore drills; and ownership/remediation of remaining high-severity dependencies. Google states that a sitemap is a discovery hint, not an indexing guarantee.[1]
+
+The full evidence, blocker list, and beta gate are in [`docs/LAUNCH_READINESS_ASSESSMENT.md`](./docs/LAUNCH_READINESS_ASSESSMENT.md). The transparent asset-sale versus traction-based commercial framework and the project entity card are in [`docs/ARTHRA_ENTITY_CARD.md`](./docs/ARTHRA_ENTITY_CARD.md). Any sale should be framed as a source/product asset until it has verified users, revenue, retention, and transferable operating evidence.
 
 <p align="right"><a href="#arthra">↑ back to top</a></p>
 

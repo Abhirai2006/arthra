@@ -20,11 +20,11 @@ The existing application already provides OAuth state/nonce validation, HTTP-onl
 | API boundary | The API now has a bounded 12 MB parser, a per-client request budget, and `Cache-Control: no-store`. The limit preserves the existing 7 MB receipt upload constraint after encoding. | `server/security.test.ts`; type-check. |
 | Server disclosure | Express fingerprinting is disabled and the application trusts a single managed reverse-proxy hop for secure-cookie and request-address evaluation. | Local header baseline versus hardened response. |
 | Storage proxy | Public storage keys reject traversal, empty segments, backslashes, overlong values, and non-file characters. Signed redirects must use HTTPS and omit referrers. | `server/security.test.ts`. |
-| Dependencies | Axios was updated to `1.19.0`; the AWS S3 client and presigner were updated to `3.1116.0`, removing the critical `fast-xml-parser` transitive advisory from the production audit. | `pnpm audit --prod --json`. |
+| Dependencies | Axios was updated to `1.19.0`; the AWS S3 client and presigner were updated to `3.1116.0`, removing the critical `fast-xml-parser` transitive advisory; direct NanoID is now `5.1.16`, removing its fixable high advisory. | `pnpm audit --prod --json`. |
 
 ## Verification summary
 
-`pnpm check` passed after the hardening changes. The focused security suite passes three contracts covering response headers and nonces, request throttling, and storage-proxy validation. The full regression suite passes **42 tests across 19 files**, and a fresh production dependency audit reports **0 critical**, **8 high**, **30 moderate**, and **7 low** production advisories.
+`pnpm check` passed after the hardening changes. The focused security suite passes three contracts covering response headers and nonces, request throttling, and storage-proxy validation. The full regression suite passes **47 tests across 21 files**, and a fresh production dependency audit reports **0 critical**, **7 high**, **30 moderate**, and **7 low** production advisories.
 
 ## Residual risks and operating requirements
 

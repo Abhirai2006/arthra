@@ -73,13 +73,17 @@ async function startServer() {
   });
   if (process.env.NODE_ENV !== "development") {
     app.get("/", (req, res) => {
-      res.set("X-Public-Release", "security-hardening-release-ea8c14ed");
+      res.set("X-Public-Release", "launch-readiness-404-head-retry-15b78599");
       return renderStaticSsrPage(req, res);
     });
     app.get("/feedback", renderStaticSsrPage);
     app.get(["/about", "/contact", "/waitlist", "/thank-you"], renderStaticSsrPage);
     app.get("/transactions", (req, res) => {
       res.set("X-Transaction-Import-Revision", "2026-08-23-import");
+      return renderStaticSsrPage(req, res);
+    });
+    app.get("*", (req, res, next) => {
+      if (path.extname(req.path) || !req.accepts("html")) return next();
       return renderStaticSsrPage(req, res);
     });
   }
