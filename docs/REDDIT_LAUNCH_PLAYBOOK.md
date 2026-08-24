@@ -15,34 +15,41 @@ The rule evidence and source links are maintained in [`REDDIT_RESEARCH_NOTES.md`
 
 ## Post settings
 
-Use **Text** rather than a link-only post. Select the community’s **Showcase** flair. Publish only once; do not cross-post the same text or send direct messages about it. The live product and source links are secondary context, not the post’s main value.
+Use **Text** rather than a link-only post. Select the community’s **Showcase** flair. Publish only once; do not cross-post the same text or send direct messages about it. The live product link is secondary context, not the post’s main value. The GitHub source link can be added in a reply only if someone asks how it was built.
 
 | Field | Approved content |
 | --- | --- |
 | Community | `r/sideprojects` |
 | Flair | `Showcase` |
-| Title | `I built Arthra — an India-native personal-finance workspace. Looking for candid feedback on the first-run experience.` |
-| Links | `https://arthrafin-7qakibfj.manus.space` and `https://github.com/Abhirai2006/arthra` |
+| Title | `I built a personal finance tracker around the way I manage money in India. Would this be useful to you?` |
+| Primary link | `https://arthrafin-7qakibfj.manus.space` |
 | Disclosures | The author built Arthra; it is a controlled-beta product; it is not a bank, adviser, investment platform, or tax/accounting service. |
 
 ## Approved draft
 
-> Hi r/sideprojects — I’m Abhishek, and I built **Arthra** as a personal-finance workspace for Indian money habits. This is my project, so I want to be clear about the affiliation upfront.
+> Hey, I’m Abhishek. I built Arthra because the expense trackers I tried either felt too basic or did not match how I actually manage money in India.
 >
-> I kept running into a mismatch between generic trackers and the workflows I wanted to think through: INR-first records, an April–March financial year, GST context when it matters, shared household/trip spending, and a deliberate way to hand reports to a CA. Arthra brings those into one workspace with transaction tracking, category budgets, Expense Spaces, report exports, and a read-only demo.
+> I wanted one place to log spending in rupees, keep an eye on category budgets, split things for a trip or household, and export something useful at the end of the financial year. That is what I have been building in my spare time.
 >
-> I focused on a few product decisions that I would genuinely like challenged: keeping personal finance data behind sign-in, making sharing explicit and revocable, and not presenting the app as investment, tax, or financial advice. The public site is in controlled beta, so I am not claiming that it is a finished consumer-finance service.
+> The current beta has transaction tracking, monthly budgets, shared Expense Spaces, and April to March reporting. It is not a bank, an investing product, or a replacement for tax or financial advice. It is simply meant to make personal record-keeping less messy.
 >
-> I would value candid feedback on three things:
+> I would love honest feedback before I spend more time on it:
 >
-> 1. Is the first-run value clear before someone reaches the workspace?
-> 2. Which workflow would you expect to be fastest: daily expense capture, a monthly budget check, shared expenses, or report export?
-> 3. What would make you hesitate to try a finance-tracking product built by an independent maker?
+> 1. Does the idea make sense from the first page?
+> 2. What would you need to see before trusting a small independent finance tracker?
+> 3. What is missing or feels unnecessary?
 >
-> Live project: https://arthrafin-7qakibfj.manus.space  
-> Source code: https://github.com/Abhirai2006/arthra
+> Here is the project if you want to look: https://arthrafin-7qakibfj.manus.space
 >
-> I’ll answer questions here and will treat criticism as product input. Please do not share account numbers, cards, transaction exports, or other sensitive information in the comments.
+> I built it, so I am happy to answer questions and take the criticism seriously. Please do not post account numbers, card details, or transaction exports in the comments.
+
+## One image, not a gallery
+
+Use **one genuine public product screenshot** rather than an AI-generated concept image, a collage, a poster, or multiple slides. The screenshot should support the story by showing the actual public landing surface and must not contain user finance data. Use the existing current public landing screenshot below if Reddit’s image uploader is available at publish time:
+
+`https://arthrafin-7qakibfj.manus.space/manus-storage/arthra-landing-light-desktop-current_afe21835.png`
+
+Keep the live product URL in the body as the single primary link. Do not add a GitHub link, portfolio link, waitlist link, or a second call to action in the initial post. If someone specifically asks for the source, reply transparently with `https://github.com/Abhirai2006/arthra`.
 
 ## Comment and moderation protocol
 

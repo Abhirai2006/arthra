@@ -171,4 +171,5 @@
 - [x] Research Reddit communities and current self-promotion rules relevant to Arthra’s India-native personal-finance product.
 - [x] Write community-compliant Reddit post drafts that disclose the creator relationship and avoid unsupported launch, security, or financial-advice claims.
 - [x] Prepare, but do not submit, the selected Reddit post through the connected account until the owner explicitly confirms the final text and community.
-- [ ] Add a Reddit launch playbook to project documentation, update README, and synchronize the completed preparation work to GitHub.
+- [x] Add a Reddit launch playbook to project documentation, update README, and synchronize the completed preparation work to GitHub.
+- [ ] Rewrite the Reddit post in a concise natural founder voice and select one truthful product visual only if it improves the r/sideprojects showcase.
