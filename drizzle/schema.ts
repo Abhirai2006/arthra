@@ -261,6 +261,23 @@ export const contactMessages = mysqlTable(
   table => [index("contact_messages_email_created_idx").on(table.email, table.createdAt), index("contact_messages_status_created_idx").on(table.status, table.createdAt)]
 );
 
+export const healthCheckConfigs = mysqlTable(
+  "health_check_configs",
+  {
+    id: int("id").autoincrement().primaryKey(),
+    taskUid: varchar("taskUid", { length: 65 }).notNull(),
+    targetBaseUrl: varchar("targetBaseUrl", { length: 2_048 }).notNull(),
+    enabled: boolean("enabled").default(true).notNull(),
+    lastStatus: varchar("lastStatus", { length: 16 }),
+    lastSummary: varchar("lastSummary", { length: 500 }),
+    lastRunAt: timestamp("lastRunAt"),
+    lastFailureAlertAt: timestamp("lastFailureAlertAt"),
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  },
+  table => [uniqueIndex("health_check_configs_task_uid_unique").on(table.taskUid)]
+);
+
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 export type Space = typeof spaces.$inferSelect;

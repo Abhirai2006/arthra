@@ -166,3 +166,4 @@
 - [ ] Expand the public privacy/support structure using owner-supplied controller, retention, and contact information without inventing legal facts.
 - [ ] Perform independent production OAuth onboarding and Google Search Console verification once an eligible owner account/session is available.
 - [ ] Re-run full regression and live production checks, then update README and synchronize the completed launch-readiness work to GitHub.
+- [x] Add a daily authenticated health-check job that verifies the public home, sign-in entry, sitemap, and unknown-route behavior, then alerts the owner only on failure.

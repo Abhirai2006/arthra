@@ -10,6 +10,7 @@ import { registerStorageProxy } from "./storageProxy";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { weeklyDigestHandler } from "../digest";
+import { dailyHealthCheckHandler } from "../healthMonitor";
 import { renderStaticSsrPage, serveStatic, setupVite } from "./vite";
 import { applySecurityHeaders, createApiRateLimiter } from "./security";
 
@@ -50,6 +51,7 @@ async function startServer() {
   registerStorageProxy(app);
   registerOAuthRoutes(app);
   app.post("/api/scheduled/weekly-digest", weeklyDigestHandler);
+  app.post("/api/scheduled/daily-health-check", dailyHealthCheckHandler);
   // tRPC API
   app.use(
     "/api/trpc",
