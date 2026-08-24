@@ -73,7 +73,7 @@ async function startServer() {
   });
   if (process.env.NODE_ENV !== "development") {
     app.get("/", (req, res) => {
-      res.set("X-Public-Release", "light-footer-contrast-release-a74af21e");
+      res.set("X-Public-Release", "security-hardening-release-ea8c14ed");
       return renderStaticSsrPage(req, res);
     });
     app.get("/feedback", renderStaticSsrPage);

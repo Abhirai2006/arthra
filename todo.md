@@ -147,4 +147,4 @@
 - [x] Create an Arthra brand poster and add it to the GitHub README using managed project storage.
 - [x] Implement non-destructive, compatibility-safe security hardening with focused automated verification.
 - [x] Document the verified safeguards, residual risks, and operational security steps in the README.
-- [ ] Publish and verify the poster, security documentation, live application behavior, and GitHub README rendering.
+- [x] Publish and verify the poster, security documentation, live application behavior, and GitHub README rendering.
