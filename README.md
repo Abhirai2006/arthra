@@ -122,6 +122,9 @@ Arthra focuses on practical personal and household financial record-keeping rath
 - A persisted light/dark control in the shared dashboard shell: desktop sidebar and mobile header access it on Overview, Transactions, Budgets, Expense Spaces, Analytics, and Reports. Each authenticated route inherits the same semantic graphite/paper, green, and blue materials.
 - Responsive mobile interface, PWA assets, accessible controls, reduced-motion support, and a read-only demo mode
 - Deliberate public footer navigation, grouped into **Explore Arthra**, **Product principles**, and **Creator & code**, with a compact back-to-top utility and responsive touch-friendly layout
+- A pre-sign-in trust panel that plainly explains that Arthra is hosted, links directly to Privacy and Contact pathways, and avoids unsupported device-only or absolute-security claims
+- A visible optional image/PDF receipt step in transaction create and edit flows, alongside existing protected receipt retrieval and review-first receipt suggestions
+- Layered product-preview depth, gentle pointer-device hover tilt, and a 3D-style trust orb that are all suppressed for people who prefer reduced motion
 
 ### Public Feedback & Website Reliability
 

@@ -19,6 +19,15 @@ describe("public-site enhancement contracts", () => {
     expect(result.html).toContain('href="/waitlist"');
   });
 
+  it("explains the hosted-data boundary and provides privacy support paths before sign-in", async () => {
+    const result = await render("/", publicPrefetch);
+
+    expect(result.html).toContain("Arthra is a hosted workspace");
+    expect(result.html).toContain("does not claim that your records stay only on your device");
+    expect(result.html).toContain('href="/privacy"');
+    expect(result.html).toContain('href="/contact"');
+  });
+
   it("gives new public routes distinct SSR titles, canonical paths, and accessible breadcrumbs", async () => {
     const about = await render("/about", publicPrefetch);
     const contact = await render("/contact", publicPrefetch);

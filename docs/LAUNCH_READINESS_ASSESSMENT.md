@@ -27,7 +27,7 @@ The technical SEO foundation is now in place: full server-rendered public conten
 
 ## Authentication and user-readiness conclusion
 
-The implementation includes CSRF-resistant OAuth state handling, HTTPS cookie settings, a safe post-auth redirect, and tests for logout/authorization. The owner session logged out safely to the public landing page on 24 August 2026. When sign-in was then initiated, the configured Manus OAuth destination presented a maintenance page rather than authentication, so the re-login and fresh-user steps could not be completed. This is a current external identity-provider availability blocker rather than evidence of a successful production login. After the portal returns, complete a real external first-time sign-in, account-creation, onboarding, workspace-redirect, logout, and return-login check.
+The implementation includes CSRF-resistant OAuth state handling, HTTPS cookie settings, a safe post-auth redirect, and tests for logout/authorization. The owner session logged out safely to the public landing page on 24 August 2026. When sign-in was then initiated, the configured Manus OAuth destination presented a maintenance page rather than authentication, so the re-login and fresh-user steps could not be completed. The owner has reported that this provider issue is expected to remain until **30 August 2026**. This is an external identity-provider availability blocker rather than evidence of a successful production login; do not retry the independent production verification before that date unless the provider becomes available earlier. After the portal returns, complete a real external first-time sign-in, account-creation, onboarding, workspace-redirect, logout, and return-login check.
 
 ## User-support and data-governance gaps
 

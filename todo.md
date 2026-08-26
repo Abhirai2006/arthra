@@ -177,3 +177,8 @@
 - [x] Review the user-published r/sideprojects post for title, disclosure, image, link, community-fit, and safe reply guidance without changing public content.
 - [x] Review the first Reddit comment and prepare a concise, honest, non-promotional reply for the user to post personally.
 - [x] Prioritize practical trust, privacy visibility, receipt discoverability, and feedback-collection improvements based on the first Reddit response.
+- [x] Add plain-language hosted-data and privacy guidance to the public pre-sign-in experience without overstating security or privacy claims.
+- [x] Make optional receipt attachment more discoverable in the transaction-entry flow without changing existing finance records.
+- [x] Add restrained, accessible 3D-style visual depth and motion that supports the Arthra public brand without reducing mobile usability or motion-preference support.
+- [x] Ensure the established matte black, green, and blue public palette wins consistently after the motion-layer styles load.
+- [x] Record OAuth verification as externally deferred until 30 August 2026 and retain the live unknown-route 503 as an open release blocker.
