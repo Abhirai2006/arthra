@@ -4,7 +4,7 @@
 
 **Personal finance, built for India.**
 
-A full-stack personal-finance workspace designed around everyday Indian financial workflows — income and expense tracking, category budgets, shared Expense Spaces, financial-year reports, and controlled read-only sharing.
+A full-stack personal-finance workspace designed around everyday Indian financial workflows - income and expense tracking, category budgets, shared Expense Spaces, financial-year reports, and controlled read-only sharing.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](./LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/Abhirai2006/arthra?style=flat-square)](https://github.com/Abhirai2006/arthra/stargazers)
