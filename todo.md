@@ -186,3 +186,4 @@
 - [x] Restore the feedback page’s responsive visual styling so the automatic-publication disclosure and owner controls are readable and coherent.
 - [x] Diagnose and fix the reported case where a genuine feedback submission is not visible on the public feedback page.
 - [x] Add and publicly serve an accurate `llms.txt` resource for Arthra, then document and synchronize it to GitHub.
+- [x] Ensure the deployed production host returns the `llms.txt` plaintext resource rather than the SSR 404 page.
