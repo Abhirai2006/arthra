@@ -184,3 +184,4 @@
 - [x] Record OAuth verification as externally deferred until 30 August 2026 and retain the live unknown-route 503 as an open release blocker.
 - [x] Publish valid feedback automatically without a manual-approval gate while keeping owner-only feedback deletion available.
 - [x] Restore the feedback page’s responsive visual styling so the automatic-publication disclosure and owner controls are readable and coherent.
+- [x] Diagnose and fix the reported case where a genuine feedback submission is not visible on the public feedback page.

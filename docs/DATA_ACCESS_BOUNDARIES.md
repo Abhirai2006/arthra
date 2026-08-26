@@ -11,6 +11,8 @@ Arthra’s finance data is scoped by authenticated user and Expense Space at the
 | Contact and waitlist | Public forms can write a bounded, consent-based submission after honeypot and rate-limit checks. There is no public list or read endpoint. | No public message or email lookup. |
 | Public feedback | Valid feedback submissions publish automatically after disclosed form submission, validation, and anti-spam checks. Permanent deletion requires the configured owner identity. | Published feedback fields only: display name, rating, message, and creation time. Email and contact preferences are never returned publicly. |
 
+> **Legacy transition:** On 26 August 2026, a pending feedback entry was promoted only because it already carried its prior public-display permission. Pending entries without that permission were not changed.
+
 ## Why the distinction matters
 
 TiDB follows MySQL-style privilege patterns, while database-native row access can require a different deployment feature set or a views/policy design. Arthra’s current boundary is intentionally enforced where user identity and the requested Expense Space are available: the protected server procedure. That means every new finance route must follow the same access-helper pattern and must not query a finance table by raw identifier alone. TiDB’s own materials discuss row-level controls separately from ordinary MySQL-compatible privileges.[1] [2]

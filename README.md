@@ -132,6 +132,8 @@ Arthra accepts product feedback through a public form that gives a clear inline 
 
 Public feedback is never fabricated. A valid feedback form submission is published automatically after validation and anti-spam checks; the form explains this before submission, email addresses never appear publicly, and the configured owner can permanently delete a published item. Public feedback data intentionally excludes contact details. Public links distinguish [Abhishek Rai’s portfolio](https://portfolio-abhirai2006.lovable.app), which presents projects and case studies, from [the Arthra repository](https://github.com/Abhirai2006/arthra), which contains the open-source application code and version history.
 
+When this workflow replaced manual approval on 26 August 2026, the one existing pending record that already had public-display permission was moved to `approved`; records without that prior permission were not changed. The live `/feedback` page was then checked and displayed the approved record successfully.
+
 For protected finance pages, workspace bootstrap failures and missing active-space states resolve to retryable error screens rather than an indefinite dashboard skeleton. The selected Expense Space stays stable through normal data refreshes, and routine focus changes do not trigger unnecessary workspace bootstrap refetches.
 
 ### Public Site, Discovery & Consent
