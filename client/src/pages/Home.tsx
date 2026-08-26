@@ -19,7 +19,7 @@ const faqs = [
   { question: "Is Arthra a bank or an investment adviser?", answer: "No. Arthra is a personal-finance record-keeping and analysis workspace. It does not provide banking services, execute investments, or replace professional financial, tax, or accounting advice." },
   { question: "Can I use Arthra with Indian financial-year reporting?", answer: "Yes. Arthra is designed around an April–March financial year, INR formatting, lakh/crore-friendly presentation, and GST-aware transaction context." },
   { question: "Who can see a shared Expense Space?", answer: "Only the people you invite to that specific Expense Space can access it. Owner, Editor, and Viewer roles are enforced by the server for scoped finance actions." },
-  { question: "Are public reviews real?", answer: "Yes. A review can appear publicly only after a person submits it, explicitly permits publication, and the site owner manually approves it. Arthra does not create sample testimonials." },
+  { question: "Are public reviews real?", answer: "Yes. Published feedback comes from valid user submissions and is shown automatically; the site owner can remove an item when needed. Arthra does not create sample testimonials." },
   { question: "What happens when I submit the contact form or join the waitlist?", answer: "Your information is used only for the purpose you agree to: replying to your contact message or sending occasional opted-in product updates. It is not published as a review." },
 ];
 

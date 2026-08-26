@@ -1,5 +1,5 @@
 import { TRPCError } from "@trpc/server";
-import { and, desc, eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { z } from "zod";
 import { websiteFeedback } from "../drizzle/schema";
 import { ENV } from "./_core/env";
@@ -16,9 +16,10 @@ export const feedbackInputSchema = z.object({
   rating: z.number().int().min(1).max(5),
   message: z.string().trim().min(12).max(1_200),
   permissionToContact: z.boolean().default(false),
-  permissionToPublish: z.boolean().default(false),
   website: z.string().max(0).optional(),
 });
+
+const feedbackIdSchema = z.object({ id: z.number().int().positive() });
 
 function getFeedbackRateLimitKey(req: { headers: Record<string, string | string[] | undefined> }, userId?: number) {
   if (userId) return `user:${userId}`;
@@ -43,53 +44,53 @@ export function resetFeedbackRateLimitForTests() {
 
 function assertFeedbackOwner(user: { openId: string } | null) {
   if (!user || !ENV.ownerOpenId || user.openId !== ENV.ownerOpenId) {
-    throw new TRPCError({ code: "FORBIDDEN", message: "Only the site owner can moderate feedback." });
+    throw new TRPCError({ code: "FORBIDDEN", message: "Only the site owner can manage feedback." });
   }
 }
 
-const moderationInputSchema = z.object({
-  id: z.number().int().positive(),
-  status: z.enum(["approved", "archived"]),
-});
+const publicFeedbackFields = {
+  id: websiteFeedback.id,
+  displayName: websiteFeedback.displayName,
+  rating: websiteFeedback.rating,
+  message: websiteFeedback.message,
+  createdAt: websiteFeedback.createdAt,
+};
 
 export const feedbackRouter = router({
-  listApproved: publicProcedure.query(async () => {
+  listPublic: publicProcedure.query(async () => {
     const db = await getDb();
     if (!db) return [];
     const rows = await db
-      .select({ id: websiteFeedback.id, displayName: websiteFeedback.displayName, rating: websiteFeedback.rating, message: websiteFeedback.message, createdAt: websiteFeedback.createdAt })
+      .select(publicFeedbackFields)
       .from(websiteFeedback)
-      .where(and(eq(websiteFeedback.status, "approved"), eq(websiteFeedback.permissionToPublish, true)))
+      .where(eq(websiteFeedback.status, "approved"))
       .orderBy(desc(websiteFeedback.createdAt))
       .limit(6);
     return rows.map(row => ({ ...row, displayName: row.displayName?.trim() || "Arthra visitor" }));
   }),
   moderationAccess: publicProcedure.query(({ ctx }) => ({ canModerate: Boolean(ctx.user && ENV.ownerOpenId && ctx.user.openId === ENV.ownerOpenId) })),
-  moderationQueue: protectedProcedure.query(async ({ ctx }) => {
+  publishedForOwner: protectedProcedure.query(async ({ ctx }) => {
     assertFeedbackOwner(ctx.user);
     const db = await getDb();
     if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Feedback is unavailable right now." });
     return db
-      .select({ id: websiteFeedback.id, displayName: websiteFeedback.displayName, email: websiteFeedback.email, rating: websiteFeedback.rating, message: websiteFeedback.message, permissionToContact: websiteFeedback.permissionToContact, permissionToPublish: websiteFeedback.permissionToPublish, createdAt: websiteFeedback.createdAt })
+      .select(publicFeedbackFields)
       .from(websiteFeedback)
-      .where(eq(websiteFeedback.status, "pending"))
+      .where(eq(websiteFeedback.status, "approved"))
       .orderBy(desc(websiteFeedback.createdAt));
   }),
-  moderate: protectedProcedure.input(moderationInputSchema).mutation(async ({ ctx, input }) => {
+  remove: protectedProcedure.input(feedbackIdSchema).mutation(async ({ ctx, input }) => {
     assertFeedbackOwner(ctx.user);
     const db = await getDb();
     if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Feedback is unavailable right now." });
-    const [submission] = await db.select({ id: websiteFeedback.id, permissionToPublish: websiteFeedback.permissionToPublish }).from(websiteFeedback).where(eq(websiteFeedback.id, input.id)).limit(1);
+    const [submission] = await db.select({ id: websiteFeedback.id }).from(websiteFeedback).where(eq(websiteFeedback.id, input.id)).limit(1);
     if (!submission) throw new TRPCError({ code: "NOT_FOUND", message: "That feedback submission no longer exists." });
-    if (input.status === "approved" && !submission.permissionToPublish) {
-      throw new TRPCError({ code: "BAD_REQUEST", message: "This reviewer did not consent to public publication." });
-    }
-    await db.update(websiteFeedback).set({ status: input.status }).where(eq(websiteFeedback.id, input.id));
-    return { updated: true, status: input.status };
+    await db.delete(websiteFeedback).where(eq(websiteFeedback.id, input.id));
+    return { deleted: true } as const;
   }),
   submit: publicProcedure.input(feedbackInputSchema).mutation(async ({ ctx, input }) => {
     // A populated honeypot is acknowledged without persisting spam.
-    if (input.website) return { accepted: true, private: true } as const;
+    if (input.website) return { accepted: true, published: false } as const;
 
     assertFeedbackRateLimit(getFeedbackRateLimitKey(ctx.req, ctx.user?.id));
     const db = await getDb();
@@ -101,10 +102,11 @@ export const feedbackRouter = router({
       rating: input.rating,
       message: input.message.trim(),
       permissionToContact: input.permissionToContact && Boolean(input.email?.trim()),
-      permissionToPublish: input.permissionToPublish,
-      status: "pending",
+      // The form explicitly states that ratings, messages, and display names publish automatically; email remains private.
+      permissionToPublish: true,
+      status: "approved",
     });
 
-    return { accepted: true, private: true } as const;
+    return { accepted: true, published: true } as const;
   }),
 });

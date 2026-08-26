@@ -9,7 +9,7 @@ Arthra’s finance data is scoped by authenticated user and Expense Space at the
 | Receipts | Receipt actions require transaction/space access; storage proxy validates path format and restricts signed redirects to HTTPS. | No unrestricted transaction-receipt listing endpoint exists. |
 | CA reports | The owner creates/revokes links; public reads require an unexpired, non-revoked random token and return only the intended report scope. | Deliberately shared, revocable report links only. |
 | Contact and waitlist | Public forms can write a bounded, consent-based submission after honeypot and rate-limit checks. There is no public list or read endpoint. | No public message or email lookup. |
-| Public feedback | Public review reads include only manually approved, consented entries. Moderation requires the configured owner identity. | Approved consented review fields only. |
+| Public feedback | Valid feedback submissions publish automatically after disclosed form submission, validation, and anti-spam checks. Permanent deletion requires the configured owner identity. | Published feedback fields only: display name, rating, message, and creation time. Email and contact preferences are never returned publicly. |
 
 ## Why the distinction matters
 

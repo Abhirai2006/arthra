@@ -130,7 +130,7 @@ Arthra focuses on practical personal and household financial record-keeping rath
 
 Arthra accepts product feedback through a public form that gives a clear inline explanation when a required rating, feedback message, or optional email format needs attention. The form surfaces readable server failures instead of raw validation payloads, and its anti-spam guard rejects non-human submissions before any feedback row is stored.
 
-Public reviews are not created automatically. A real reviewer must explicitly permit public display, and the site owner must manually approve the submission before it appears on the public feedback page. Public review data intentionally excludes contact details and consent metadata. Public links distinguish [Abhishek Rai’s portfolio](https://portfolio-abhirai2006.lovable.app), which presents projects and case studies, from [the Arthra repository](https://github.com/Abhirai2006/arthra), which contains the open-source application code and version history.
+Public feedback is never fabricated. A valid feedback form submission is published automatically after validation and anti-spam checks; the form explains this before submission, email addresses never appear publicly, and the configured owner can permanently delete a published item. Public feedback data intentionally excludes contact details. Public links distinguish [Abhishek Rai’s portfolio](https://portfolio-abhirai2006.lovable.app), which presents projects and case studies, from [the Arthra repository](https://github.com/Abhirai2006/arthra), which contains the open-source application code and version history.
 
 For protected finance pages, workspace bootstrap failures and missing active-space states resolve to retryable error screens rather than an indefinite dashboard skeleton. The selected Expense Space stays stable through normal data refreshes, and routine focus changes do not trigger unnecessary workspace bootstrap refetches.
 
@@ -175,7 +175,7 @@ The product uses INR and `en-IN` formatting, supports lakh/crore-friendly presen
 | Browser boundary | A nonce-based Content Security Policy, anti-framing policy, referrer policy, browser-permission restrictions, and anti-sniffing headers are sent on every response. |
 | API resilience | API responses are marked `no-store`; bounded request parsing and a per-client request budget reduce oversized-payload and request-flood exposure. |
 | Files and sharing | Receipt MIME/size checks, public-storage key validation, HTTPS-only signed redirects, protected retrieval, and time-limited revocable CA links constrain file and reporting paths. |
-| Public feedback | Honeypot, validation, rate limits, explicit consent, and manual approval protect the public-review workflow. |
+| Public feedback | The form clearly discloses automatic public posting; honeypot, validation, and rate limits protect submissions, emails remain private, and the owner can permanently delete published feedback. |
 | Supply chain | Axios and AWS storage SDK packages were updated; the latest audited production dependency scan has **0 critical** advisories. |
 
 </details>

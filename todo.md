@@ -182,3 +182,5 @@
 - [x] Add restrained, accessible 3D-style visual depth and motion that supports the Arthra public brand without reducing mobile usability or motion-preference support.
 - [x] Ensure the established matte black, green, and blue public palette wins consistently after the motion-layer styles load.
 - [x] Record OAuth verification as externally deferred until 30 August 2026 and retain the live unknown-route 503 as an open release blocker.
+- [x] Publish valid feedback automatically without a manual-approval gate while keeping owner-only feedback deletion available.
+- [x] Restore the feedback page’s responsive visual styling so the automatic-publication disclosure and owner controls are readable and coherent.

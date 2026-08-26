@@ -13,7 +13,7 @@ describeDatabase("website feedback persistence", () => {
     await db?.delete(websiteFeedback).where(eq(websiteFeedback.displayName, marker));
   });
 
-  it("stores authentic submissions privately in the pending moderation state", async () => {
+  it("stores authentic submissions as automatically published feedback", async () => {
     resetFeedbackRateLimitForTests();
     const caller = feedbackRouter.createCaller({
       user: null,
@@ -28,11 +28,11 @@ describeDatabase("website feedback persistence", () => {
       message: "The feedback page is clear and the privacy explanation is reassuring.",
       permissionToContact: true,
       website: "",
-    })).resolves.toEqual({ accepted: true, private: true });
+    })).resolves.toEqual({ accepted: true, published: true });
 
     const db = await getDb();
     const [stored] = await db!.select().from(websiteFeedback).where(eq(websiteFeedback.displayName, marker)).limit(1);
-    expect(stored).toMatchObject({ rating: 4, status: "pending", permissionToContact: true });
+    expect(stored).toMatchObject({ rating: 4, status: "approved", permissionToContact: true, permissionToPublish: true });
     expect(stored?.message).toContain("privacy explanation");
   });
 });

@@ -59,7 +59,7 @@ Wait at least seven days before considering any follow-up. A follow-up is approp
 
 ## Launch success criteria
 
-The first post is successful if it produces thoughtful feedback, even if it drives no sign-ups. Record feedback themes, but do not create fake testimonials or use Reddit comments as public reviews without the commenter’s explicit consent and the existing manual-approval process.
+The first post is successful if it produces thoughtful feedback, even if it drives no sign-ups. Record feedback themes, but do not create fake testimonials or copy Reddit comments into the product’s public-feedback section without the commenter’s explicit consent and a separate feedback submission.
 
 ## Published-post verification
 

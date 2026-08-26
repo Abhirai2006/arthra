@@ -12,6 +12,7 @@
 @import "./faq.css";
 @import "./cookie-consent.css";
 @import "./home-natural.css";
+@import "./feedback-page.css";
 
 @custom-variant dark (&:is(.dark *));
 

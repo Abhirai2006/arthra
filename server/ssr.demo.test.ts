@@ -33,7 +33,7 @@ describe("demo route SSR", () => {
     expect(result.html).toContain("static, isolated, and read-only");
   });
 
-  it("renders the consent-gated public feedback route with its portfolio pathway", async () => {
+  it("renders the automatically published feedback route with its portfolio pathway", async () => {
     const result = await render("/feedback", {
       authMe: async () => { throw new Error("feedback must not load auth data"); },
       previewInvite: async () => { throw new Error("feedback must not load invitation data"); },
@@ -43,6 +43,6 @@ describe("demo route SSR", () => {
     expect(result.head).toMatchObject({ title: "Share feedback · Arthra", canonicalPath: "/feedback", noindex: true });
     expect(result.html).toContain("Built with people, not placeholders.");
     expect(result.html).toContain("Open portfolio");
-    expect(result.html).toContain("Public reviews are real submissions only: the reviewer must consent and the site owner must approve each one.");
+    expect(result.html).toContain("Valid feedback is published automatically; your email is never shown");
   });
 });
