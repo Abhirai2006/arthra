@@ -209,6 +209,8 @@ The first community post is live in [`r/sideprojects`](https://www.reddit.com/r/
 
 The first substantive community response highlighted privacy visibility and receipt-attachment discoverability as credible follow-up themes. These are recorded as product-input signals only, not as testimonials or evidence of product validation; any public response must accurately explain that Arthra is hosted and must not claim that records remain only on a user’s device.
 
+A candid priority order for turning that early feedback into product work is recorded in [`docs/EARLY_FEEDBACK_FOLLOW_UP.md`](./docs/EARLY_FEEDBACK_FOLLOW_UP.md). It deliberately puts the unresolved OAuth and live custom-404 blockers ahead of convenience features, and treats the single comment as a research clue rather than proof of demand.
+
 ## Tech Stack
 
 | Layer | Technology |
