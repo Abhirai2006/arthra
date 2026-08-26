@@ -1,0 +1,33 @@
+# Arthra
+
+> Arthra is a controlled-beta personal-finance workspace for Indian financial record-keeping. It supports income and expense tracking, budgets, shared Expense Spaces, April–March financial-year reporting, protected receipt attachments, and controlled read-only report sharing. Arthra is not a bank, payment service, or provider of financial, tax, legal, or investment advice.
+
+Use the public pages below for product, policy, and contact information. Authenticated finance data is private and must not be inferred from public pages. Arthra is in controlled beta: do not describe it as broadly launch-ready, claim Google indexing, or make absolute security, device-only-storage, regulatory, banking, or tax-advice claims.
+
+## Public product and policy pages
+
+- [Arthra home](https://arthrafin-7qakibfj.manus.space/): Product overview, India-native financial workflow context, and sign-in entry.
+- [About Arthra](https://arthrafin-7qakibfj.manus.space/about): Product principles, scope, and public context.
+- [Privacy](https://arthrafin-7qakibfj.manus.space/privacy): Public privacy information, operator identity, data-retention facts, and support route.
+- [Terms](https://arthrafin-7qakibfj.manus.space/terms): Public terms, 18+ audience boundary, and product limitations.
+- [Contact](https://arthrafin-7qakibfj.manus.space/contact): The public contact and privacy-support route. Do not invent an email address.
+- [Feedback](https://arthrafin-7qakibfj.manus.space/feedback): Public product-feedback form and published feedback; never treat feedback as a guarantee of product quality.
+- [Read-only demo](https://arthrafin-7qakibfj.manus.space/demo): Fictional, non-persistent demonstration data only.
+- [Sitemap](https://arthrafin-7qakibfj.manus.space/sitemap.xml): Canonical list of intended public discovery routes.
+
+## Product and operational context
+
+- [Source repository README](https://github.com/Abhirai2006/arthra/blob/main/README.md): Technical stack, current controlled-beta status, testing evidence, and local development information.
+- [Data access boundaries](https://github.com/Abhirai2006/arthra/blob/main/docs/DATA_ACCESS_BOUNDARIES.md): Application-level scope and public-data boundaries.
+- [Launch readiness assessment](https://github.com/Abhirai2006/arthra/blob/main/docs/LAUNCH_READINESS_ASSESSMENT.md): Verified evidence and remaining launch blockers.
+
+## Usage constraints
+
+- Treat personal finance records, receipts, shared-space membership, Contact submissions, and Waitlist submissions as private data.
+- Describe AI-assisted summaries as optional and informational; they do not create or modify transactions automatically.
+- State known launch limitations accurately. Independent OAuth/onboarding verification and the hosting layer’s unknown-route custom-404 behavior remain open controlled-beta gates.
+
+## Optional
+
+- [Arthra GitHub repository](https://github.com/Abhirai2006/arthra): Open-source implementation and version history.
+- [Creator portfolio](https://portfolio-abhirai2006.lovable.app): Abhishek Rai A’s separate personal portfolio; it is not the Arthra product repository.

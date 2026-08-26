@@ -142,6 +142,8 @@ The public site includes internal navigation, a custom 404 response, semantic br
 
 Public analytics are **optional**. The analytics script is not present in the static HTML; visitors can choose “Essential only” or “Allow analytics” from the cookie-preference panel, while private finance data is never sent to website analytics. SSR supplies unique titles, descriptions, canonical URLs, Open Graph image/alt metadata, and appropriate `noindex` directives for conversion and tokenized routes. The sitemap and crawler policy list only intended public discovery routes.
 
+For agents and LLM-oriented discovery, the public [`/llms.txt`](https://arthrafin-7qakibfj.manus.space/llms.txt) file provides a concise, curated map of the public product, policy, contact, and source-documentation pages. It repeats the controlled-beta and privacy boundaries rather than making unsupported launch, security, or financial-advice claims.
+
 Finance data access is row/scoped at the authenticated application-procedure layer rather than claimed as unsupported database-native RLS. The exact boundary model, endpoint review requirements, and operational distinction are documented in [`docs/DATA_ACCESS_BOUNDARIES.md`](./docs/DATA_ACCESS_BOUNDARIES.md).
 
 <p align="right"><a href="#arthra">↑ back to top</a></p>
