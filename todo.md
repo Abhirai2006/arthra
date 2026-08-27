@@ -191,3 +191,4 @@
 - [x] Add contrast-safe custom text-selection styling and polished, accessible scrollbar treatment across Arthra’s public experience.
 - [x] Add restrained, performance-conscious interactive depth or particle ambience to the public landing while preserving mobile and reduced-motion behavior.
 - [x] Strengthen AI-agent discovery with accurate structured metadata and crawler-facing public-resource links without exposing private finance data.
+- [x] Diagnose and restore the refused local development-preview connection without changing application behavior.

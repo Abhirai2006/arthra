@@ -4,13 +4,13 @@
 
 **Personal finance, built for India.**
 
-A full-stack personal-finance workspace designed around everyday Indian financial workflows - income and expense tracking, category budgets, shared Expense Spaces, financial-year reports, and controlled read-only sharing.
+A full-stack personal-finance workspace designed around everyday Indian financial workflows — income and expense tracking, category budgets, shared Expense Spaces, financial-year reports, and controlled read-only sharing.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](./LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/Abhirai2006/arthra?style=flat-square)](https://github.com/Abhirai2006/arthra/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/Abhirai2006/arthra?style=flat-square)](https://github.com/Abhirai2006/arthra/network/members)
 [![GitHub last commit](https://img.shields.io/github/last-commit/Abhirai2006/arthra?style=flat-square)](https://github.com/Abhirai2006/arthra/commits)
-[![Tests](https://img.shields.io/badge/tests-53%20passing-brightgreen?style=flat-square)](#testing)
+[![Tests](https://img.shields.io/badge/tests-60%20passing-brightgreen?style=flat-square)](#testing)
 
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
@@ -30,7 +30,7 @@ A full-stack personal-finance workspace designed around everyday Indian financia
 
 <p align="center">
   <a href="https://arthrafin-7qakibfj.manus.space">
-    <img src="https://arthrafin-7qakibfj.manus.space/manus-storage/arthra-readme-brand-poster_4b082a69.png" alt="Arthra - Personal finance, built for India" width="100%">
+    <img src="https://arthrafin-7qakibfj.manus.space/manus-storage/arthra-readme-brand-poster_4b082a69.png" alt="Arthra — Personal finance, built for India" width="100%">
   </a>
 </p>
 
@@ -201,7 +201,7 @@ Before a broad launch, complete and retain evidence for an independent first-tim
 
 The configured owner now has a private **Owner Operations** workspace route for Contact and Waitlist records: consented records can be reviewed, classified, and deleted, while new submissions attempt a content-free owner alert. A cron-authenticated daily public health monitor is active at **09:00 UTC** for the home-page sign-in entry, sitemap, and missing-route contract; it records a private status and alerts the owner only on a new or changed failure. The monitor does not include finance, session, Contact, or Waitlist data in alerts. Its first scheduled execution and alert-delivery evidence remain operational follow-ups. This improvement does not replace an owner-defined support channel, notification verification, retention schedule, legal review, or a tested backup/restore process. See [`docs/LAUNCH_OPERATIONS_RUNBOOK.md`](./docs/LAUNCH_OPERATIONS_RUNBOOK.md) for the required operating evidence.
 
-As of 24 August 2026, the Arthra URL-prefix property is verified in Google Search Console through the deployed HTML tag, `/sitemap.xml` is submitted successfully with four discovered pages, and the root’s live test reports that it is available to Google and can be indexed. Google Index still shows the root as “Discovered - currently not indexed,” and the owner account’s manual-indexing request quota was exceeded for the day, so this is **not** a claim of current search-result visibility. The remaining unknown-route hosting fallback blocker and the exact evidence are maintained in [`docs/LAUNCH_READINESS_ASSESSMENT.md`](./docs/LAUNCH_READINESS_ASSESSMENT.md).
+As of 24 August 2026, the Arthra URL-prefix property is verified in Google Search Console through the deployed HTML tag, `/sitemap.xml` is submitted successfully with four discovered pages, and the root’s live test reports that it is available to Google and can be indexed. Google Index still shows the root as “Discovered — currently not indexed,” and the owner account’s manual-indexing request quota was exceeded for the day, so this is **not** a claim of current search-result visibility. The remaining unknown-route hosting fallback blocker and the exact evidence are maintained in [`docs/LAUNCH_READINESS_ASSESSMENT.md`](./docs/LAUNCH_READINESS_ASSESSMENT.md).
 
 The production sign-in return check is also **not complete**: the owner session logged out safely, but the configured Manus OAuth destination presented a temporary maintenance page on 24 August 2026 instead of authentication. Treat this external identity-service availability issue as a beta-launch blocker until a successful independent sign-in, onboarding, logout, and return-login sequence is recorded.
 
@@ -267,7 +267,7 @@ flowchart LR
 
 Arthra separates the client experience from server-side financial procedures, authorization, persistence, and protected file handling. Core financial calculations remain deterministic; optional AI-assisted summaries operate only through the server-side flow after an explicit request and never create or modify transactions automatically.
 
-For the full architecture at any scale, use the **[interactive architecture map](https://arthrafin-7qakibfj.manus.space/architecture)** - it supports zoom, pan, keyboard controls, and component inspection without modifying the application.
+For the full architecture at any scale, use the **[interactive architecture map](https://arthrafin-7qakibfj.manus.space/architecture)** — it supports zoom, pan, keyboard controls, and component inspection without modifying the application.
 
 <p align="right"><a href="#arthra">↑ back to top</a></p>
 
@@ -292,7 +292,7 @@ pnpm build
 
 ## Run Locally
 
-Use Node.js 22 and pnpm. The managed project environment supplies database, OAuth, storage, and optional email settings - do not commit `.env` files or credentials.
+Use Node.js 22 and pnpm. The managed project environment supplies database, OAuth, storage, and optional email settings — do not commit `.env` files or credentials.
 
 ```bash
 gh repo clone Abhirai2006/arthra
@@ -302,6 +302,8 @@ pnpm dev
 ```
 
 For the complete first-run workflow, operational notes, scheduler details, and troubleshooting guidance, read the [User Guide](./USER_GUIDE.md) and [verification notes](./verification_notes.md).
+
+If the managed development preview briefly refuses a connection after sandbox or session inactivity, restart the managed development server, wait for its `Server running on http://localhost:3000/` message, then refresh the preview URL. This does not require an application-code change.
 
 > **Latest repair verification:** `pnpm check`, **60 tests across 26 files**, and `pnpm build` passed locally. The health monitor is covered by focused route-contract tests; its platform scheduler is registered and enabled at 09:00 UTC each day.
 
