@@ -36,6 +36,26 @@ function HeroPreview({ pointer }: { pointer: { x: number; y: number } }) {
   </div>;
 }
 
+function HeroConstellation() {
+  return <div className="hero-constellation" aria-hidden="true">
+    <svg viewBox="0 0 700 470" focusable="false">
+      <path className="hero-constellation__path" d="M44 341C147 223 182 391 285 273S435 217 512 119s97 14 153-65" />
+      <path className="hero-constellation__path hero-constellation__path--soft" d="M86 93c88 51 134-48 219 13s119 118 230 69 77 68 135 111" />
+      <path className="hero-constellation__path hero-constellation__path--soft" d="M178 424c30-135 142-69 180-168 32-84 130-13 214-101" />
+      <circle className="hero-constellation__dot hero-constellation__dot--quiet" cx="44" cy="341" r="3" />
+      <circle className="hero-constellation__dot hero-constellation__dot--pulse" cx="285" cy="273" r="5" />
+      <circle className="hero-constellation__dot hero-constellation__dot--blue" cx="512" cy="119" r="4" />
+      <circle className="hero-constellation__dot hero-constellation__dot--quiet" cx="665" cy="54" r="3" />
+      <circle className="hero-constellation__dot hero-constellation__dot--blue hero-constellation__dot--pulse" cx="86" cy="93" r="4" />
+      <circle className="hero-constellation__dot hero-constellation__dot" cx="305" cy="106" r="4" />
+      <circle className="hero-constellation__dot hero-constellation__dot--quiet" cx="535" cy="175" r="3" />
+      <circle className="hero-constellation__dot hero-constellation__dot" cx="178" cy="424" r="4" />
+      <circle className="hero-constellation__dot hero-constellation__dot--blue" cx="358" cy="256" r="4" />
+      <circle className="hero-constellation__dot hero-constellation__dot--quiet" cx="572" cy="155" r="3" />
+    </svg>
+  </div>;
+}
+
 export default function Home() {
   const { isAuthenticated } = useAuth();
   const { theme, toggleTheme } = useTheme();
@@ -52,10 +72,11 @@ export default function Home() {
     setPointer({ x: (event.clientX - rect.left) / rect.width - 0.5, y: (event.clientY - rect.top) / rect.height - 0.5 });
   };
 
-  return <main className="arthra-site" data-release="trust-receipt-motion-2026-08-26">
+  return <main className="arthra-site" data-release="visual-agentic-polish-2026-08-27">
     <header className="arthra-nav-shell"><nav className="arthra-nav container" aria-label="Primary navigation"><a href="#top" className="brand-link"><BrandMark /></a><div className="arthra-nav__links" aria-label="Page sections"><a href="#why-arthra">Why Arthra</a><a href="#flows">How it works</a><a href="#faq">FAQs</a><a href="#trust">Privacy</a><a href="/about">About</a><a href="/contact">Contact</a><a href="/demo">Demo</a></div><div className="arthra-nav__actions"><button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}>{theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}</button><button className="nav-login" type="button" onClick={handlePrimaryAction}>{isAuthenticated ? "Workspace" : "Sign in"}</button></div></nav></header>
     <nav className="mobile-quick-nav" aria-label="Mobile quick navigation"><a href="#why-arthra">Why</a><a href="#flows">Flow</a><a href="#faq">FAQs</a><a href="/contact">Contact</a><button type="button" onClick={handlePrimaryAction}>{isAuthenticated ? "Open" : "Start"}<ArrowRight size={15} /></button></nav>
     <section className="arthra-hero" ref={heroRef} onMouseMove={trackHero} style={pointerVariables}>
+      <HeroConstellation />
       <div id="top" className="hero-grid container">
         <motion.div className="hero-copy" initial={reduceMotion ? false : "hidden"} animate="visible" variants={{ visible: { transition: { staggerChildren: 0.08 } } }}>
           <motion.p className="eyebrow" variants={reveal} transition={{ duration: 0.52 }}>Arthra · Personal finance, built for India</motion.p><motion.h1 variants={reveal} transition={{ duration: 0.58 }}>A more <em>considered</em> way to stay close to your money.</motion.h1><motion.p className="hero-lede" variants={reveal} transition={{ duration: 0.58 }}>Track expenses. Manage budgets. Understand your spending. Share secure financial reports—with Indian currency, GST, and Apr–Mar context built in.</motion.p><motion.div className="hero-actions" variants={reveal} transition={{ duration: 0.55 }}><button className="button-primary" type="button" onClick={handlePrimaryAction}><span>{isAuthenticated ? ctaLabel : "Get started"}</span><ArrowRight size={17} /></button><a className="demo-cta" href="/demo">Try demo <ArrowRight size={16} /></a><a className="text-link" href="#why-arthra">Explore the approach <ChevronRight size={16} /></a></motion.div><motion.div className="hero-note" variants={reveal} transition={{ duration: 0.5 }}><Fingerprint size={15} /><span>No account data is shown until you choose to sign in.</span></motion.div>

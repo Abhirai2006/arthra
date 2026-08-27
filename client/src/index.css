@@ -13,6 +13,7 @@
 @import "./cookie-consent.css";
 @import "./home-natural.css";
 @import "./feedback-page.css";
+@import "./arthra-polish.css";
 
 @custom-variant dark (&:is(.dark *));
 

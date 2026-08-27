@@ -1,0 +1,174 @@
+/*
+ * Quiet interaction polish for Arthra’s public surfaces.
+ * All movement is decorative, removed for reduced-motion users, and does not
+ * animate financial data or interfere with pointer/touch interaction.
+ */
+
+::selection {
+  background: #155f66;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background: #155f66;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+html {
+  scrollbar-color: #2d8687 #e9ece9;
+  scrollbar-width: thin;
+}
+
+html.dark {
+  scrollbar-color: #62d8c4 #12191b;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #e9ece9;
+}
+
+body::-webkit-scrollbar-thumb {
+  min-height: 48px;
+  border: 3px solid #e9ece9;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #258a88, #16636a);
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2ba3a0, #155f66);
+}
+
+html.dark body::-webkit-scrollbar-track {
+  background: #12191b;
+}
+
+html.dark body::-webkit-scrollbar-thumb {
+  border-color: #12191b;
+  background: linear-gradient(180deg, #79e5d1, #258a88);
+}
+
+.arthra-hero .hero-grid,
+.arthra-hero .hero-trust {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-constellation {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.52;
+}
+
+.hero-constellation::before {
+  position: absolute;
+  inset: auto auto 8% 7%;
+  width: min(38vw, 420px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(107, 215, 199, 0.17);
+  border-radius: 50%;
+  box-shadow: 0 0 0 34px rgba(69, 164, 165, 0.04), 0 0 0 91px rgba(52, 126, 150, 0.025);
+  content: "";
+  transform: translate3d(calc(var(--pointer-x, 0) * -14px), calc(var(--pointer-y, 0) * -11px), 0);
+  transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hero-constellation svg {
+  position: absolute;
+  top: 11%;
+  right: 3%;
+  width: min(46vw, 650px);
+  height: auto;
+  overflow: visible;
+  transform: translate3d(calc(var(--pointer-x, 0) * 19px), calc(var(--pointer-y, 0) * 15px), 0) rotate(-7deg);
+  transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hero-constellation__path {
+  fill: none;
+  stroke: rgba(123, 228, 209, 0.24);
+  stroke-dasharray: 3 9;
+  stroke-width: 1;
+}
+
+.hero-constellation__path--soft {
+  stroke: rgba(112, 179, 255, 0.16);
+}
+
+.hero-constellation__dot {
+  fill: #8cedd5;
+  filter: drop-shadow(0 0 7px rgba(115, 238, 211, 0.7));
+}
+
+.hero-constellation__dot--blue {
+  fill: #8ab7ff;
+  filter: drop-shadow(0 0 7px rgba(110, 165, 255, 0.65));
+}
+
+.hero-constellation__dot--quiet {
+  fill: rgba(239, 255, 253, 0.75);
+  filter: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-constellation svg {
+    animation: constellation-drift 15s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+  }
+
+  .hero-constellation__dot--pulse {
+    animation: constellation-pulse 3.6s ease-in-out infinite;
+    transform-origin: center;
+  }
+}
+
+@keyframes constellation-drift {
+  to {
+    transform: translate3d(calc(var(--pointer-x, 0) * 19px + 15px), calc(var(--pointer-y, 0) * 15px - 10px), 0) rotate(-4deg);
+  }
+}
+
+@keyframes constellation-pulse {
+  50% {
+    opacity: 0.46;
+    transform: scale(1.35);
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-constellation {
+    opacity: 0.34;
+  }
+
+  .hero-constellation::before {
+    width: 74vw;
+    left: -20vw;
+    bottom: 20%;
+  }
+
+  .hero-constellation svg {
+    top: 42%;
+    right: -29%;
+    width: 114vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-constellation svg,
+  .hero-constellation::before {
+    transition: none;
+    transform: none;
+  }
+}

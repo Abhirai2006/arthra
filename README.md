@@ -125,6 +125,7 @@ Arthra focuses on practical personal and household financial record-keeping rath
 - A pre-sign-in trust panel that plainly explains that Arthra is hosted, links directly to Privacy and Contact pathways, and avoids unsupported device-only or absolute-security claims
 - A visible optional image/PDF receipt step in transaction create and edit flows, alongside existing protected receipt retrieval and review-first receipt suggestions
 - Layered product-preview depth, gentle pointer-device hover tilt, and a 3D-style trust orb that are all suppressed for people who prefer reduced motion
+- A lightweight decorative hero constellation with static/mobile/reduced-motion fallbacks, plus high-contrast custom text selection and a restrained teal scrollbar treatment
 
 ### Public Feedback & Website Reliability
 
@@ -143,6 +144,8 @@ The public site includes internal navigation, a custom 404 response, semantic br
 Public analytics are **optional**. The analytics script is not present in the static HTML; visitors can choose “Essential only” or “Allow analytics” from the cookie-preference panel, while private finance data is never sent to website analytics. SSR supplies unique titles, descriptions, canonical URLs, Open Graph image/alt metadata, and appropriate `noindex` directives for conversion and tokenized routes. The sitemap and crawler policy list only intended public discovery routes.
 
 For agents and LLM-oriented discovery, the public [`/llms.txt`](https://arthrafin-7qakibfj.manus.space/llms.txt) file provides a concise, curated map of the public product, policy, contact, and source-documentation pages. It repeats the controlled-beta and privacy boundaries rather than making unsupported launch, security, or financial-advice claims.
+
+Every public document head also links to `/llms.txt` through `rel="describedby"`, and the server-rendered public HTML contains a factual `SoftwareApplication` structured-data record. This discovery layer describes only the public product; it does not expose finance records, receipts, contact submissions, waitlist data, or authenticated Workspace pages.
 
 Finance data access is row/scoped at the authenticated application-procedure layer rather than claimed as unsupported database-native RLS. The exact boundary model, endpoint review requirements, and operational distinction are documented in [`docs/DATA_ACCESS_BOUNDARIES.md`](./docs/DATA_ACCESS_BOUNDARIES.md).
 
@@ -279,7 +282,7 @@ Arthra includes a **[read-only demo environment](https://arthrafin-7qakibfj.manu
 
 ## Testing
 
-The automated suite currently has **53 passing tests across 23 files** covering financial calculations, Indian financial-year boundaries, authorization, transactions, receipts, budgets, analytics, Expense Spaces, CA reports, share-link revocation, SSR privacy behavior, onboarding, demo isolation, transaction import, consent-gated feedback, dashboard resilience, public engagement, the published policy SSR contract, and the daily health-monitor route contract.
+The automated suite currently has **60 passing tests across 26 files** covering financial calculations, Indian financial-year boundaries, authorization, transactions, receipts, budgets, analytics, Expense Spaces, CA reports, share-link revocation, SSR privacy behavior, onboarding, demo isolation, transaction import, automatic-feedback controls, dashboard resilience, public engagement, the published policy SSR contract, public `llms.txt`, agent-discovery metadata, contrast-safe selection, visual decoration fallbacks, and the daily health-monitor route contract.
 
 ```bash
 pnpm check
@@ -300,7 +303,7 @@ pnpm dev
 
 For the complete first-run workflow, operational notes, scheduler details, and troubleshooting guidance, read the [User Guide](./USER_GUIDE.md) and [verification notes](./verification_notes.md).
 
-> **Latest repair verification:** `pnpm check`, **53 tests across 23 files**, and `pnpm build` passed locally. The health monitor is covered by focused route-contract tests; its platform scheduler is registered and enabled at 09:00 UTC each day.
+> **Latest repair verification:** `pnpm check`, **60 tests across 26 files**, and `pnpm build` passed locally. The health monitor is covered by focused route-contract tests; its platform scheduler is registered and enabled at 09:00 UTC each day.
 
 <p align="right"><a href="#arthra">↑ back to top</a></p>
 

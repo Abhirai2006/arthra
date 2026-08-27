@@ -187,3 +187,7 @@
 - [x] Diagnose and fix the reported case where a genuine feedback submission is not visible on the public feedback page.
 - [x] Add and publicly serve an accurate `llms.txt` resource for Arthra, then document and synchronize it to GitHub.
 - [x] Ensure the deployed production host returns the `llms.txt` plaintext resource rather than the SSR 404 page.
+- [x] Research the supplied animation, component, particle, shader, and interaction references and select only patterns suitable for Arthra’s finance context.
+- [x] Add contrast-safe custom text-selection styling and polished, accessible scrollbar treatment across Arthra’s public experience.
+- [x] Add restrained, performance-conscious interactive depth or particle ambience to the public landing while preserving mobile and reduced-motion behavior.
+- [x] Strengthen AI-agent discovery with accurate structured metadata and crawler-facing public-resource links without exposing private finance data.
